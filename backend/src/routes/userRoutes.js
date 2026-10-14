@@ -1,4 +1,9 @@
-const { signup, login, logout } = require("../controllers/user.controller");
+const {
+  signup,
+  login,
+  logout,
+  updateProfile,
+} = require("../controllers/user.controller");
 
 // common routes
 const express = require("express");
@@ -8,5 +13,6 @@ let router = express.Router();
 router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", authentication, logout);
+router.patch("/update/:id", authentication, updateProfile);
 
 module.exports = router;

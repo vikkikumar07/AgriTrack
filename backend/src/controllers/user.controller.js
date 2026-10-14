@@ -1,4 +1,3 @@
-const express = require("express");
 const User = require("../models/user.schema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -92,7 +91,49 @@ let login = async (req, res) => {
         secure: false,
         maxAge: 24 * 60 * 60 * 1000,
       })
-      .json({ message: "login successfully", success: true });
+      .json({ message: "login successfully", success: true, user: user });
+  } catch (error) {
+    console.log(error);
+    return res.status(501).json({ message: "Server Error", success: false });
+  }
+};
+
+// update
+let updateProfile = async (req, res) => {
+  try {
+    let { fullName, username, email, password, location, logo } = req.body;
+    const { id } = req.params;
+
+    let user = {
+      fullName,
+      username,
+      email,
+      location,
+      logo,
+    };
+
+    if (password) {
+      user.password = await bcrypt.hash(password, 10);
+    }
+
+    // cloudnary use hoga logo ke liye
+    let updateUser = await User.findByIdAndUpdate(
+      id,
+      { $set: user },
+      { new: true, runValidators: true },
+    );
+
+    if (!updateUser) {
+      return res
+        .status(404)
+        .json({ message: "user not found", success: false });
+    }
+
+    return res.status(201).json({
+      message: "Update successfully",
+      success: true,
+      user: updateUser,
+    });
   } catch (error) {
     console.log(error);
     return res.status(501).json({ message: "Server Error", success: false });
@@ -118,4 +159,4 @@ let logout = (req, res) => {
   }
 };
 
-module.exports = { signup, login, logout };
+module.exports = { signup, login, logout, updateProfile };
