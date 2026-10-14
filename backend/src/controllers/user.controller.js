@@ -162,4 +162,29 @@ let logout = (req, res) => {
   }
 };
 
-module.exports = { signup, login, logout, updateProfile };
+// account delete
+let deleteProfile = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
+
+    res.cookie("token", {
+      httpOnly: true,
+      secure: false,
+      maxAge: 0,
+    });
+
+    return res.status(200).json({
+      message: "Account Delete successfully",
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Server Error", success: false, error });
+  }
+};
+
+module.exports = { signup, login, logout, updateProfile, deleteProfile };
