@@ -1,6 +1,7 @@
 const User = require("../models/user.schema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const uploadToCloudinary = require("../config/cloudinary");
 
 // sign up
 let signup = async (req, res) => {
@@ -101,7 +102,7 @@ let login = async (req, res) => {
 // update
 let updateProfile = async (req, res) => {
   try {
-    let { fullName, username, email, password, location, logo } = req.body;
+    let { fullName, username, email, password, location } = req.body;
     const { id } = req.params;
 
     let user = {
@@ -109,9 +110,11 @@ let updateProfile = async (req, res) => {
       username,
       email,
       location,
-      logo,
     };
-
+    if (req.file) {
+      const result = await uploadToCloudinary(req.file.buffer);
+      user.logo = result.secure_url;
+    }
     if (password) {
       user.password = await bcrypt.hash(password, 10);
     }
