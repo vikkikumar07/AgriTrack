@@ -1,8 +1,8 @@
 const express = require("express");
-const dbConection = require("./config/db");
+const dbConection = require("./src/config/db");
 const cors = require("cors");
 require("dotenv").config();
-const userRoutes = require("./routes/userRoutes");
+const userRoutes = require("./src/routes/userRoutes");
 
 let app = express();
 // json from data
