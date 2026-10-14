@@ -3,8 +3,11 @@ const dbConection = require("./src/config/db");
 const cors = require("cors");
 require("dotenv").config();
 const userRoutes = require("./src/routes/userRoutes");
+const cookieParser = require("cookie-parser");
 
 let app = express();
+
+app.use(cookieParser());
 // json from data
 app.use(express.json());
 // HTML from data accesses
