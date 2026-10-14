@@ -180,11 +180,42 @@ let deleteProfile = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    console.log(error);
     return res
       .status(500)
       .json({ message: "Server Error", success: false, error });
   }
 };
 
-module.exports = { signup, login, logout, updateProfile, deleteProfile };
+let authMe = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const user = await User.findOne({ id });
+    if (!user) {
+      return res.status(404).json({
+        message: "please login your account",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      message: "Welcome Back",
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Server Error",
+      success: false,
+    });
+  }
+};
+
+module.exports = {
+  signup,
+  login,
+  logout,
+  updateProfile,
+  deleteProfile,
+  authMe,
+};
