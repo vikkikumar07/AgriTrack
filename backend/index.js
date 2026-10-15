@@ -3,7 +3,7 @@ const dbConection = require("./src/config/db");
 const cors = require("cors");
 require("dotenv").config();
 const userRoutes = require("./src/routes/userRoutes");
-const farmarRoutes = require("./src/routes/farmer/farmerRoutes");
+const farmerRoutes = require("./src/routes/farmer/farmerRoutes");
 const cookieParser = require("cookie-parser");
 
 let app = express();
@@ -23,7 +23,7 @@ app.use(
 
 // call routes
 app.use("/web/agritrack/user", userRoutes);
-app.use("/web/agritrack/farmer", farmarRoutes);
+app.use("/web/agritrack/farmer", farmerRoutes);
 
 app.listen(process.env.PORT, () => {
   try {
