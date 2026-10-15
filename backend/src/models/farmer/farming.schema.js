@@ -33,8 +33,9 @@ let farmingSchema = mongoose.Schema(
           type: String,
           required: true,
         },
-        description: String,
         dueDate: Date,
+        quantity: String,
+        description: String,
         completed: {
           type: Boolean,
           default: false,
