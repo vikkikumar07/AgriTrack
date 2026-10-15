@@ -5,6 +5,7 @@ const authorize = require("../../middlewares/authorize");
 const {
   tasksAccesses,
   tasksCopletedUpdate,
+  deleteTasks,
 } = require("../../controllers/farmer/farmer.controller");
 let router = express.Router();
 
@@ -21,5 +22,12 @@ router.patch(
   authentication,
   authorize("farmer"),
   tasksCopletedUpdate,
+);
+
+router.delete(
+  "/crops/:cropId/tasks/delete",
+  authentication,
+  authorize("farmer"),
+  deleteTasks,
 );
 module.exports = router;
