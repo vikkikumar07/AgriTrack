@@ -7,6 +7,7 @@ const {
   tasksCopletedUpdate,
   deleteTasks,
 } = require("../../controllers/farmer/farmer.controller");
+
 let router = express.Router();
 
 router.post(
@@ -30,4 +31,5 @@ router.delete(
   authorize("farmer"),
   deleteTasks,
 );
+
 module.exports = router;

@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 const userRoutes = require("./src/routes/userRoutes");
 const farmerRoutes = require("./src/routes/farmer/farmerRoutes");
+const complainRoutes = require("./src/routes/complainRoutes");
 const cookieParser = require("cookie-parser");
 
 let app = express();
@@ -24,6 +25,7 @@ app.use(
 // call routes
 app.use("/web/agritrack/user", userRoutes);
 app.use("/web/agritrack/farmer", farmerRoutes);
+app.use("/web/agritrack/complain", complainRoutes);
 
 app.listen(process.env.PORT, () => {
   try {
