@@ -5,6 +5,7 @@ require("dotenv").config();
 const userRoutes = require("./src/routes/userRoutes");
 const farmerRoutes = require("./src/routes/farmer/farmerRoutes");
 const complainRoutes = require("./src/routes/complainRoutes");
+const adminRouters = require("./src/routes/admin/adminRoutes");
 const cookieParser = require("cookie-parser");
 
 let app = express();
@@ -26,6 +27,7 @@ app.use(
 app.use("/web/agritrack/user", userRoutes);
 app.use("/web/agritrack/farmer", farmerRoutes);
 app.use("/web/agritrack/complain", complainRoutes);
+app.use("/web/agritrack/admin", adminRouters);
 
 app.listen(process.env.PORT, () => {
   try {

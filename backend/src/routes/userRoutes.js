@@ -18,6 +18,7 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", authentication, logout);
 router.patch("/update/:id", authentication, upload, updateProfile);
+// admin and user
 router.delete("/delete/profile/:id", authentication, deleteProfile);
 router.post("/authme", authentication, authMe);
 
