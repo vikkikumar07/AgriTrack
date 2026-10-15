@@ -27,6 +27,35 @@ let postComplain = async (req, res) => {
   }
 };
 // user delete complain
+let deleteComplain = async (req, res) => {
+  const id = req.params.postId;
+  try {
+    await Complain.findByIdAndDelete(id);
+    return res
+      .status(201)
+      .json({ message: "Delete successfully", success: true });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
 //seen complain
+let getComplain = async (req, res) => {
+  try {
+    const id = req.user.userId;
+    let complains = await Complain.find({ userId: id });
+    if (!complains) {
+      return res
+        .status(400)
+        .json({ message: "Not found complain", success: false });
+    }
 
-module.exports = { postComplain };
+    return res
+      .status(200)
+      .json({ message: "Found successfully", success: true, complains });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
+module.exports = { postComplain, deleteComplain, getComplain };
