@@ -34,5 +34,23 @@ let createExpenses = async (req, res) => {
 };
 
 // get expenses by  crop id
-let getExpenses = async (req, res) => {};
-module.exports = { createExpenses };
+let getExpenses = async (req, res) => {
+  try {
+    const cropId = req.params.cropId;
+    let expensesDetials = await Expenses.find({ cropId });
+
+    if (!expensesDetials) {
+      return res
+        .status(400)
+        .json({ message: "Not found detials", success: false });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Found successfully", success: true, expensesDetials });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
+module.exports = { createExpenses, getExpenses };
