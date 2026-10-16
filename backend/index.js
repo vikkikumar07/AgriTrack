@@ -7,6 +7,7 @@ const farmerRoutes = require("./src/routes/farmer/farmerRoutes");
 const complainRoutes = require("./src/routes/complainRoutes");
 const adminRouters = require("./src/routes/admin/adminRoutes");
 const expensesRoutes = require("./src/routes/farmer/expensesRoutes");
+const harvestRoutes = require("./src/routes/farmer/harvestRoutes");
 const cookieParser = require("cookie-parser");
 
 let app = express();
@@ -29,7 +30,8 @@ app.use("/web/agritrack/user", userRoutes);
 app.use("/web/agritrack/farmer", farmerRoutes);
 app.use("/web/agritrack/complain", complainRoutes);
 app.use("/web/agritrack/admin", adminRouters);
-app.use("/web/agritrack/farmer", expensesRoutes);
+app.use("/web/agritrack/farmer/expenses", expensesRoutes);
+app.use("/web/agritrack/farmer/harvest", harvestRoutes);
 
 app.listen(process.env.PORT, () => {
   try {

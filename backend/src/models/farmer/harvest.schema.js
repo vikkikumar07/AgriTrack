@@ -15,7 +15,7 @@ let harvestSchema = mongoose.Schema(
     damagedQuantity: {
       //Quintal
       type: Number,
-      required: true,
+      default: 0,
     },
     soldQuantity: {
       //Quintal
@@ -25,7 +25,7 @@ let harvestSchema = mongoose.Schema(
     storedQuantity: {
       //Quintal
       type: Number,
-      required: true,
+      default: 0,
     },
     sellingPrice: {
       // unit rupees
@@ -43,20 +43,24 @@ let harvestSchema = mongoose.Schema(
     transportCost: {
       // always rupess
       type: Number,
-      required: true,
+      default: 0,
     },
     totalExpenses: {
       // rupees
       type: Number,
+      default: 0,
     },
     revenue: {
       // unit rupees
       type: Number,
+      default: 0,
     },
     profitLoss: {
       // rupees
       type: Number,
+      default: 0,
     },
+    plMessage: String,
   },
   { timestamps: true },
 );

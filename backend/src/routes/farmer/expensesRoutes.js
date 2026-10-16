@@ -11,27 +11,22 @@ const authorize = require("../../middlewares/authorize");
 let router = express.Router();
 
 router.post(
-  "/expenses/:cropId/create",
+  "/:cropId/create",
   authentication,
   authorize("farmer"),
   createExpenses,
 );
-router.get(
-  "/expenses/:cropId/get",
-  authentication,
-  authorize("farmer"),
-  getExpenses,
-);
+router.get("/:cropId/get", authentication, authorize("farmer"), getExpenses);
 // expenses id not cropId
 router.delete(
-  "/expenses/:id/delete",
+  "/:id/delete",
   authentication,
   authorize("farmer"),
   deleteExpenses,
 );
 
 router.get(
-  "/expenses/:cropId/getAmount",
+  "/:cropId/getAmount",
   authentication,
   authorize("farmer"),
   totelExpensesAmount,
