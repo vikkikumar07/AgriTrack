@@ -29,7 +29,9 @@ let createExpenses = async (req, res) => {
       .json({ message: "Create successfully", success: true });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).json({ message: "server error", success: false });
+    return res
+      .status(500)
+      .json({ message: "Not create expenses", success: false });
   }
 };
 
@@ -41,8 +43,8 @@ let getExpenses = async (req, res) => {
 
     if (!expensesDetials) {
       return res
-        .status(400)
-        .json({ message: "Not found detials", success: false });
+        .status(404)
+        .json({ message: "Expenses not found", success: false });
     }
 
     return res
@@ -50,7 +52,31 @@ let getExpenses = async (req, res) => {
       .json({ message: "Found successfully", success: true, expensesDetials });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).json({ message: "server error", success: false });
+    return res
+      .status(500)
+      .json({ message: "Failed to delete expenses", success: false });
   }
 };
-module.exports = { createExpenses, getExpenses };
+
+// delete expenses data
+let deleteExpenses = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    let result = await Expenses.findByIdAndDelete(id);
+    if (!result) {
+      return res
+        .status(404)
+        .json({ message: "Expenses not found", success: false });
+    }
+    return res
+      .status(200)
+      .json({ message: "Delete successfully", success: true });
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(500)
+      .json({ message: "Failed to delete expenses", success: false });
+  }
+};
+module.exports = { createExpenses, getExpenses, deleteExpenses };
