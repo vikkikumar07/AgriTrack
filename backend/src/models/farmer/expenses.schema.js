@@ -41,6 +41,10 @@ let expensesSchema = mongoose.Schema({
     required: true,
   },
   // unit ==> rupees
+
+  description: {
+    type: String,
+  },
 });
 
 let Expenses = mongoose.model("Expenses", expensesSchema);
