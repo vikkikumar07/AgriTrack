@@ -29,8 +29,12 @@ let expensesSchema = mongoose.Schema({
     required: true,
   },
   quantity: {
-    type: Date,
+    type: Number,
     required: true,
+  },
+  unit: {
+    type: String,
+    enum: ["g", "kg"],
   },
   rate: {
     type: Date,
