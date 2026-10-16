@@ -41,11 +41,11 @@ let signup = async (req, res) => {
       role,
     };
 
-    let newUser = await User.create(user);
+    await User.create(user);
 
     return res
       .status(201)
-      .json({ message: "Account Create successfully", success: true, newUser });
+      .json({ message: "Account Create successfully", success: true });
   } catch (error) {
     console.log(error);
     return res.status(501).json({ message: "Server Error", success: false });
