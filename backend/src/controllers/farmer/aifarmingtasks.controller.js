@@ -167,10 +167,13 @@ let farmingTasks = async (req, res) => {
       .status(201)
       .json({ message: "Generate Data successfully", success: true });
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
+    console.log(error.status);
+    console.log(error.cause);
     res.status(500).json({
       message: "Task generate failed",
       success: false,
+      error: error.message,
     });
   }
 };
