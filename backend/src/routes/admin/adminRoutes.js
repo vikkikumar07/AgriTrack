@@ -7,6 +7,10 @@ const {
   blockedUnblocked,
   roleManage,
 } = require("../../controllers/admin/userManage.controller");
+const {
+  taskUpdate,
+} = require("../../controllers/admin/farmingManage.controller");
+
 let router = express.Router();
 
 router.get("/findAll/user", authentication, authorize("admin"), findAllUser);
@@ -18,4 +22,12 @@ router.post(
   blockedUnblocked,
 );
 router.post("/role/user/:id", authentication, authorize("admin"), roleManage);
+
+router.patch(
+  "/crops/:cropId/tasks/:taskId/update",
+  authentication,
+  authorize("admin"),
+  taskUpdate,
+);
+
 module.exports = router;
