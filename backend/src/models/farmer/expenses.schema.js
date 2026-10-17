@@ -38,7 +38,7 @@ let expensesSchema = mongoose.Schema(
       enum: ["g", "Kg", "Quintal"],
     },
     rate: {
-      type: Date,
+      type: Number,
       required: true,
     },
     amount: {

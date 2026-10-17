@@ -9,7 +9,7 @@ let tasksAccesses = async (req, res) => {
     }
 
     return res
-      .status(401)
+      .status(200)
       .json({ message: "Found successfully", success: true, allTasks });
   } catch (error) {
     console.log(error);
