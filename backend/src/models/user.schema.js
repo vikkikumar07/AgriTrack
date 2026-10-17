@@ -28,7 +28,12 @@ let userSchema = mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["farmer", "admin", "export"],
+      enum: ["farmer", "admin", "expert"],
+      default: "farmer",
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true },

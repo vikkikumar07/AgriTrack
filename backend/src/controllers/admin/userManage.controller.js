@@ -31,7 +31,7 @@ let searchUser = async (req, res) => {
     if (!user) {
       return res
         .status(404)
-        .json({ message: "Not Found user", success: false });
+        .json({ message: "Not found user", success: false });
     }
 
     return res
@@ -42,4 +42,35 @@ let searchUser = async (req, res) => {
     return res.status(500).json({ message: "server error", success: false });
   }
 };
-module.exports = { findAllUser, searchUser };
+
+// blocked unblocked user
+let blockedUnblocked = async (req, res) => {
+  try {
+    const id = req.body;
+
+    let user = await User.findById(id);
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Not found user", success: false });
+    }
+
+    if (user.role === "admin") {
+      return res
+        .status(404)
+        .json({ message: "Not block admin", success: false });
+    }
+
+    user.isBlocked = !user.isBlocked;
+
+    return res.status(200).json({
+      message: user.isBlocked ? "Block successfully" : "Unblock successfully",
+      success: true,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
+module.exports = { findAllUser, searchUser, blockedUnblocked };

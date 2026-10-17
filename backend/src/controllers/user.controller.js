@@ -70,6 +70,12 @@ let login = async (req, res) => {
         .json({ message: "Your email is wrong", success: false });
     }
 
+    if (user.isBlocked) {
+      return res
+        .status(404)
+        .json({ message: "your account is blocked", success: false });
+    }
+
     const isPassword = await bcrypt.compare(password, user.password);
     if (!isPassword) {
       return res
