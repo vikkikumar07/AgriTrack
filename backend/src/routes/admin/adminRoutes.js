@@ -10,6 +10,7 @@ const {
 const {
   taskUpdate,
 } = require("../../controllers/admin/farmingManage.controller");
+const updateExpenses = require("../../controllers/admin/expensesManage.controller");
 
 let router = express.Router();
 
@@ -30,4 +31,10 @@ router.patch(
   taskUpdate,
 );
 
+router.patch(
+  "/expenses/update/:id",
+  authentication,
+  authorize("admin"),
+  updateExpenses,
+);
 module.exports = router;

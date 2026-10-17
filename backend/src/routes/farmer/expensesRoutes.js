@@ -16,7 +16,7 @@ router.post(
   authorize("farmer"),
   createExpenses,
 );
-router.get("/:cropId/get", authentication, authorize("farmer"), getExpenses);
+router.get("/:cropId/get", authentication, getExpenses);
 // expenses id not cropId
 router.delete("/:id/delete", authentication, deleteExpenses);
 
