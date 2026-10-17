@@ -42,7 +42,7 @@ let deleteComplain = async (req, res) => {
 //seen complain
 let getComplain = async (req, res) => {
   try {
-    const id = req.user.userId;
+    const id = req.params.id;
     let complains = await Complain.find({ userId: id });
     if (!complains) {
       return res

@@ -17,7 +17,7 @@ router.post(
   farmingTasks,
 );
 
-router.get("/gets/tasks", authentication, tasksAccesses);
+router.get("/gets/tasks/:id", authentication, tasksAccesses);
 router.patch(
   "/crops/:cropId/tasks/:taskId/complete",
   authentication,

@@ -15,7 +15,7 @@ let router = express.Router();
 
 //farmer and exparts
 router.post("/create", authentication, postComplain);
-router.get("/find", authentication, getComplain);
+router.get("/find/:id", authentication, getComplain);
 // farmar, exparts and admin
 router.delete("/delete/:postId", authentication, deleteComplain);
 

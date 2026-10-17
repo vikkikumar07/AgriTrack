@@ -2,7 +2,7 @@ const Farming = require("../../models/farmer/farming.schema");
 // tasks accsesses
 let tasksAccesses = async (req, res) => {
   try {
-    const id = req.user.userId;
+    const id = req.params.id;
     let allTasks = await Farming.find({ userId: id });
     if (!allTasks) {
       return res.status(404).json({ message: "Not Found", success: false });
