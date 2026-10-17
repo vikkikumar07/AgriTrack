@@ -20,6 +20,11 @@ let expensesSchema = mongoose.Schema(
       ref: "Farming",
       required: true,
     },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     category: {
       type: String,
       enum: categories,

@@ -16,6 +16,7 @@ let createHarvest = async (req, res) => {
     } = req.body;
 
     const cropId = req.params.cropId;
+    const userId = req.user.userId;
 
     if (
       !totalHarvest ||

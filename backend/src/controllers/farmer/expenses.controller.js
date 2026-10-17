@@ -6,6 +6,7 @@ let createExpenses = async (req, res) => {
     const { category, date, quantity, unit, rate, amount, description } =
       req.body;
     const cropId = req.params.cropId;
+    const userId = req.user.userId;
 
     if (!category || !date || !quantity || !unit || !rate || !amount) {
       return res
@@ -15,6 +16,7 @@ let createExpenses = async (req, res) => {
 
     let expensesDetials = {
       cropId,
+      userId,
       category,
       date,
       quantity,

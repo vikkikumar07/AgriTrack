@@ -7,6 +7,11 @@ let harvestSchema = mongoose.Schema(
       ref: "Farming",
       required: true,
     },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     totalHarvest: {
       // Quintal
       type: Number,

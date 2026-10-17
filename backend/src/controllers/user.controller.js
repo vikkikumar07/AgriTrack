@@ -2,6 +2,7 @@ const User = require("../models/user.schema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const uploadToCloudinary = require("../config/cloudinary");
+const Farming = require("../models/farmer/farming.schema");
 
 // sign up
 let signup = async (req, res) => {
@@ -178,6 +179,14 @@ let logout = (req, res) => {
 let deleteProfile = async (req, res) => {
   try {
     const { id } = req.params;
+
+    await Promise.all([
+      Farming.deleteMany({ userId: id }),
+      Expenses.deleteMany({ userId: id }),
+      Harvest.deleteMany({ userId: id }),
+      Complain.deleteMany({ userId: id }),
+    ]);
+
     await User.findByIdAndDelete(id);
 
     res.cookie("token", {
