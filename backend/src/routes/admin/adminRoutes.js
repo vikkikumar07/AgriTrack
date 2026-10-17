@@ -11,6 +11,7 @@ const {
   taskUpdate,
 } = require("../../controllers/admin/farmingManage.controller");
 const updateExpenses = require("../../controllers/admin/expensesManage.controller");
+const updateHarvest = require("../../controllers/admin/harvestManage.controller");
 
 let router = express.Router();
 
@@ -36,5 +37,12 @@ router.patch(
   authentication,
   authorize("admin"),
   updateExpenses,
+);
+
+router.patch(
+  "/harvest/update/:id",
+  authentication,
+  authorize("admin"),
+  updateHarvest,
 );
 module.exports = router;
