@@ -6,14 +6,20 @@ const uploadToCloudinary = require("../config/cloudinary");
 // sign up
 let signup = async (req, res) => {
   try {
-    const { fullName, username, email, password, role } = req.body;
+    const { fullName, username, email, password, role, secret } = req.body;
 
     if (!fullName || !username || !email || !password || !role) {
       return res
         .status(404)
         .json({ message: "All Fild are required!", success: false });
     }
-
+    if (role === "admin") {
+      if (secret !== process.env.ADMIN_SECRET_KEY) {
+        return res
+          .status(404)
+          .json({ message: "Wrong secret key", success: false });
+      }
+    }
     // check email in database
     let isFindEmail = await User.findOne({ email });
     if (isFindEmail) {
