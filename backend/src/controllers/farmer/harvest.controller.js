@@ -78,6 +78,21 @@ let createHarvest = async (req, res) => {
   }
 };
 // delete harvest informations
+let deleteHarvest = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Harvest.findByIdAndDelete(id);
+
+    return res
+      .status(200)
+      .json({ message: "Delete successfully", success: true });
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(500)
+      .json({ message: "Delete data faild", success: false });
+  }
+};
 // get harvest informations form cropId
 
-module.exports = { createHarvest };
+module.exports = { createHarvest, deleteHarvest };
