@@ -14,11 +14,6 @@ router.post(
   authorize("farmer"),
   createHarvest,
 );
-router.delete(
-  "/:id/delete",
-  authentication,
-  authorize("farmer"),
-  deleteHarvest,
-);
-router.get("/:cropId/getAll", authentication, authorize("farmer"), getHarvest);
+router.delete("/:id/delete", authentication, deleteHarvest);
+router.get("/:cropId/getAll", authentication, getHarvest);
 module.exports = router;

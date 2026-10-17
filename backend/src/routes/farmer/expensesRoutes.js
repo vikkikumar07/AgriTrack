@@ -18,18 +18,8 @@ router.post(
 );
 router.get("/:cropId/get", authentication, authorize("farmer"), getExpenses);
 // expenses id not cropId
-router.delete(
-  "/:id/delete",
-  authentication,
-  authorize("farmer"),
-  deleteExpenses,
-);
+router.delete("/:id/delete", authentication, deleteExpenses);
 
-router.get(
-  "/:cropId/getAmount",
-  authentication,
-  authorize("farmer"),
-  totelExpensesAmount,
-);
+router.get("/:cropId/getAmount", authentication, totelExpensesAmount);
 
 module.exports = router;

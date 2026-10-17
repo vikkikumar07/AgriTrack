@@ -17,7 +17,7 @@ router.post(
   farmingTasks,
 );
 
-router.get("/gets/tasks", authentication, authorize("farmer"), tasksAccesses);
+router.get("/gets/tasks", authentication, tasksAccesses);
 router.patch(
   "/crops/:cropId/tasks/:taskId/complete",
   authentication,
@@ -25,11 +25,6 @@ router.patch(
   tasksCopletedUpdate,
 );
 
-router.delete(
-  "/crops/:cropId/tasks/delete",
-  authentication,
-  authorize("farmer"),
-  deleteTasks,
-);
+router.delete("/crops/:cropId/tasks/delete", authentication, deleteTasks);
 
 module.exports = router;
