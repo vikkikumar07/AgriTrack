@@ -52,6 +52,7 @@ let createHarvest = async (req, res) => {
 
     let harvestDetials = {
       cropId,
+      userId,
       totalHarvest,
       damagedQuantity,
       soldQuantity,

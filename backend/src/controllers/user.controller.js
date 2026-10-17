@@ -3,6 +3,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const uploadToCloudinary = require("../config/cloudinary");
 const Farming = require("../models/farmer/farming.schema");
+const Expenses = require("../models/farmer/expenses.schema");
+const Harvest = require("../models/farmer/harvest.schema");
+const Complain = require("../models/complain.schema");
 
 // sign up
 let signup = async (req, res) => {
