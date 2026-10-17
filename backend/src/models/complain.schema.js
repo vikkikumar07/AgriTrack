@@ -21,8 +21,8 @@ let complainSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "In Progress", "Resolved"],
-      default: "pending",
+      enum: ["Pending", "In Progress", "Resolved"],
+      default: "Pending",
     },
   },
   { timestamps: true },
