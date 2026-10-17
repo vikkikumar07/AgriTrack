@@ -212,8 +212,8 @@ let deleteProfile = async (req, res) => {
 
 let authMe = async (req, res) => {
   try {
-    const { id } = req.user;
-    const user = await User.findOne({ id });
+    const { userId } = req.user;
+    const user = await User.findOne({ _id: userId });
     if (!user) {
       return res.status(404).json({
         message: "please login your account",
