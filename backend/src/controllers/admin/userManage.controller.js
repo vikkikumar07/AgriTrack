@@ -73,4 +73,29 @@ let blockedUnblocked = async (req, res) => {
     return res.status(500).json({ message: "server error", success: false });
   }
 };
-module.exports = { findAllUser, searchUser, blockedUnblocked };
+
+// role manage
+let roleManage = async (req, res) => {
+  try {
+    const { role } = req.body;
+    const id = req.params.id;
+    let user = await User.findById(id);
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Not found user", success: false });
+    }
+
+    user.role = role;
+    await user.save();
+
+    return res
+      .status(200)
+      .json({ message: "Change successfully", success: true });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
+module.exports = { findAllUser, searchUser, blockedUnblocked, roleManage };
