@@ -12,10 +12,10 @@ let router = express.Router();
 router.get("/findAll/user", authentication, authorize("admin"), findAllUser);
 router.get("/find/user", authentication, authorize("admin"), searchUser);
 router.post(
-  "/isBlocked/user",
+  "/isBlocked/user/:id",
   authentication,
   authorize("admin"),
   blockedUnblocked,
 );
-router.post("/role/:id/user", authentication, authorize("admin"), roleManage);
+router.post("/role/user/:id", authentication, authorize("admin"), roleManage);
 module.exports = router;

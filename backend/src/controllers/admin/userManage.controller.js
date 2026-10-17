@@ -46,7 +46,7 @@ let searchUser = async (req, res) => {
 // blocked unblocked user
 let blockedUnblocked = async (req, res) => {
   try {
-    const id = req.body;
+    const id = req.params.id;
 
     let user = await User.findById(id);
 
@@ -63,6 +63,7 @@ let blockedUnblocked = async (req, res) => {
     }
 
     user.isBlocked = !user.isBlocked;
+    await user.save();
 
     return res.status(200).json({
       message: user.isBlocked ? "Block successfully" : "Unblock successfully",
