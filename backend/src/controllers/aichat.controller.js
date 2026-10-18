@@ -83,5 +83,27 @@ let sendMessage = async (req, res) => {
   }
 };
 // delete message
+let deleteMessage = async (req, res) => {
+  const id = req.params.id;
 
-module.exports = { sendMessage };
+  try {
+    let result = await Chat.findByIdAndDelete(id);
+    if (!result) {
+      return res
+        .status(501)
+        .json({ message: "Please try agian", success: false });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Delete successfully", success: true });
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(500)
+      .json({ message: "Please try agian", success: false });
+  }
+};
+// get chat
+
+module.exports = { sendMessage, deleteMessage };
