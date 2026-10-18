@@ -104,6 +104,24 @@ let deleteMessage = async (req, res) => {
       .json({ message: "Please try agian", success: false });
   }
 };
-// get chat
+// get ALl chat userId
+let getAllMessage = async (req, res) => {
+  const userId = req.user.userId;
 
-module.exports = { sendMessage, deleteMessage };
+  try {
+    let messages = await Chat.find({ userId }).sort({ createAt: 1 });
+    if (!messages) {
+      return res
+        .status(501)
+        .json({ message: "Not found message", success: false });
+    }
+    return res
+      .status(200)
+      .json({ message: "Found successfully", success: true, messages });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
+
+module.exports = { sendMessage, deleteMessage, getAllMessage };
