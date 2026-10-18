@@ -6,6 +6,7 @@ const Farming = require("../models/farmer/farming.schema");
 const Expenses = require("../models/farmer/expenses.schema");
 const Harvest = require("../models/farmer/harvest.schema");
 const Complain = require("../models/complain.schema");
+const Chat = require("../models/aichat.schema");
 
 // sign up
 let signup = async (req, res) => {
@@ -188,6 +189,7 @@ let deleteProfile = async (req, res) => {
       Expenses.deleteMany({ userId: id }),
       Harvest.deleteMany({ userId: id }),
       Complain.deleteMany({ userId: id }),
+      Chat.deleteMany({ userId: id }),
     ]);
 
     await User.findByIdAndDelete(id);
