@@ -99,7 +99,7 @@ let deleteHarvest = async (req, res) => {
 let getHarvest = async (req, res) => {
   try {
     const cropId = req.params.cropId;
-    let harvestDetials = await Harvest.find({ cropId });
+    let harvestDetials = await Harvest.find({ cropId }).sort({ createAt: -1 });
 
     if (!harvestDetials[0]) {
       return res

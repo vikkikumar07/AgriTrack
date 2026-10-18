@@ -3,7 +3,9 @@ const Complain = require("../../models/complain.schema");
 // seen all complain
 let getAllComplain = async (req, res) => {
   try {
-    let complains = await Complain.find().populate("userId");
+    let complains = await Complain.find()
+      .populate("userId")
+      .sort({ createAt: -1 });
     if (!complains) {
       return res
         .status(400)

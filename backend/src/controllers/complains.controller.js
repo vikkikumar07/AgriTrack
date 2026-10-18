@@ -43,7 +43,7 @@ let deleteComplain = async (req, res) => {
 let getComplain = async (req, res) => {
   try {
     const id = req.params.id;
-    let complains = await Complain.find({ userId: id });
+    let complains = await Complain.find({ userId: id }).sort({ createAt: -1 });
     if (!complains) {
       return res
         .status(400)

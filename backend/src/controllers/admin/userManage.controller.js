@@ -2,7 +2,7 @@ const User = require("../../models/user.schema");
 
 let findAllUser = async (req, res) => {
   try {
-    let users = await User.find();
+    let users = await User.find().sort({ createAt: -1 });
 
     if (!users) {
       return res
