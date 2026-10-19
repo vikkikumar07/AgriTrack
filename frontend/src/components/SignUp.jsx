@@ -10,16 +10,17 @@ import {
   PlantPot,
   User,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function () {
   let [showPass, setShowPass] = useState(false);
   return (
     <>
-      <div className="fixed top-0 w-[100%] z-10">
+      <div className="fixed top-0 w-[100%] z-20">
         <Navbar />
       </div>
       <div className="relative">
-        <div className="w-full h-[100vh] overflow-hidden">
+        <div className="w-full h-[120vh] overflow-hidden">
           <img
             src={logsign}
             className="object-center w-full h-full object-cover"
@@ -71,7 +72,7 @@ export default function () {
               </div>
             </div>
             <div className="md:absolute md:right-10">
-              <div className="bg-white block h-[600px] md:h-[480px] w-[90%] mx-auto mt-[100px] md:mt-6 md:w-[400px] shadow-xl rounded-sm px-6 py-3">
+              <div className="bg-white block h-[600px] md:h-[600px] w-[90%] mx-auto mt-[100px] md:mt-6 md:w-[400px] shadow-xl rounded-sm px-6 py-3">
                 <div className="text-center">
                   <h2 className="font-bold text-[20px]">Create your account</h2>
                   <p className="text-[var(--mute)] text-[12px]">
@@ -211,6 +212,23 @@ export default function () {
                         <button className="btn w-full bg-[var(--primary)] hover:bg-[var(--secondary)] text-white my-1 px-0">
                           Create Account
                         </button>
+                      </div>
+                      <div>
+                        <p className="text-center text-[var(--mute)]">or</p>
+                        <button className="btn flex justify-center items-center gap-1 w-full mt-2">
+                          <img
+                            src="https://www.google.com/favicon.ico"
+                            alt="Google"
+                            className="w-[20px]"
+                          />
+                          <span>Continue with Google</span>
+                        </button>
+                        <p className="text-[12px] text-center my-4">
+                          Already have an account?{" "}
+                          <Link to={"/login"} className="text-[var(--primary)]">
+                            Sign in
+                          </Link>
+                        </p>
                       </div>
                     </from>
                   </div>
