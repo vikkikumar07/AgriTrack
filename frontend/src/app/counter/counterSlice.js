@@ -7,7 +7,7 @@ export let userSlice = createSlice({
   },
   reducers: {
     setUser: (state, action) => {
-      state.user = payload.action;
+      state.user = action.payload;
       state.isLoggedIn = true;
     },
     logout: (state, action) => {

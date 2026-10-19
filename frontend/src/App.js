@@ -3,6 +3,8 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Home from "./Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
 
 let allroutes = createBrowserRouter([
   {
@@ -22,7 +24,9 @@ let allroutes = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={allroutes} />
+      <Provider store={store}>
+        <RouterProvider router={allroutes} />
+      </Provider>
     </>
   );
 }
