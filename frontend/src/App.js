@@ -5,6 +5,8 @@ import Home from "./Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 let allroutes = createBrowserRouter([
   {
@@ -26,6 +28,7 @@ function App() {
     <>
       <Provider store={store}>
         <RouterProvider router={allroutes} />
+        <ToastContainer />
       </Provider>
     </>
   );
