@@ -4,9 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-    font-family: 'Inter', sans-serif;
-}
 
 :root {
     --primary: #077324;
