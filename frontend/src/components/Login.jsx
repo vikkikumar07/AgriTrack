@@ -113,7 +113,7 @@ export default function Login() {
                 </div>
               </div>
             </div>
-            <div className="md:absolute md:right-10">
+            <div className="md:absolute md:right-10 z-0">
               <div className="bg-white block h-[520px] md:h-[480px] w-[90%] mx-auto mt-[100px] md:mt-6 md:w-[400px] shadow-xl rounded-sm px-6 py-3">
                 <div className="text-center">
                   <h2 className="font-bold text-[20px]">Welcome Back</h2>
@@ -195,7 +195,7 @@ export default function Login() {
                           </select>
                         </div>
                       </div>
-                      <div className="w-full mt-2">
+                      <div className="w-full mt-4">
                         <button
                           type="submit"
                           className="btn w-full bg-[var(--primary)] hover:bg-[var(--secondary)] text-white my-1 px-0 flex gap-1 justify-center"

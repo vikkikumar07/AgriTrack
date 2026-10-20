@@ -14,7 +14,7 @@
     --mute:#292f2f;
 }
 .btn {
-    @apply items-center shadow-md px-2 py-1 md:px-4 rounded-sm mx-2 font-[10px] shadow-[var(--color-1)] h-8 text-[14px];
+    @apply items-center shadow-md px-2 py-2 md:py-1 md:px-4 rounded-sm mx-2 font-[10px] shadow-[var(--color-1)] h-10 md:h-8 text-[14px];
 }
 /*  navebar list btn */
 .li-btn {
@@ -28,5 +28,5 @@
 
 /* input box */
 .inputBox {
-    @apply w-full outline-none border-2 rounded-md mt-1 pl-10 pr-3 py-1 placeholder:text-[14px] text-[13px]
+    @apply w-full outline-none border-2 rounded-md mt-1 pl-10 pr-3 py-2 md:py-1 placeholder:text-[14px] text-[16px] md:text-[13px] 
 }

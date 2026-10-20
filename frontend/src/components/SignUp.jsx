@@ -116,8 +116,8 @@ export default function () {
                 </div>
               </div>
             </div>
-            <div className="md:absolute md:right-10">
-              <div className="bg-white block h-[625px] w-[90%] mx-auto mt-[100px] md:mt-6 md:w-[400px] shadow-xl rounded-sm px-6 py-3">
+            <div className="md:absolute md:right-10 z-10">
+              <div className="bg-white block h-[750px] md:h-[700px] w-[90%] mx-auto mt-[100px] md:mt-6 md:w-[400px] shadow-xl rounded-sm px-6 py-3">
                 <div className="text-center">
                   <h2 className="font-bold text-[20px]">Create your account</h2>
                   <p className="text-[var(--mute)] text-[12px]">

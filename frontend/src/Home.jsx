@@ -43,7 +43,7 @@ export default function Home() {
         <div className="fixed top-0 w-[100%] z-20">
           <Navbar />
         </div>
-        <div className="absolute top-14">
+        <div className="absolute top-12">
           {user ? (
             <>
               {admin ? (

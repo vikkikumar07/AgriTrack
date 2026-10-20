@@ -50,9 +50,9 @@ export default function Navbar() {
   };
   return (
     <>
-      <div className="flex justify-between items-center shadow-md py-2 px-6 bg-white w-[100%]">
+      <div className="flex justify-between items-center shadow-md py-2 px-1 md:px-6 bg-white w-[100%]">
         <div className="flex gap-2 justify-center items-center">
-          <div className="md:hidden">
+          <div className="md:hidden z-40">
             {menu ? (
               <>
                 <X
@@ -71,7 +71,7 @@ export default function Navbar() {
               </>
             )}
             <div
-              className={`absolute left-0 top-10 shadow-md p-6 w-[300px] bg-white z-10 text-left ${menu ? "block" : "hidden"}`}
+              className={`absolute left-0 top-10 shadow-md p-6 w-[300px] bg-white z-40 text-left ${menu ? "block" : "hidden"}`}
             >
               {user ? (
                 <>
@@ -79,16 +79,14 @@ export default function Navbar() {
                     <>
                       <div>
                         <ul>
-                          <li className="menu-li">
-                            <Link to={"/"}>
+                          <Link to={"/"}>
+                            <li className="menu-li">
                               <div className="flex gap-3">
-                                <HomeIcon size={20} />{" "}
-                                <span>
-                                  <Link to={"/"}>Deshbord</Link>
-                                </span>
+                                <HomeIcon size={20} /> <span>Deshbord</span>
                               </div>
-                            </Link>
-                          </li>
+                            </li>
+                          </Link>
+
                           <li className="menu-li">
                             <div className="flex gap-3">
                               <User2 size={20} /> <span>User</span>
