@@ -17,14 +17,37 @@ import {
   WorkflowIcon,
   X,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import axios from "axios";
+import api from "../app/api";
 
 export default function Navbar() {
   let user = useSelector((state) => state.user.user);
   let [show, setShow] = useState(false);
   let [menu, setMenu] = useState(false);
   let admin = user?.role === "admin";
+
+  let logoutAccount = async () => {
+    try {
+      let response = await axios.post(
+        `${api}/user/logout`,
+        {},
+        {
+          withCredentials: true,
+        },
+      );
+      if (response.data.success) {
+        toast.success(response.data.message);
+        window.location.reload();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    }
+  };
   return (
     <>
       <div className="flex justify-between items-center shadow-md py-2 px-6 bg-white w-[100%] shadow-sm">
@@ -272,7 +295,10 @@ export default function Navbar() {
                       <h2>{user?.email}</h2>
                     </div>
                     <div className="grid grid-cols-2 my-6">
-                      <button className="btn bg-[var(--primary)] text-white hover:bg-[var(--secondary)]">
+                      <button
+                        onClick={logoutAccount}
+                        className="btn bg-[var(--primary)] text-white hover:bg-[var(--secondary)]"
+                      >
                         Logout
                       </button>
                       <button className="btn fsize bg-white hover:bg-[var(--color-1)] flex gap-1">

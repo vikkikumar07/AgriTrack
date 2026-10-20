@@ -20,7 +20,7 @@ let authentication = (req, res, next) => {
     console.log(error.message);
     return res
       .status(401)
-      .json({ message: "Invalid or expired token", success: false });
+      .json({ message: "Session expired. Please login again", success: false });
   }
 };
 

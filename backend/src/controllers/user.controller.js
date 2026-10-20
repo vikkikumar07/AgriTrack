@@ -177,7 +177,7 @@ let logout = (req, res) => {
 
     return res
       .status(200)
-      .json({ message: "Logout successfully", success: true });
+      .json({ message: "Logout successfully", success: true, user: "" });
   } catch (error) {
     console.log(error);
     return res.status(501).json({ message: "Server Error", success: false });
