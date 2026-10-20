@@ -20,7 +20,7 @@ import { setUser } from "../app/counter/counterSlice";
 
 export default function Login() {
   let [showPass, setShowPass] = useState(false);
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   let [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -62,6 +62,7 @@ export default function Login() {
         <div className="w-full h-[100vh] overflow-hidden">
           <img
             src={logsign}
+            alt="image"
             className="object-center w-full h-full object-cover"
           />
         </div>
@@ -201,7 +202,15 @@ export default function Login() {
                         </button>
                       </div>
                     </form>
-                    <div>
+                    <div className="relative my-4">
+                      <Link
+                        to={"/forgate/password"}
+                        className="absolute text-[14px] right-5 text-red-500"
+                      >
+                        Forgate password
+                      </Link>
+                    </div>
+                    <div className="block my-4 pt-4">
                       <p className="text-center text-[var(--mute)]">or</p>
                       <button className="btn flex justify-center items-center gap-1 w-full mt-2">
                         <img

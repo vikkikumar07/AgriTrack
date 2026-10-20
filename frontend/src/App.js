@@ -7,6 +7,7 @@ import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ForgatePassword from "./components/ForgatePassword";
 
 let allroutes = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ let allroutes = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/forgate/password",
+    element: <ForgatePassword />,
   },
 ]);
 

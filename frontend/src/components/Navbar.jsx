@@ -18,12 +18,13 @@ import {
   X,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
-  let [user, setUser] = useState(false);
+  let user = useSelector((state) => state.user.user);
   let [show, setShow] = useState(false);
   let [menu, setMenu] = useState(false);
-  let [admin, setAdmin] = useState(false);
+  let admin = user?.role === "admin";
   return (
     <>
       <div className="flex justify-between items-center shadow-md py-2 px-6 bg-white w-[100%] shadow-sm">
@@ -176,7 +177,7 @@ export default function Navbar() {
             </div>
           </div>
           <div>
-            <img src={logo} width={100} className="bg-white"></img>
+            <img src={logo} alt="logo" width={100} className="bg-white"></img>
           </div>
         </div>
         {user ? (
@@ -231,41 +232,46 @@ export default function Navbar() {
             {user ? (
               <>
                 <div
-                  className="shadow-xl w-[40px] h-[40px] items-center justify-center rounded-[50%] cursor-pointer"
+                  className="shadow-xl w-[40px] h-[40px] items-center justify-center rounded-full cursor-pointer"
                   onClick={() => setShow(!show)}
                 >
                   <img
-                    src={icon}
+                    src={user?.logo || icon}
+                    alt="User logo"
                     className="object-contain h-[40px] w-[40px]"
                   ></img>
                 </div>
                 <div
-                  className={`w-[300px] bg-white absolute right-0 top-14 shadow-md px-4 py-4 ${show ? "block" : "hidden"}`}
+                  className={`w-[320px] bg-white absolute right-0 top-14 shadow-md px-4 py-4 ${show ? "block" : "hidden"}`}
                 >
                   <div className="relative h-6">
-                    <h2 className="text-center text-[16px] font-semibold">
-                      Welcome Vikki
-                    </h2>
                     <X
                       size={20}
                       className="cursor-pointer absolute right-1 top-0 text-red-600"
                       onClick={() => setShow(!show)}
                     />
                   </div>
+                  <div className="flex justify-center mb-3">
+                    <img
+                      src={user?.logo || icon}
+                      alt="User logo"
+                      className="object-contain h-[50px] w-[50px] rounded-full"
+                    />
+                  </div>
                   <div className="my-4">
                     <div className="grid grid-cols-2">
-                      <label className="text-muted-foreground">Name : </label>
-                      <h2>Vikki Kumar</h2>
+                      <label className="text-[var(--mute)]">Name : </label>
+                      <h2>{user?.fullName}</h2>
                     </div>
                     <div className="grid grid-cols-2">
-                      <label>Username : </label>
-                      <h2>vikki01</h2>
+                      <label className="text-[var(--mute)]">Username : </label>
+                      <h2>{user?.username}</h2>
                     </div>
                     <div className="grid grid-cols-2">
-                      <label>Email : </label>
-                      <h2>vikkki@gmail.com</h2>
+                      <label className="text-[var(--mute)]">Email : </label>
+                      <h2>{user?.email}</h2>
                     </div>
-                    <div className="grid grid-cols-2 my-4">
+                    <div className="grid grid-cols-2 my-6">
                       <button className="btn bg-[var(--primary)] text-white hover:bg-[var(--secondary)]">
                         Logout
                       </button>
