@@ -6,11 +6,11 @@ export default function FooterComponent() {
     <>
       <div>
         <div className="relative">
-          <div className="h-[210px] md:h-[400px] overflow-hidden object-cover">
+          <div className="h-[230px] md:h-[400px] w-full overflow-hidden">
             <img
               src={footerImage}
               alt="footer image"
-              className="object-cover"
+              className="w-full h-full object-cover"
             />
           </div>
           <div className="absolute top-0">

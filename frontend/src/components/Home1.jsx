@@ -25,16 +25,16 @@ export default function Home1() {
         </div>
         <div className="absolute top-0 w-full grid grid-cols-1 md:grid-cols-2">
           <div className="m-10 relative">
-            <div className="absolute h-[200px] w-[300px] md:h-[300px] md:w-[300px] bg-white blur-2xl z-0"></div>
+            <div className="absolute h-[200px] w-[300px] md:h-[300px] md:w-[300px] bg-white blur-3xl md:blur-2xl z-0"></div>
             <div className="absolute z-10">
               <p className="text-[12px] font-semibold text-[var(--primary)]">
                 SMART FARM MANAGEMENT PLATFORM
               </p>
               <div className="my-1 md:my-2">
-                <span className="text-[30px] md:text-[40px] font-bold">
+                <span className="text-[25px] md:text-[40px] font-bold">
                   Grow Smarter <br /> with
                 </span>
-                <span className="text-[30px] md:text-[40px] font-bold mx-2 text-[var(--primary)]">
+                <span className="text-[25px] md:text-[40px] font-bold mx-2 text-[var(--primary)]">
                   AgriTrack
                 </span>
               </div>
@@ -72,7 +72,7 @@ export default function Home1() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="my-8">
           <div>
             <h2 className="text-[30px] font-bold text-center text-black">
               Key Features
@@ -82,7 +82,7 @@ export default function Home1() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-4 my-6">
-            <div className="border shadow-lg h-[200px]">
+            <div className="border shadow-lg h-[210px]">
               <h3 className="text-center font-semibold my-2">
                 Ai Crop Planner Workflow
               </h3>
@@ -103,7 +103,7 @@ export default function Home1() {
                 </ul>
               </div>
             </div>
-            <div className="border shadow-lg h-[200px]">
+            <div className="border shadow-lg h-[210px]">
               <h3 className="text-center font-semibold my-2">
                 Task & Schedule Management
               </h3>
@@ -123,7 +123,7 @@ export default function Home1() {
                 </ul>
               </div>
             </div>
-            <div className="border shadow-lg h-[200px]">
+            <div className="border shadow-lg h-[210px]">
               <h3 className="text-center font-semibold my-2">
                 Harvest & Expenses Tracking
               </h3>
@@ -146,7 +146,7 @@ export default function Home1() {
             </div>
           </div>
         </div>
-        <div className="h-[60vh] w-full">
+        <div className="h-[60vh] w-full my-10">
           <div className="my-2">
             <h2 className="text-[30px] font-bold text-center text-black">
               How AgriTrack Works
