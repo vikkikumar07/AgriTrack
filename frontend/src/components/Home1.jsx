@@ -10,6 +10,7 @@ import {
   UserPlus,
   Users,
 } from "lucide-react";
+import FooterComponent from "./FooterComponent";
 
 export default function Home1() {
   return (
@@ -37,7 +38,7 @@ export default function Home1() {
                   AgriTrack
                 </span>
               </div>
-              <p className="text-[14px] font-semibold my-1">
+              <p className="text-[14px] font-semibold my-4 md:my-1">
                 Plan, track, and manage your farm with real-time insights,{" "}
                 <br />
                 expert advice, and data-driven decisions for a better tomorrow.
@@ -71,7 +72,7 @@ export default function Home1() {
             </div>
           </div>
         </div>
-        <div className="h-[100vh] w-full">
+        <div className="h-[80vh] w-full">
           <div className="my-2">
             <h2 className="text-[30px] font-bold text-center text-black">
               How AgriTrack Works
@@ -138,6 +139,7 @@ export default function Home1() {
             </div>
           </div>
         </div>
+        <FooterComponent />
       </div>
     </>
   );
