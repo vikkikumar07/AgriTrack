@@ -72,7 +72,81 @@ export default function Home1() {
             </div>
           </div>
         </div>
-        <div className="h-[80vh] w-full">
+        <div>
+          <div>
+            <h2 className="text-[30px] font-bold text-center text-black">
+              Key Features
+            </h2>
+            <p className="text-center text-[14px] text-[var(--mute)]">
+              Everything you need to manage your farm in one place
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-4 my-6">
+            <div className="border shadow-lg h-[200px]">
+              <h3 className="text-center font-semibold my-2">
+                Ai Crop Planner Workflow
+              </h3>
+              <div className="ml-5">
+                <ul>
+                  <li className="list-disc px-2">
+                    Farmer enters crop, planting date, field area, soil type,
+                    irrigation method, and variety.
+                  </li>
+                  <li className="list-disc px-2">
+                    AI creates a schedule from sowing to harvesting. It gives
+                    water and fertilizer guidance.
+                  </li>
+                  <li className="list-disc px-2">
+                    Tasks are saved and shown on the farmer dashboard. Farmers
+                    should verify AI advice with local farming experts
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="border shadow-lg h-[200px]">
+              <h3 className="text-center font-semibold my-2">
+                Task & Schedule Management
+              </h3>
+              <div className="ml-5">
+                <ul>
+                  <li className="list-disc px-2">
+                    Each task stores title, due date, quantity, description, and
+                    status.
+                  </li>
+                  <li className="list-disc px-2">
+                    Farmers can complete or reschedule tasks. Backend validates
+                    task data and prevents duplicates.
+                  </li>
+                  <li className="list-disc px-2">
+                    Dashboard shows pending, upcoming, and overdue tasks.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="border shadow-lg h-[200px]">
+              <h3 className="text-center font-semibold my-2">
+                Harvest & Expenses Tracking
+              </h3>
+              <div className="ml-5">
+                <ul>
+                  <li className="list-disc px-2">
+                    Farmers record crop, field, harvest date, quantity, unit,
+                    and quality.
+                  </li>
+                  <li className="list-disc px-2">
+                    Sales records store selling price, buyer, and revenue.
+                    Expenses include seeds, fertilizer, chemicals, labour,
+                    irrigation, and equipment.
+                  </li>
+                  <li className="list-disc px-2">
+                    Profit = Total Revenue − Total Expenses.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="h-[60vh] w-full">
           <div className="my-2">
             <h2 className="text-[30px] font-bold text-center text-black">
               How AgriTrack Works
