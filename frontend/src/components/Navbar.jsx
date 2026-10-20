@@ -280,17 +280,29 @@ export default function Navbar() {
                     />
                   </div>
                   <div className="my-4">
-                    <div className="grid grid-cols-2">
-                      <label className="text-[var(--mute)]">Name : </label>
-                      <h2>{user?.fullName}</h2>
+                    <div className="grid grid-cols-3">
+                      <label className="text-[var(--mute)] col-span-1">
+                        Name :{" "}
+                      </label>
+                      <h2 className="col-span-2">{user?.fullName}</h2>
                     </div>
-                    <div className="grid grid-cols-2">
-                      <label className="text-[var(--mute)]">Username : </label>
-                      <h2>{user?.username}</h2>
+                    <div className="grid grid-cols-3">
+                      <label className="text-[var(--mute)] col-span-1">
+                        Username :{" "}
+                      </label>
+                      <h2 className="col-span-2">{user?.username}</h2>
                     </div>
-                    <div className="grid grid-cols-2">
-                      <label className="text-[var(--mute)]">Email : </label>
-                      <h2>{user?.email}</h2>
+                    <div className="grid grid-cols-3">
+                      <label className="text-[var(--mute)] col-span-1">
+                        Email :{" "}
+                      </label>
+                      <h2 className="col-span-2">{user?.email}</h2>
+                    </div>
+                    <div className="grid grid-cols-3">
+                      <label className="text-[var(--mute)] col-span-1">
+                        Role :{" "}
+                      </label>
+                      <h2 className="col-span-2">{user?.role}</h2>
                     </div>
                     <div className="grid grid-cols-2 my-6">
                       <button

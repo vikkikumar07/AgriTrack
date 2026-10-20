@@ -28,7 +28,7 @@ export default function Home() {
         toast.error(response.data.message);
       }
     } catch (error) {
-      toast.error(error.response?.data?.message);
+      // toast.error(error.response?.data?.message);
     }
   };
 
