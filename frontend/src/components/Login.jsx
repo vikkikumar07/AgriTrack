@@ -11,10 +11,48 @@ import {
   PlantPot,
   User,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import api from "../app/api";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setUser } from "../app/counter/counterSlice";
 
 export default function Login() {
   let [showPass, setShowPass] = useState(false);
+  const navigate = useNavigate();
+  let [userData, setUserData] = useState({
+    email: "",
+    password: "",
+    role: "",
+  });
+
+  let setData = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  const dispatch = useDispatch();
+  let handlSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let response = await axios.post(`${api}/user/login`, userData);
+      if (response.data.success) {
+        toast.success(response.data.message);
+        dispatch(setUser(response.data.user));
+        navigate("/");
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    }
+
+    setUserData({
+      email: "",
+      password: "",
+      role: "",
+    });
+  };
   return (
     <>
       <div className="fixed top-0 w-[100%] z-10">
@@ -82,7 +120,7 @@ export default function Login() {
                 </div>
                 <div className="mt-2">
                   <div>
-                    <from>
+                    <form onSubmit={handlSubmit}>
                       <div>
                         <label>Email address</label>
                         <div className="relative">
@@ -92,6 +130,10 @@ export default function Login() {
                           />
                           <input
                             className="inputBox"
+                            type="email"
+                            name="email"
+                            value={userData.email}
+                            onChange={setData}
                             placeholder="Enter your email address"
                           />
                         </div>
@@ -105,6 +147,9 @@ export default function Login() {
                           />
                           <input
                             className="inputBox"
+                            name="password"
+                            value={userData.password}
+                            onChange={setData}
                             type={`${showPass ? "text" : "password"}`}
                             placeholder="Create a password"
                           />
@@ -134,46 +179,45 @@ export default function Login() {
                             size={15}
                             className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--mute)]"
                           />
-                          <select className="inputBox">
-                            <option>Farmer</option>
-                            <option>Expert</option>
-                            <option>Admin</option>
+                          <select
+                            className="inputBox"
+                            name="role"
+                            value={userData.role}
+                            onChange={setData}
+                          >
+                            <option value="">Select your role</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="expert">Expert</option>
+                            <option value="admin">Admin</option>
                           </select>
-                        </div>
-                        <div>
-                          <input
-                            type="text"
-                            className="w-[150px] outline-none border-2 rounded-md mt-1 pl-1 py-1 placeholder:text-[14px] text-[13px]"
-                            placeholder="Secret key (admin)"
-                          />
                         </div>
                       </div>
                       <div className="w-full mt-2">
-                        <button className="btn w-full bg-[var(--primary)] hover:bg-[var(--secondary)] text-white my-1 px-0 flex gap-1 justify-center">
+                        <button
+                          type="submit"
+                          className="btn w-full bg-[var(--primary)] hover:bg-[var(--secondary)] text-white my-1 px-0 flex gap-1 justify-center"
+                        >
                           Login <ArrowRight size={15} />
                         </button>
                       </div>
-                      <div>
-                        <p className="text-center text-[var(--mute)]">or</p>
-                        <button className="btn flex justify-center items-center gap-1 w-full mt-2">
-                          <img
-                            src="https://www.google.com/favicon.ico"
-                            alt="Google"
-                            className="w-[20px]"
-                          />
-                          <span>Continue with Google</span>
-                        </button>
-                        <p className="text-[12px] text-center my-4">
-                          Don't have an account?{" "}
-                          <Link
-                            to={"/signup"}
-                            className="text-[var(--primary)]"
-                          >
-                            Sign up
-                          </Link>
-                        </p>
-                      </div>
-                    </from>
+                    </form>
+                    <div>
+                      <p className="text-center text-[var(--mute)]">or</p>
+                      <button className="btn flex justify-center items-center gap-1 w-full mt-2">
+                        <img
+                          src="https://www.google.com/favicon.ico"
+                          alt="Google"
+                          className="w-[20px]"
+                        />
+                        <span>Continue with Google</span>
+                      </button>
+                      <p className="text-[12px] text-center my-4">
+                        Don't have an account?{" "}
+                        <Link to={"/signup"} className="text-[var(--primary)]">
+                          Sign up
+                        </Link>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
