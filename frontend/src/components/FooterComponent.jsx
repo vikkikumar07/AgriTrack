@@ -4,9 +4,9 @@ import footerImage from "../image/footer_image.png";
 export default function FooterComponent() {
   return (
     <>
-      <div>
-        <div className="relative">
-          <div className="h-[230px] md:h-[400px] w-full overflow-hidden">
+      <div className="block w-screen overflow-x-hidden">
+        <div className="relative w-full">
+          <div className="h-[230px] md:h-[400px] w-full overflow-x-hidden">
             <img
               src={footerImage}
               alt="footer image"

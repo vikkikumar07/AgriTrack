@@ -15,17 +15,17 @@ import FooterComponent from "./FooterComponent";
 export default function Home1() {
   return (
     <>
-      <div className="relative">
-        <div className="h-[70vh]  md:h-[80vh] w-full -z-20">
+      <div className="relative overflow-x-clip w-full">
+        <div className="h-[70vh]  md:h-[92vh] w-full -z-20 overflow-hidden">
           <img
             src={homePage2}
             alt="Home Image"
-            className="object-cover object-center w-[100%]"
+            className="block object-cover h-full w-full"
           />
         </div>
         <div className="absolute top-0 w-full grid grid-cols-1 md:grid-cols-2">
           <div className="m-10 relative">
-            <div className="absolute h-[200px] w-[300px] md:h-[300px] md:w-[300px] bg-white blur-3xl md:blur-2xl z-0"></div>
+            <div className="absolute h-[200px] w-[300px] md:h-[300px] md:w-[300px] bg-white blur-xl md:blur-2xl z-0"></div>
             <div className="absolute z-10">
               <p className="text-[12px] font-semibold text-[var(--primary)]">
                 SMART FARM MANAGEMENT PLATFORM

@@ -50,7 +50,7 @@ export default function Navbar() {
   };
   return (
     <>
-      <div className="flex justify-between items-center shadow-md py-2 px-1 md:px-6 bg-white w-[100%]">
+      <div className="flex overflow-x-hidden justify-between items-center shadow-md py-2 px-1 md:px-6 bg-white w-[100%]">
         <div className="flex gap-2 justify-center items-center">
           <div className="md:hidden z-40">
             {menu ? (

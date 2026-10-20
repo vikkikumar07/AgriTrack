@@ -4,6 +4,10 @@
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
+body {
+    overflow-x: clip;
+    width: 100%;
+}
 h2{
     font-size: 14px;
 }

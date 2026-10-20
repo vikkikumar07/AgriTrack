@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <>
       <div>
-        <div className="fixed top-0 w-[100%] z-20">
+        <div className="fixed top-0 w-screen z-40">
           <Navbar />
         </div>
         <div className="absolute top-12">
