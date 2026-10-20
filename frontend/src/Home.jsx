@@ -3,11 +3,15 @@ import Navbar from "./components/Navbar";
 import axios from "axios";
 import api from "./app/api";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./app/counter/counterSlice";
+import Deshbord from "./components/Deshbord";
+import Home2 from "./components/Home2";
+import Home1 from "./components/Home1";
 
 export default function Home() {
   let dispatch = useDispatch();
+  let user = useSelector((state) => state.user.user);
   let authme = async () => {
     try {
       let response = await axios.post(
@@ -31,10 +35,34 @@ export default function Home() {
   useEffect(() => {
     authme();
   }, []);
+
+  let admin = user?.role === "admin";
   return (
     <>
-      <Navbar />
-      <h2>Home</h2>
+      <div>
+        <div className="fixed top-0 w-[100%] z-20">
+          <Navbar />
+        </div>
+        <div className="absolute top-14">
+          {user ? (
+            <>
+              {admin ? (
+                <>
+                  <Deshbord />
+                </>
+              ) : (
+                <>
+                  <Home2 />
+                </>
+              )}
+            </>
+          ) : (
+            <>
+              <Home1 />
+            </>
+          )}
+        </div>
+      </div>
     </>
   );
 }

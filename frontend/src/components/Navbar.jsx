@@ -17,7 +17,7 @@ import {
   WorkflowIcon,
   X,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -50,7 +50,7 @@ export default function Navbar() {
   };
   return (
     <>
-      <div className="flex justify-between items-center shadow-md py-2 px-6 bg-white w-[100%] shadow-sm">
+      <div className="flex justify-between items-center shadow-md py-2 px-6 bg-white w-[100%]">
         <div className="flex gap-2 justify-center items-center">
           <div className="md:hidden">
             {menu ? (
@@ -210,7 +210,7 @@ export default function Navbar() {
                 <div className="hidden md:block">
                   <ul className="flex  gap-6 font-medium list-none">
                     <li className="li-btn">
-                      <Link to={"/"}>Deshbord</Link>
+                      <Link to={"/deshbord"}>Deshbord</Link>
                     </li>
                     <li className="li-btn">User</li>
                     <li className="li-btn">Complain</li>
@@ -301,10 +301,12 @@ export default function Navbar() {
                       >
                         Logout
                       </button>
-                      <button className="btn fsize bg-white hover:bg-[var(--color-1)] flex gap-1">
-                        <UserRoundPen className="text-[14px]" size={20} />
-                        Profile
-                      </button>
+                      <Link to={"/profile/edit"} className="w-full">
+                        <button className="btn fsize bg-white hover:bg-[var(--color-1)] flex gap-1 w-[90%]">
+                          <UserRoundPen className="text-[14px]" size={20} />
+                          Profile
+                        </button>
+                      </Link>
                       <button className="text-[12px] text-red-600 my-4">
                         <Link to={"/delete/account"}>Delete Account</Link>
                       </button>

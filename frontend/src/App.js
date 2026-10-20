@@ -5,9 +5,10 @@ import Home from "./Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ForgatePassword from "./components/ForgatePassword";
+import ForgatePassword from "./pages/ForgatePassword";
+import ProfileEdit from "./pages/ProfileEdit";
 
 let allroutes = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ let allroutes = createBrowserRouter([
   {
     path: "/forgate/password",
     element: <ForgatePassword />,
+  },
+  {
+    path: "/profile/edit",
+    element: <ProfileEdit />,
   },
 ]);
 
