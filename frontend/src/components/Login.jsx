@@ -35,7 +35,9 @@ export default function Login() {
   let handlSubmit = async (e) => {
     e.preventDefault();
     try {
-      let response = await axios.post(`${api}/user/login`, userData);
+      let response = await axios.post(`${api}/user/login`, userData, {
+        withCredentials: true,
+      });
       if (response.data.success) {
         toast.success(response.data.message);
         dispatch(setUser(response.data.user));

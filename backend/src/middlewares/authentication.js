@@ -5,13 +5,13 @@ let authentication = (req, res, next) => {
     if (!token) {
       return res
         .status(401)
-        .json({ message: "please login frist", success: false });
+        .json({ message: "please login your account", success: false });
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     if (!decoded) {
       return res
         .status(401)
-        .json({ message: "please login frist", success: false });
+        .json({ message: "please login your account", success: false });
     }
     req.user = decoded;
 
