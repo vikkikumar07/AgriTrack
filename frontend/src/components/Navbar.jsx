@@ -223,7 +223,6 @@ export default function Navbar() {
                     </li>
                     <li className="li-btn">Tasks</li>
                     <li className="li-btn">Expenses</li>
-                    <li className="li-btn">Records</li>
                     <li className="li-btn">Complain</li>
                     <li className="li-btn">Ai Chat</li>
                   </ul>

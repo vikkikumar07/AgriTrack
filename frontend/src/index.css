@@ -8,10 +8,11 @@
 :root {
     --primary: #077324;
     --secondary : #023d12;
-    --card : #fff;
+    --card : #ffffff;
     --color-2: #27F549;
     --color-1: #bfdbfe;
-    --mute:#292f2f;
+    --mute:#333838;
+    --body:#F2F3F3;
 }
 .btn {
     @apply items-center shadow-md px-2 py-2 md:py-1 md:px-4 rounded-sm mx-2 font-[10px] shadow-[var(--color-1)] h-10 md:h-8 text-[14px];

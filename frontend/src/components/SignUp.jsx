@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import logsign from "../image/logsign_background.png";
 import {
@@ -31,8 +31,11 @@ export default function () {
 
   let setData = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    e.target.value == "admin" ? setAdminKey(true) : setAdminKey(false);
   };
+
+  useEffect(() => {
+    user.role == "admin" ? setAdminKey(true) : setAdminKey(false);
+  }, [user]);
 
   let handlSubmit = async (e) => {
     e.preventDefault();
