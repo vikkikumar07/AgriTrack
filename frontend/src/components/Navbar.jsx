@@ -79,13 +79,13 @@ export default function Navbar() {
                     <>
                       <div>
                         <ul>
-                          <Link to={"/"}>
-                            <li className="menu-li">
+                          <li className="menu-li">
+                            <Link to={"/"}>
                               <div className="flex gap-3">
                                 <HomeIcon size={20} /> <span>Deshbord</span>
                               </div>
-                            </li>
-                          </Link>
+                            </Link>
+                          </li>
 
                           <li className="menu-li">
                             <div className="flex gap-3">
@@ -116,12 +116,11 @@ export default function Navbar() {
                       <div>
                         <ul>
                           <li className="menu-li">
-                            <div className="flex gap-3">
-                              <HomeIcon size={20} />{" "}
-                              <span>
-                                <Link to={"/"}>Home</Link>
-                              </span>
-                            </div>
+                            <Link to={"/"}>
+                              <div className="flex gap-3">
+                                <HomeIcon size={20} /> <span>Home</span>
+                              </div>
+                            </Link>
                           </li>
                           <li className="menu-li">
                             <div className="flex gap-3">
@@ -164,12 +163,11 @@ export default function Navbar() {
                   <div>
                     <ul>
                       <li className="menu-li">
-                        <div className="flex gap-3">
-                          <HomeIcon size={20} />{" "}
-                          <span>
-                            <Link to={"/"}>Home</Link>
-                          </span>
-                        </div>
+                        <Link to={"/"}>
+                          <div className="flex gap-3">
+                            <HomeIcon size={20} /> <span>Home</span>
+                          </div>
+                        </Link>
                       </li>
                       <li className="menu-li">
                         <div className="flex gap-3">
