@@ -59,7 +59,7 @@ export default function Home2() {
                   </h4>
                   <p className="text-[20px] font-bold">5</p>
                   <Link
-                    to={""}
+                    to={`/tasks/${user._id}`}
                     className="flex gap-1 items-center text-[var(--primary)] text-[14px]"
                   >
                     View My Crop <ArrowRight size={15} />
@@ -76,7 +76,7 @@ export default function Home2() {
                   </h4>
                   <p className="text-[20px] font-bold">3</p>
                   <Link
-                    to={""}
+                    to={`/tasks/${user._id}`}
                     className="flex gap-1 items-center text-[var(--primary)] text-[14px]"
                   >
                     View Tasks <ArrowRight size={15} />
@@ -93,7 +93,7 @@ export default function Home2() {
                   </h4>
                   <p className="text-[20px] font-bold">12</p>
                   <Link
-                    to={""}
+                    to={`/expenses/${user._id}`}
                     className="flex gap-1 items-center text-[var(--primary)] text-[14px]"
                   >
                     View Expenses <ArrowRight size={15} />
@@ -111,12 +111,9 @@ export default function Home2() {
                   <p className="text-[20px] font-bold">
                     28<sup>o</sup> C
                   </p>
-                  <Link
-                    to={""}
-                    className="flex gap-1 items-center text-[var(--primary)] text-[14px]"
-                  >
-                    View Details <ArrowRight size={15} />
-                  </Link>
+                  <p className="flex gap-1 items-center text-[var(--primary)] text-[14px]">
+                    Partly cloudy
+                  </p>
                 </div>
               </div>
             </div>

@@ -15,6 +15,7 @@ import Complains from "./pages/Complains";
 import HarvestAndSales from "./pages/HarvestAndSales";
 import Users from "./pages/Users";
 import AllComplains from "./pages/AllComplains";
+import MyFarm from "./pages/MyFarm";
 
 let allroutes = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ let allroutes = createBrowserRouter([
   {
     path: "/profile/edit/:id",
     element: <ProfileEdit />,
+  },
+  {
+    path: "/myfarm/:id",
+    element: <MyFarm />,
   },
   {
     path: "/tasks/:id",

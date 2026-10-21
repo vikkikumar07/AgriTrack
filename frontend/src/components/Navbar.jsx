@@ -7,6 +7,7 @@ import {
   ChartAreaIcon,
   HomeIcon,
   Info,
+  LeafIcon,
   LucideNetwork,
   Menu,
   Notebook,
@@ -127,6 +128,13 @@ export default function Navbar() {
                             </Link>
                           </li>
                           <li className="menu-li">
+                            <Link to={`/myfarm/${user._id}`}>
+                              <div className="flex gap-3">
+                                <LeafIcon size={20} /> <span>My Farm</span>
+                              </div>
+                            </Link>
+                          </li>
+                          <li className="menu-li">
                             <Link to={`/tasks/${user._id}`}>
                               <div className="flex gap-3">
                                 <NotebookPen size={20} /> <span>Tasks</span>
@@ -219,7 +227,7 @@ export default function Navbar() {
                 <div className="hidden md:block">
                   <ul className="flex  gap-6 font-medium list-none">
                     <li>
-                      <Link to={"/deshbord"} className="nav-btn">
+                      <Link to={"/"} className="nav-btn">
                         Deshbord
                       </Link>
                     </li>
@@ -246,6 +254,11 @@ export default function Navbar() {
                     <li>
                       <Link to={"/"} className="nav-btn">
                         Home
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={`/myfarm/${user._id}`} className="nav-btn">
+                        My Farm
                       </Link>
                     </li>
                     <li>
@@ -306,7 +319,7 @@ export default function Navbar() {
                   ></img>
                 </div>
                 <div
-                  className={`w-[320px] bg-white absolute right-0 top-14 shadow-md px-4 py-4 ${show ? "block" : "hidden"}`}
+                  className={`w-[320px] bg-white absolute right-0 top-14 shadow-md px-4 py-2 ${show ? "block" : "hidden"}`}
                 >
                   <div className="relative h-6">
                     <X
@@ -319,7 +332,7 @@ export default function Navbar() {
                     <img
                       src={user?.logo || icon}
                       alt="User logo"
-                      className="object-contain h-[50px] w-[50px] rounded-full"
+                      className="object-contain h-[60px] w-[60px] rounded-full border-2"
                     />
                   </div>
                   <div className="my-4">
@@ -354,7 +367,7 @@ export default function Navbar() {
                       >
                         Logout
                       </button>
-                      <Link to={"/profile/edit"} className="w-full">
+                      <Link to={`/profile/edit/${user._id}`} className="w-full">
                         <button className="btn fsize bg-white hover:bg-[var(--color-1)] flex gap-1 w-[90%]">
                           <UserRoundPen className="text-[14px]" size={20} />
                           Profile
