@@ -315,7 +315,7 @@ export default function Navbar() {
                   <img
                     src={user?.logo || icon}
                     alt="User logo"
-                    className="object-contain h-[40px] w-[40px]"
+                    className="object-contain h-[40px] w-[40px] rounded-full"
                   ></img>
                 </div>
                 <div
@@ -332,7 +332,7 @@ export default function Navbar() {
                     <img
                       src={user?.logo || icon}
                       alt="User logo"
-                      className="object-contain h-[60px] w-[60px] rounded-full border-2"
+                      className="object-contain h-[80px] w-[80px] rounded-full border-2 border-black"
                     />
                   </div>
                   <div className="my-4">
