@@ -17,6 +17,7 @@ import api from "../app/api";
 
 export default function () {
   let [showPass, setShowPass] = useState(false);
+  let [adminKey, setAdminKey] = useState(false);
   let [confPass, setConfPass] = useState("");
   let navigate = useNavigate();
   let [user, setUser] = useState({
@@ -30,6 +31,7 @@ export default function () {
 
   let setData = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+    e.target.value == "admin" ? setAdminKey(true) : setAdminKey(false);
   };
 
   let handlSubmit = async (e) => {
@@ -271,16 +273,23 @@ export default function () {
                             <option value="admin">Admin</option>
                           </select>
                         </div>
-                        <div>
-                          <input
-                            type="text"
-                            name="secret"
-                            value={user.secret}
-                            onChange={setData}
-                            className="w-[150px] outline-none border-2 rounded-md mt-1 pl-1 py-1 placeholder:text-[14px] text-[13px]"
-                            placeholder="Secret key (admin)"
-                          />
-                        </div>
+                        {adminKey ? (
+                          <>
+                            <div>
+                              <input
+                                type="text"
+                                name="secret"
+                                value={user.secret}
+                                onChange={setData}
+                                className="w-[150px] outline-none border-2 rounded-md mt-1 pl-1 py-1 placeholder:text-[14px] text-[13px]"
+                                placeholder="Secret key (admin)"
+                              />
+                            </div>
+                          </>
+                        ) : (
+                          <></>
+                        )}
+
                         <div className="flex gap-1 my-1">
                           <input
                             type="checkbox"

@@ -24,7 +24,6 @@ export default function Login() {
   let [userData, setUserData] = useState({
     email: "",
     password: "",
-    role: "",
   });
 
   let setData = (e) => {
@@ -52,7 +51,6 @@ export default function Login() {
     setUserData({
       email: "",
       password: "",
-      role: "",
     });
   };
   return (
@@ -115,7 +113,7 @@ export default function Login() {
             </div>
             <div className="md:absolute md:right-10 -z-10">
               <div className="bg-white block h-[520px] md:h-[480px] w-[90%] mx-auto mt-[100px] md:mt-6 md:w-[400px] shadow-xl rounded-sm px-6 py-3">
-                <div className="text-center">
+                <div className="text-center mt-[50px]">
                   <h2 className="font-bold text-[20px]">Welcome Back</h2>
                   <p className="text-[var(--mute)] text-[12px]">
                     Login to you AgriTrack account
@@ -154,7 +152,7 @@ export default function Login() {
                             value={userData.password}
                             onChange={setData}
                             type={`${showPass ? "text" : "password"}`}
-                            placeholder="Create a password"
+                            placeholder="Enter your password"
                           />
                           {showPass ? (
                             <>
@@ -173,26 +171,6 @@ export default function Login() {
                               />
                             </>
                           )}
-                        </div>
-                      </div>
-                      <div>
-                        <label>I am a</label>
-                        <div className="relative">
-                          <User
-                            size={15}
-                            className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--mute)]"
-                          />
-                          <select
-                            className="inputBox"
-                            name="role"
-                            value={userData.role}
-                            onChange={setData}
-                          >
-                            <option value="">Select your role</option>
-                            <option value="farmer">Farmer</option>
-                            <option value="expert">Expert</option>
-                            <option value="admin">Admin</option>
-                          </select>
                         </div>
                       </div>
                       <div className="w-full mt-4">

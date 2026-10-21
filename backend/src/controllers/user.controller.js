@@ -67,8 +67,8 @@ let signup = async (req, res) => {
 
 let login = async (req, res) => {
   try {
-    const { email, password, role } = req.body;
-    if (!email || !password || !role) {
+    const { email, password } = req.body;
+    if (!email || !password) {
       return res
         .status(409)
         .json({ message: "fill this information", success: false });
@@ -94,11 +94,6 @@ let login = async (req, res) => {
         .json({ message: "Your password is wrong", success: false });
     }
 
-    if (user.role !== role) {
-      return res
-        .status(404)
-        .json({ message: "Please select correct role", success: false });
-    }
     const token = jwt.sign(
       { userId: user._id, role: user.role },
       process.env.JWT_SECRET_KEY,
