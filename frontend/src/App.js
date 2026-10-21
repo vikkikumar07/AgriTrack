@@ -9,6 +9,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ForgatePassword from "./pages/ForgatePassword";
 import ProfileEdit from "./pages/ProfileEdit";
+import TasksPage from "./pages/TasksPage";
+import Expenses from "./pages/Expenses";
+import Complains from "./pages/Complains";
+import HarvestAndSales from "./pages/HarvestAndSales";
+import Users from "./pages/Users";
+import AllComplains from "./pages/AllComplains";
 
 let allroutes = createBrowserRouter([
   {
@@ -28,8 +34,32 @@ let allroutes = createBrowserRouter([
     element: <ForgatePassword />,
   },
   {
-    path: "/profile/edit",
+    path: "/profile/edit/:id",
     element: <ProfileEdit />,
+  },
+  {
+    path: "/tasks/:id",
+    element: <TasksPage />,
+  },
+  {
+    path: "/expenses/:id",
+    element: <Expenses />,
+  },
+  {
+    path: "/complain/:id",
+    element: <Complains />,
+  },
+  {
+    path: "/harvest/:id",
+    element: <HarvestAndSales />,
+  },
+  {
+    path: "/admin/users",
+    element: <Users />,
+  },
+  {
+    path: "/admin/complains",
+    element: <AllComplains />,
   },
 ]);
 

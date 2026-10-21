@@ -18,7 +18,7 @@
     @apply items-center shadow-md px-2 py-2 md:py-1 md:px-4 rounded-sm mx-2 font-[10px] shadow-[var(--color-1)] h-10 md:h-8 text-[14px];
 }
 /*  navebar list btn */
-.li-btn {
+.nav-btn {
     @apply font-medium cursor-pointer hover:border-b-[var(--primary)] hover:border-b-2 hover:shadow-md px-3 py-1 rounded-md;
 }
 

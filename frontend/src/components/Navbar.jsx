@@ -50,7 +50,7 @@ export default function Navbar() {
   };
   return (
     <>
-      <div className="flex overflow-x-hidden justify-between items-center shadow-md py-2 px-1 md:px-6 bg-white w-[100%]">
+      <div className="flex overflow-x-hidden justify-between items-center shadow-md py-3 px-1 md:px-6 bg-white w-[100%]">
         <div className="flex gap-2 justify-center items-center">
           <div className="md:hidden z-40">
             {menu ? (
@@ -88,15 +88,19 @@ export default function Navbar() {
                           </li>
 
                           <li className="menu-li">
-                            <div className="flex gap-3">
-                              <User2 size={20} /> <span>User</span>
-                            </div>
+                            <Link to={"/admin/users"}>
+                              <div className="flex gap-3">
+                                <User2 size={20} /> <span>User</span>
+                              </div>
+                            </Link>
                           </li>
                           <li className="menu-li">
-                            <div className="flex gap-3">
-                              <BuildingComplex size={20} />
-                              <span>Complain</span>
-                            </div>
+                            <Link to={"/admin/complains"}>
+                              <div className="flex gap-3">
+                                <BuildingComplex size={20} />
+                                <span>Complain</span>
+                              </div>
+                            </Link>
                           </li>
                           <li className="menu-li">
                             <div className="flex gap-3">
@@ -123,25 +127,34 @@ export default function Navbar() {
                             </Link>
                           </li>
                           <li className="menu-li">
-                            <div className="flex gap-3">
-                              <NotebookPen size={20} /> <span>Tasks</span>
-                            </div>
+                            <Link to={`/tasks/${user._id}`}>
+                              <div className="flex gap-3">
+                                <NotebookPen size={20} /> <span>Tasks</span>
+                              </div>
+                            </Link>
                           </li>
                           <li className="menu-li">
-                            <div className="flex gap-3">
-                              <Notebook size={20} /> <span>Expenses</span>
-                            </div>
+                            <Link to={`/expenses/${user._id}`}>
+                              <div className="flex gap-3">
+                                <Notebook size={20} /> <span>Expenses</span>
+                              </div>
+                            </Link>
                           </li>
                           <li className="menu-li">
-                            <div className="flex gap-3">
-                              <BookAIcon size={20} /> <span>Records</span>
-                            </div>
+                            <Link to={`/harvest/${user._id}`}>
+                              <div className="flex gap-3">
+                                <BookAIcon size={20} />{" "}
+                                <span>Harvest & Sales</span>
+                              </div>
+                            </Link>
                           </li>
                           <li className="menu-li">
-                            <div className="flex gap-3">
-                              <BuildingComplex size={20} />{" "}
-                              <span>Complain</span>
-                            </div>
+                            <Link to={`/complain/${user._id}`}>
+                              <div className="flex gap-3">
+                                <BuildingComplex size={20} />
+                                <span>Complain</span>
+                              </div>
+                            </Link>
                           </li>
                           <li className="menu-li">
                             <div className="flex gap-3">
@@ -205,12 +218,24 @@ export default function Navbar() {
               <>
                 <div className="hidden md:block">
                   <ul className="flex  gap-6 font-medium list-none">
-                    <li className="li-btn">
-                      <Link to={"/deshbord"}>Deshbord</Link>
+                    <li>
+                      <Link to={"/deshbord"} className="nav-btn">
+                        Deshbord
+                      </Link>
                     </li>
-                    <li className="li-btn">User</li>
-                    <li className="li-btn">Complain</li>
-                    <li className="li-btn">Ai Chat</li>
+                    <li>
+                      <Link to={`/admin/users`} className="nav-btn">
+                        User
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={`/admin/complains`} className="nav-btn">
+                        Complain
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="nav-btn">Ai Chat</Link>
+                    </li>
                   </ul>
                 </div>
               </>
@@ -218,13 +243,34 @@ export default function Navbar() {
               <>
                 <div className="hidden md:block">
                   <ul className="flex  gap-6 font-medium list-none">
-                    <li className="li-btn">
-                      <Link to={"/"}>Home</Link>
+                    <li>
+                      <Link to={"/"} className="nav-btn">
+                        Home
+                      </Link>
                     </li>
-                    <li className="li-btn">Tasks</li>
-                    <li className="li-btn">Expenses</li>
-                    <li className="li-btn">Complain</li>
-                    <li className="li-btn">Ai Chat</li>
+                    <li>
+                      <Link to={`/tasks/${user._id}`} className="nav-btn">
+                        Tasks
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={`/expenses/${user._id}`} className="nav-btn">
+                        Expenses
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={`/harvest/${user._id}`} className="nav-btn">
+                        Harvest & Sales
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={`/complain/${user._id}`} className="nav-btn">
+                        Complain
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="nav-btn">Ai Chat</Link>
+                    </li>
                   </ul>
                 </div>
               </>
@@ -234,12 +280,12 @@ export default function Navbar() {
           <>
             <div className="hidden md:block">
               <ul className="flex  gap-6 font-medium list-none">
-                <li className="li-btn">
+                <li className="nav-btn">
                   <Link to={"/"}>Home</Link>
                 </li>
-                <li className="li-btn">About</li>
-                <li className="li-btn">Features</li>
-                <li className="li-btn">How it works</li>
+                <li className="nav-btn">About</li>
+                <li className="nav-btn">Features</li>
+                <li className="nav-btn">How it works</li>
               </ul>
             </div>
           </>
