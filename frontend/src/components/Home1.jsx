@@ -52,19 +52,19 @@ export default function Home1() {
                 </Link>
               </div>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-4 my-2">
-                <div className="flex gap-2  flex-wrap md:justify-center box box1">
+                <div className="flex gap-2  flex-wrap justify-center box box1">
                   <Leaf fill="green" color="green" />
                   <p className="md:text-center">Crop Management</p>
                 </div>
-                <div className="flex gap-2  flex-wrap md:justify-center box box2">
+                <div className="flex gap-2  flex-wrap justify-center box box2">
                   <AstroidIcon fill="blue" color="blue" />
                   <p className="md:text-center">Ai Helps & Suggestion</p>
                 </div>
-                <div className="flex gap-2  flex-wrap md:justify-center box box3">
+                <div className="flex gap-2  flex-wrap justify-center box box3">
                   <Network color="black" />
                   <p className="md:text-center">Expense & Profit Trackin</p>
                 </div>
-                <div className="flex gap-2 flex-wrap md:justify-center box box4">
+                <div className="flex gap-2 flex-wrap justify-center box box4">
                   <Users color="black" />
                   <p className="md:text-center">Expert Guidance</p>
                 </div>
