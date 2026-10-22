@@ -22,7 +22,6 @@ export default function Home() {
         },
       );
       if (response.data.success) {
-        toast.success(response.data.message);
         dispatch(setUser(response.data.user));
       } else {
         toast.error(response.data.message);
