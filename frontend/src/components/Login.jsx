@@ -5,6 +5,7 @@ import {
   ArrowRight,
   Eye,
   EyeOffIcon,
+  Loader2,
   LockKeyhole,
   LucideMessagesSquare,
   NotebookText,
@@ -21,6 +22,7 @@ import { setUser } from "../app/counter/counterSlice";
 export default function Login() {
   let [showPass, setShowPass] = useState(false);
   let navigate = useNavigate();
+  let [loading, setLoading] = useState(false);
   let [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -34,6 +36,7 @@ export default function Login() {
   let handlSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       let response = await axios.post(`${api}/user/login`, userData, {
         withCredentials: true,
       });
@@ -46,6 +49,8 @@ export default function Login() {
       }
     } catch (error) {
       toast.error(error.response?.data?.message);
+    } finally {
+      setLoading(false);
     }
 
     setUserData({
@@ -178,6 +183,13 @@ export default function Login() {
                           type="submit"
                           className="btn w-full bg-[var(--primary)] hover:bg-[var(--secondary)] text-white my-1 px-0 flex gap-1 justify-center"
                         >
+                          {loading ? (
+                            <>
+                              <Loader2 size={15} className="animate-spin" />
+                            </>
+                          ) : (
+                            <></>
+                          )}
                           Login <ArrowRight size={15} />
                         </button>
                       </div>

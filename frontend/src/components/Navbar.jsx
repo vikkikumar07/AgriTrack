@@ -10,6 +10,7 @@ import {
   HomeIcon,
   Info,
   LeafIcon,
+  Loader2,
   LucideNetwork,
   Menu,
   Notebook,
@@ -425,7 +426,7 @@ export default function Navbar() {
                 <button className="btn bg-white hover:bg-[var(--color-1)] fsize">
                   <Link to={"/login"}>Login</Link>
                 </button>
-                <button className="btn bg-[var(--primary)]  hover:bg-[var(--secondary)] text-white fsize">
+                <button className="btn bg-[var(--primary)] hover:bg-[var(--secondary)] text-white fsize">
                   <Link to={"/signup"}>SignUp</Link>
                 </button>
               </>
@@ -440,6 +441,7 @@ export default function Navbar() {
 let AiChatCard = ({ aiChat, setAiChat }) => {
   let [content, setContent] = useState("");
   let [message, setMessage] = useState([]);
+  let [loading, setLoading] = useState(false);
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -476,11 +478,12 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
       ...prev,
       {
         sender: "ai",
-        content: "ai ....",
+        content: "Please wait ...",
       },
     ]);
 
     try {
+      setLoading(true);
       let res = await axios.post(
         `${api}/aichat/send`,
         { content },
@@ -497,6 +500,7 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
       toast.error(error.response?.data?.message);
     } finally {
       setContent("");
+      setLoading(false);
     }
   };
 
@@ -598,12 +602,20 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
                   className="w-full outline-none rounded-md mt-1 pl-3 pr-3 py-3 placeholder:text-[14px] text-[16px] md:text-[13px] "
                 />
                 <button type="submit">
-                  <Send
-                    fill="green"
-                    color="green"
-                    size={25}
-                    className="hover:fill-green-300"
-                  />
+                  {loading ? (
+                    <>
+                      <Loader2 size={20} className="animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      <Send
+                        fill="green"
+                        color="green"
+                        size={25}
+                        className="hover:fill-green-300"
+                      />
+                    </>
+                  )}
                 </button>
               </div>
             </form>

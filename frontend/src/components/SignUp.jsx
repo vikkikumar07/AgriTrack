@@ -4,6 +4,7 @@ import logsign from "../image/logsign_background.png";
 import {
   Eye,
   EyeOffIcon,
+  Loader2,
   LockKeyhole,
   LucideMessagesSquare,
   NotebookText,
@@ -19,6 +20,7 @@ export default function () {
   let [showPass, setShowPass] = useState(false);
   let [adminKey, setAdminKey] = useState(false);
   let [confPass, setConfPass] = useState("");
+  let [loading, setLoading] = useState(false);
   let navigate = useNavigate();
   let [user, setUser] = useState({
     fullName: "",
@@ -43,6 +45,8 @@ export default function () {
       toast.error("Invalid Password!");
       return;
     }
+
+    setLoading(true);
     try {
       let response = await axios.post(`${api}/user/signup`, user);
       if (response.data.success) {
@@ -53,6 +57,8 @@ export default function () {
       }
     } catch (error) {
       toast.error(error.response?.data?.message);
+    } finally {
+      setLoading(false);
     }
     setUser({
       fullName: "",
@@ -314,8 +320,15 @@ export default function () {
                       <div className="m-0 w-full">
                         <button
                           type="submit"
-                          className="btn w-full bg-[var(--primary)] hover:bg-[var(--secondary)] text-white my-1 px-0"
+                          className="btn w-full bg-[var(--primary)] flex justify-center gap-1 hover:bg-[var(--secondary)] text-white my-1 px-0"
                         >
+                          {loading ? (
+                            <>
+                              <Loader2 size={15} className="animate-spin" />
+                            </>
+                          ) : (
+                            <></>
+                          )}
                           Create Account
                         </button>
                       </div>
