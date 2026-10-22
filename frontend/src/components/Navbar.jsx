@@ -444,19 +444,24 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
     e.preventDefault();
 
     try {
-      await axios.post(
+      let res = await axios.post(
         `${api}/aichat/send`,
         { content },
         {
           withCredentials: true,
         },
       );
-      await getMessage();
+
+      if (res.data.success) {
+        await getMessage();
+      } else {
+        toast.error(res.data.message);
+      }
     } catch (error) {
       console.log(error);
+    } finally {
+      setContent("");
     }
-
-    setContent("");
   };
 
   let getMessage = async () => {
@@ -525,8 +530,8 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
             </div>
           </div>
         </div>
-        <div className="relative h-[75%] md:h-[80%] border-2 border-[var(--primary)] rounded-md p-4">
-          <div className="relative h-[90%] w-full overflow-y-auto overflow-x-hidden">
+        <div className="relative h-[75%] md:h-[80%] border-2 border-[var(--primary)] rounded-md p-4 bg-[var(--color-1)]">
+          <div className="relative h-[90%] w-full overflow-y-auto overflow-x-hidden hide-scrollbar">
             <div className="grid grid-cols-1 gap-2">
               {message?.messages?.map((v, i) => {
                 return (

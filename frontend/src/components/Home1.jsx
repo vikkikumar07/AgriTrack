@@ -15,7 +15,7 @@ import FooterComponent from "./FooterComponent";
 export default function Home1() {
   return (
     <>
-      <div className="relative overflow-x-clip w-full">
+      <div className="relative overflow-x-hidden w-full">
         <div className="h-[70vh]  md:h-[92vh] w-full -z-20 overflow-hidden">
           <img
             src={homePage2}

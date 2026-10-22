@@ -14,6 +14,18 @@
     --mute:#333838;
     --body:#F2F3F3;
 }
+
+/* Chrome, Safari, Edge */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox, IE, Edge */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 .btn {
     @apply items-center shadow-md px-2 py-2 md:py-1 md:px-4 rounded-sm mx-2 font-[10px] shadow-[var(--color-1)] h-10 md:h-8 text-[14px];
 }
