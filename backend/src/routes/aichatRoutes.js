@@ -9,6 +9,6 @@ const authentication = require("../middlewares/authentication");
 let router = express.Router();
 
 router.post("/send", authentication, sendMessage);
-router.delete("/delete/:id", authentication, deleteMessage);
+router.delete("/delete", authentication, deleteMessage);
 router.get("/find", authentication, getAllMessage);
 module.exports = router;

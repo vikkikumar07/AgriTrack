@@ -84,13 +84,13 @@ let sendMessage = async (req, res) => {
 };
 // delete message
 let deleteMessage = async (req, res) => {
-  const id = req.params.id;
+  const userId = req.user.userId;
 
   try {
-    let result = await Chat.findByIdAndDelete(id);
+    let result = await Chat.deleteMany({ userId });
     if (!result) {
       return res
-        .status(501)
+        .status(404)
         .json({ message: "Please try agian", success: false });
     }
 

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../logo.png";
 import icon from "../icon.png";
 import {
+  AstroidIcon,
   BookAIcon,
+  BookmarkX,
   BuildingComplex,
   ChartAreaIcon,
   HomeIcon,
@@ -12,6 +14,7 @@ import {
   Menu,
   Notebook,
   NotebookPen,
+  Send,
   Settings,
   User2,
   UserRoundPen,
@@ -28,6 +31,7 @@ export default function Navbar() {
   let user = useSelector((state) => state.user.user);
   let [show, setShow] = useState(false);
   let [menu, setMenu] = useState(false);
+  let [aiChat, setAiChat] = useState(false);
   let admin = user?.role === "admin";
 
   let logoutAccount = async () => {
@@ -104,7 +108,10 @@ export default function Navbar() {
                             </Link>
                           </li>
                           <li className="menu-li">
-                            <div className="flex gap-3">
+                            <div
+                              className="flex gap-3"
+                              onClick={() => setAiChat(!aiChat)}
+                            >
                               <ChartAreaIcon size={20} /> <span>Ai Chat</span>
                             </div>
                           </li>
@@ -165,7 +172,10 @@ export default function Navbar() {
                             </Link>
                           </li>
                           <li className="menu-li">
-                            <div className="flex gap-3">
+                            <div
+                              className="flex gap-3"
+                              onClick={() => setAiChat(!aiChat)}
+                            >
                               <ChartAreaIcon size={20} /> <span>Ai Chat</span>
                             </div>
                           </li>
@@ -242,7 +252,12 @@ export default function Navbar() {
                       </Link>
                     </li>
                     <li>
-                      <Link className="nav-btn">Ai Chat</Link>
+                      <Link
+                        className="nav-btn"
+                        onClick={() => setAiChat(!aiChat)}
+                      >
+                        Ai Chat
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -282,7 +297,12 @@ export default function Navbar() {
                       </Link>
                     </li>
                     <li>
-                      <Link className="nav-btn">Ai Chat</Link>
+                      <Link
+                        className="nav-btn"
+                        onClick={() => setAiChat(!aiChat)}
+                      >
+                        Ai Chat
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -388,6 +408,17 @@ export default function Navbar() {
                     </div>
                   </div>
                 </div>
+                <div className="absolute top-16 right-0 -z-10 shadow-md">
+                  {aiChat ? (
+                    <>
+                      <div>
+                        <AiChatCard aiChat={aiChat} setAiChat={setAiChat} />
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </div>
               </>
             ) : (
               <>
@@ -405,3 +436,150 @@ export default function Navbar() {
     </>
   );
 }
+
+let AiChatCard = ({ aiChat, setAiChat }) => {
+  let [content, setContent] = useState("");
+  let [message, setMessage] = useState([]);
+  let sendAiMessage = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.post(
+        `${api}/aichat/send`,
+        { content },
+        {
+          withCredentials: true,
+        },
+      );
+      await getMessage();
+    } catch (error) {
+      console.log(error);
+    }
+
+    setContent("");
+  };
+
+  let getMessage = async () => {
+    try {
+      let res = await axios.get(`${api}/aichat/find`, {
+        withCredentials: true,
+      });
+
+      setMessage(res.data);
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    }
+  };
+
+  let deleteChat = async () => {
+    try {
+      let res = await axios.delete(`${api}/aichat/delete`, {
+        withCredentials: true,
+      });
+
+      if (res.data.success) {
+        toast.success(res.data.message);
+        getMessage();
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    }
+  };
+  useEffect(() => {
+    if (aiChat === true) {
+      getMessage();
+    }
+  }, [aiChat]);
+
+  return (
+    <>
+      <div className="block h-[780px] md:h-[550px] w-[410px] bg-white -z-10 mx-auto p-6 rounded-lg">
+        <div className="relative">
+          <div className="relative h-1">
+            <X
+              size={20}
+              className="cursor-pointer absolute right-1 top-0 text-red-600"
+              onClick={() => setAiChat(!aiChat)}
+            />
+          </div>
+          <div className="flex justify-center">
+            <img src={logo} alt="logo" width={110} />
+          </div>
+          <div className="relative flex justify-center items-center my-2 gap-2">
+            <AstroidIcon fill="blue" color="blue" size={30} />
+            <h3 className="text-[30px] font-semibold text-[var(--primary)]">
+              Ai Assistant
+            </h3>
+            <div className="group absolute top-5 right-0 flex flex-col items-center justify-center">
+              <span className="pointer-events-none absolute right-0 top-full z-10 mt-1 whitespace-nowrap rounded-md bg-red-600 p-1 text-[14px] text-white hidden group-hover:block">
+                All delete
+              </span>
+
+              <BookmarkX
+                color="red"
+                onClick={deleteChat}
+                className="mx-auto cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="relative h-[75%] md:h-[80%] border-2 border-[var(--primary)] rounded-md p-4">
+          <div className="relative h-[90%] w-full overflow-y-auto overflow-x-hidden">
+            <div className="grid grid-cols-1 gap-2">
+              {message?.messages?.map((v, i) => {
+                return (
+                  <div key={i}>
+                    {v.sender === "ai" ? (
+                      <>
+                        <div className={`text-left`}>
+                          <span className="py-2 px-4 bg-blue-400 rounded-lg inline-block my-2">
+                            {v.content}
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className={`text-right`}>
+                          <span className="py-2 px-4 bg-green-400 rounded-lg inline-block my-2">
+                            {v.content}
+                          </span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="absolute bottom-0 right-0 px-2 w-full">
+            <form
+              onSubmit={sendAiMessage}
+              className="flex justify-between items-center py-2 gap-2"
+            >
+              <div className="border-2 bg-white border-[var(--primary)] w-full px-2 rounded-md flex ">
+                <input
+                  type="text"
+                  name="content"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  placeholder="Ask anything about farming.."
+                  className="w-full outline-none rounded-md mt-1 pl-3 pr-3 py-3 placeholder:text-[14px] text-[16px] md:text-[13px] "
+                />
+                <button type="submit">
+                  <Send
+                    fill="green"
+                    color="green"
+                    size={25}
+                    className="hover:fill-green-300"
+                  />
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
