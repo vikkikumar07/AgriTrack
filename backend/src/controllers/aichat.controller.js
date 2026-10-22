@@ -109,7 +109,7 @@ let getAllMessage = async (req, res) => {
   const userId = req.user.userId;
 
   try {
-    let messages = await Chat.find({ userId }).sort({ createAt: 1 });
+    let messages = await Chat.find({ userId }).sort({ createdAt: 1 });
     if (!messages) {
       return res
         .status(501)

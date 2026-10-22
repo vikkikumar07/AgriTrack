@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../logo.png";
 import icon from "../icon.png";
 import {
@@ -440,8 +440,45 @@ export default function Navbar() {
 let AiChatCard = ({ aiChat, setAiChat }) => {
   let [content, setContent] = useState("");
   let [message, setMessage] = useState([]);
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+    });
+  }, [message]);
+
+  let getMessage = async () => {
+    try {
+      let res = await axios.get(`${api}/aichat/find`, {
+        withCredentials: true,
+      });
+
+      setMessage(res.data.messages);
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    }
+  };
+
   let sendAiMessage = async (e) => {
     e.preventDefault();
+
+    setMessage((prev) => [
+      ...prev,
+      {
+        sender: "user",
+        content,
+      },
+    ]);
+
+    setMessage((prev) => [
+      ...prev,
+      {
+        sender: "ai",
+        content: "ai ....",
+      },
+    ]);
 
     try {
       let res = await axios.post(
@@ -452,27 +489,14 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
         },
       );
 
-      if (res.data.success) {
-        await getMessage();
-      } else {
+      if (!res.data.success) {
         toast.error(res.data.message);
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setContent("");
-    }
-  };
-
-  let getMessage = async () => {
-    try {
-      let res = await axios.get(`${api}/aichat/find`, {
-        withCredentials: true,
-      });
-
-      setMessage(res.data);
+      await getMessage();
     } catch (error) {
       toast.error(error.response?.data?.message);
+    } finally {
+      setContent("");
     }
   };
 
@@ -532,8 +556,8 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
         </div>
         <div className="relative h-[75%] md:h-[80%] border-2 border-[var(--primary)] rounded-md p-4 bg-[var(--color-1)]">
           <div className="relative h-[90%] w-full overflow-y-auto overflow-x-hidden hide-scrollbar">
-            <div className="grid grid-cols-1 gap-2">
-              {message?.messages?.map((v, i) => {
+            <div className="grid grid-cols-1 gap-2 pb-2">
+              {message?.map((v, i) => {
                 return (
                   <div key={i}>
                     {v.sender === "ai" ? (
@@ -556,6 +580,7 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
                   </div>
                 );
               })}
+              <div ref={bottomRef}></div>
             </div>
           </div>
           <div className="absolute bottom-0 right-0 px-2 w-full">
