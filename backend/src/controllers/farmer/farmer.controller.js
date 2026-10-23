@@ -4,7 +4,7 @@ let farmAccesses = async (req, res) => {
   try {
     // user id
     const id = req.params.id;
-    let allTasks = await Farming.find({ userId: id }).sort({ createAt: -1 });
+    let allTasks = await Farming.find({ userId: id }).sort({ createdAt: -1 });
     if (!allTasks) {
       return res.status(404).json({ message: "Not Found", success: false });
     }
@@ -54,7 +54,7 @@ let deleteFarm = async (req, res) => {
     await Farming.findByIdAndDelete({ _id: id });
     return res
       .status(200)
-      .json({ message: "Crop Tasks Delete successfully", success: true });
+      .json({ message: "Crop Delete successfully", success: true });
   } catch (error) {
     console.log(error);
     return res.status(400).json({ message: "server error", success: false });

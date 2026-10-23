@@ -143,13 +143,6 @@ export default function Navbar() {
                             </Link>
                           </li>
                           <li className="menu-li">
-                            <Link to={`/tasks/${user._id}`}>
-                              <div className="flex gap-3">
-                                <NotebookPen size={20} /> <span>Tasks</span>
-                              </div>
-                            </Link>
-                          </li>
-                          <li className="menu-li">
                             <Link to={`/expenses/${user._id}`}>
                               <div className="flex gap-3">
                                 <Notebook size={20} /> <span>Expenses</span>
@@ -275,11 +268,6 @@ export default function Navbar() {
                     <li>
                       <Link to={`/myfarm/${user._id}`} className="nav-btn">
                         My Farm
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={`/tasks/${user._id}`} className="nav-btn">
-                        Tasks
                       </Link>
                     </li>
                     <li>

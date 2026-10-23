@@ -59,7 +59,7 @@ export default function Home2() {
                   </h4>
                   <p className="text-[20px] font-bold">5</p>
                   <Link
-                    to={`/tasks/${user._id}`}
+                    to={`/myfarm/${user._id}`}
                     className="flex gap-1 items-center text-[var(--primary)] text-[14px]"
                   >
                     View My Crop <ArrowRight size={15} />
