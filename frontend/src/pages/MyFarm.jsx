@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 export default function MyFarm() {
+  let getCrop = async () => {};
   return (
     <>
       <div className="relative">
@@ -36,8 +37,8 @@ export default function MyFarm() {
             </p>
           </div>
         </header>
-        <main className="my-8 px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-2">
+        <main className="my-8 ">
+          <div className="px-4 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-2">
             <div className="flex flex-col items-center gap-1 py-2 bg-green-200 rounded-md">
               <LeafyGreen fill="green" color="green" />
               <p className="font-bold text-[18px]">4</p>
@@ -61,7 +62,7 @@ export default function MyFarm() {
               <h5 className="font-bold ">Overall Progress</h5>
             </div>
           </div>
-          <div className="my-10 px-2">
+          <div className="my-10 px-6 bg-gray-100 py-2 ">
             <div className="flex justify-between">
               <h2 className="text-[20px] font-semibold">My Crops</h2>
               <div className="flex gap-2 items-center text-[14px] bg-[var(--primary)] hover:bg-[var(--secondary)] text-white p-2 rounded-md cursor-pointer">
@@ -70,7 +71,43 @@ export default function MyFarm() {
               </div>
             </div>
             <div className="my-4">
-              <div className="relative bg-white shadow-md shadow-black p-4 my-4">
+              <div className="relative bg-white shadow-sm shadow-black p-4 my-6">
+                <span className="absolute cursor-pointer right-2">
+                  <SquareChevronRightIcon className="hover:text-green-500" />
+                </span>
+                <div className="grid grid-cols-2 gap-1 md:w-[50%] text-[14px]">
+                  <span className="text-[16px] font-semibold">
+                    Rice Farming
+                  </span>
+                  <div>
+                    <span
+                      className={`px-2 py-1 bg-green-200 rounded-md text-green-900`}
+                    >
+                      In progress
+                    </span>
+                  </div>
+                  <div className="flex gap-1">
+                    <AreaChart size={20} color="green" />
+                    <p>5.0 Acres</p>
+                  </div>
+                  <div className="flex gap-1 items-center">
+                    <CalendarDays size={20} color="green" />
+                    <p>10-11-2026</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="bg-gray-200 h-2 my-2 w-[95%] rounded-full">
+                    <div
+                      className="bg-green-600 h-2 rounded-full"
+                      style={{ width: `60%` }}
+                    ></div>
+                  </div>
+                  <div className="font-semibold">
+                    60<span>%</span>
+                  </div>
+                </div>
+              </div>
+              <div className="relative bg-white shadow-sm shadow-black p-4 my-6">
                 <span className="absolute cursor-pointer right-2">
                   <SquareChevronRightIcon className="hover:text-green-500" />
                 </span>
