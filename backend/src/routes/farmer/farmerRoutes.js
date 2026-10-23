@@ -3,21 +3,23 @@ const farmingTasks = require("../../controllers/farmer/aifarmingtasks.controller
 const authentication = require("../../middlewares/authentication");
 const authorize = require("../../middlewares/authorize");
 const {
-  tasksAccesses,
   tasksCopletedUpdate,
-  deleteTasks,
+  deleteFarm,
+  farmAccesses,
+  farmSignleAccesses,
 } = require("../../controllers/farmer/farmer.controller");
 
 let router = express.Router();
 
 router.post(
-  "/generate/tasks",
+  "/generate/farm",
   authentication,
   authorize("farmer"),
   farmingTasks,
 );
 
-router.get("/gets/tasks/:id", authentication, tasksAccesses);
+// user id
+router.get("/gets/farms/:id", authentication, farmAccesses);
 router.patch(
   "/crops/:cropId/tasks/:taskId/complete",
   authentication,
@@ -25,6 +27,7 @@ router.patch(
   tasksCopletedUpdate,
 );
 
-router.delete("/crops/:cropId/tasks/delete", authentication, deleteTasks);
+router.get("/gets/farmSignle/:id", authentication, farmSignleAccesses);
+router.delete("/crops/:cropId/tasks/delete", authentication, deleteFarm);
 
 module.exports = router;

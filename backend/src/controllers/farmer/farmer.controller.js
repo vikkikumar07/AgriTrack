@@ -1,7 +1,8 @@
 const Farming = require("../../models/farmer/farming.schema");
 // tasks accsesses
-let tasksAccesses = async (req, res) => {
+let farmAccesses = async (req, res) => {
   try {
+    // user id
     const id = req.params.id;
     let allTasks = await Farming.find({ userId: id }).sort({ createAt: -1 });
     if (!allTasks) {
@@ -47,7 +48,7 @@ let tasksCopletedUpdate = async (req, res) => {
   }
 };
 // tasks delete
-let deleteTasks = async (req, res) => {
+let deleteFarm = async (req, res) => {
   try {
     const id = req.params.cropId;
     await Farming.findByIdAndDelete({ _id: id });
@@ -59,4 +60,27 @@ let deleteTasks = async (req, res) => {
     return res.status(400).json({ message: "server error", success: false });
   }
 };
-module.exports = { tasksAccesses, tasksCopletedUpdate, deleteTasks };
+
+// signle farm accesse
+let farmSignleAccesses = async (req, res) => {
+  try {
+    const id = req.params.id;
+    let farmSignle = await Farming.findById(id);
+    if (!farmSignle) {
+      return res.status(404).json({ message: "Not Found", success: false });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Found successfully", success: true, farmSignle });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
+module.exports = {
+  farmAccesses,
+  tasksCopletedUpdate,
+  deleteFarm,
+  farmSignleAccesses,
+};
