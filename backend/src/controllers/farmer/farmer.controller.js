@@ -1,4 +1,6 @@
+const Expenses = require("../../models/farmer/expenses.schema");
 const Farming = require("../../models/farmer/farming.schema");
+const Harvest = require("../../models/farmer/harvest.schema");
 // tasks accsesses
 let farmAccesses = async (req, res) => {
   try {
@@ -78,9 +80,66 @@ let farmSignleAccesses = async (req, res) => {
     return res.status(500).json({ message: "server error", success: false });
   }
 };
+
+// farmer home page total crop , pendig task & total expenses & letest task, expenses, harvest & sales
+
+let homePageData = async (req, res) => {
+  let userId = req.user.userId;
+  try {
+    // total crop
+    let farms = await Farming.find({ userId });
+    let totalFarm = farms.length || 0;
+    let totalPendingtask = farms.reduce((total, v) => {
+      return (
+        total + (v?.tasks?.filter((t) => t.completed === false).length || 0)
+      );
+    }, 0);
+    let totalTasks = farms.reduce((sum, v) => sum + (v?.tasks?.length || 0), 0);
+    let completedTasks = farms.reduce(
+      (sum, v) =>
+        sum + (v?.tasks?.filter((t) => t.completed === true).length || 0),
+      0,
+    );
+
+    let farmsDetails = {
+      totalFarm,
+      totalTasks,
+      totalPendingtask,
+      completedTasks,
+    };
+
+    let expensesDetials = await Expenses.find({ userId });
+    let totalExpenses = expensesDetials.reduce((sum, v) => sum + v.amount, 0);
+
+    let letestCrop = await Farming.findOne({ userId }).sort({ createdAt: -1 });
+    let letestExpenses = await Expenses.findOne({ userId }).sort({
+      createdAt: -1,
+    });
+    let letestHarvest = await Harvest.findOne({ userId }).sort({
+      createdAt: -1,
+    });
+
+    let letest = {
+      letestCrop,
+      letestExpenses,
+      letestHarvest,
+    };
+    return res.status(200).json({
+      message: "Calculate successfully",
+      success: true,
+      farmsDetails,
+      totalExpenses,
+      letest,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
 module.exports = {
   farmAccesses,
   tasksCopletedUpdate,
   deleteFarm,
   farmSignleAccesses,
+  homePageData,
 };

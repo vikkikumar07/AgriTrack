@@ -75,6 +75,9 @@ export default function Home2() {
                     Pending Tasks
                   </h4>
                   <p className="text-[20px] font-bold">3</p>
+                  <div className="flex gap-2 text-[var(--mute)] text-[12px]">
+                    <p>Total 2</p> <p>completed 3</p>
+                  </div>
                   <Link
                     to={`/tasks/${user._id}`}
                     className="flex gap-1 items-center text-[var(--primary)] text-[14px]"
@@ -136,7 +139,7 @@ export default function Home2() {
                 </div>
                 <div className="shadow-sm shadow-black h-[400px]">
                   <h2 className="text-center my-4 font-semibold text-[20px]">
-                    Complain
+                    Harvest & Sales
                   </h2>
                 </div>
               </div>

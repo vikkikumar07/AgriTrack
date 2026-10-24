@@ -7,6 +7,7 @@ const {
   deleteFarm,
   farmAccesses,
   farmSignleAccesses,
+  homePageData,
 } = require("../../controllers/farmer/farmer.controller");
 
 let router = express.Router();
@@ -28,6 +29,8 @@ router.patch(
 );
 
 router.get("/gets/farmSignle/:id", authentication, farmSignleAccesses);
+//home data
+router.get("/gets/home/data", authentication, homePageData);
 router.delete("/crops/:cropId/tasks/delete", authentication, deleteFarm);
 
 module.exports = router;
