@@ -1,3 +1,3 @@
-const api = `http://localhost:8080/web/agritrack`;
+const api = `${process.env.REACT_APP_BACKEND_URL}/web/agritrack`;
 
 export default api;

@@ -10,7 +10,6 @@ import {
   DatabaseArrowUp,
   DatabaseMinus,
   IndianRupee,
-  Leaf,
   LeafyGreen,
   LocateFixedIcon,
   LucideStickyNoteCheck,
@@ -191,7 +190,7 @@ export default function Home2() {
                         <div>
                           <div className="flex gap-1 items-center mt-2">
                             <CalendarDaysIcon size={15} color="green" />
-                            <span className="text-[12px] text-green-800 bg-green-100 px-2 py-1 rounded-full">
+                            <span className="text-[14px] text-green-800 bg-green-100 px-2 py-1 rounded-full">
                               CreatedAt
                             </span>
                           </div>

@@ -35,9 +35,10 @@ app.use("/web/agritrack/farmer/expenses", expensesRoutes);
 app.use("/web/agritrack/farmer/harvest", harvestRoutes);
 app.use("/web/agritrack/aichat", aichatRoutes);
 
-app.listen(process.env.PORT, () => {
+let PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
   try {
-    console.log("Server start..");
+    console.log(`Server running on port ${PORT}`);
     // connet DataBase
     dbConection();
   } catch (error) {

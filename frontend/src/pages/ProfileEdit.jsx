@@ -105,7 +105,7 @@ export default function ProfileEdit() {
               <div className="h-[15vh]  md:h-[20vh] w-full -z-20 overflow-hidden">
                 <img
                   src={footerImage}
-                  alt="Home Image"
+                  alt="Home"
                   className="block object-cover h-full w-full"
                 />
               </div>
@@ -113,7 +113,7 @@ export default function ProfileEdit() {
                 <img
                   src={user?.logo || icon}
                   width={120}
-                  alt="User Image"
+                  alt="User"
                   className="border-2 border-white rounded-full w-[120px] h-[120px] object-cover"
                 />
               </div>
