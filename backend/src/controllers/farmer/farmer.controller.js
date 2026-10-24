@@ -112,12 +112,16 @@ let homePageData = async (req, res) => {
     let totalExpenses = expensesDetials.reduce((sum, v) => sum + v.amount, 0);
 
     let letestCrop = await Farming.findOne({ userId }).sort({ createdAt: -1 });
-    let letestExpenses = await Expenses.findOne({ userId }).sort({
-      createdAt: -1,
-    });
-    let letestHarvest = await Harvest.findOne({ userId }).sort({
-      createdAt: -1,
-    });
+    let letestExpenses = await Expenses.findOne({ userId })
+      .sort({
+        createdAt: -1,
+      })
+      .populate("cropId");
+    let letestHarvest = await Harvest.findOne({ userId })
+      .sort({
+        createdAt: -1,
+      })
+      .populate("cropId");
 
     let letest = {
       letestCrop,
