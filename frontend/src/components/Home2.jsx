@@ -31,10 +31,10 @@ export default function Home2() {
   let [data, setData] = useState([]);
 
   let totalCompletedTasks =
-    data?.letest?.letestCrop.tasks.filter((t) => t.completed === true).length ||
-    0;
+    data?.letest?.letestCrop?.tasks?.filter((t) => t.completed === true)
+      .length || 0;
   let progress = Math.round(
-    (totalCompletedTasks / data?.letest?.letestCrop.tasks.length || 0) * 100,
+    (totalCompletedTasks / data?.letest?.letestCrop?.tasks?.length || 0) * 100,
   );
 
   let homeData = async () => {
@@ -183,7 +183,7 @@ export default function Home2() {
                           <h2 className="text-left mt-2 font-semibold text-[20px]">
                             {data?.letest?.letestCrop.crop} Farming
                           </h2>
-                          <span className="flex gap-1 text-[12px] items-center">
+                          <span className="flex gap-1 text-[14px] items-center">
                             <LocateFixedIcon size={15} color="green" />
                             {data?.letest?.letestCrop?.location}
                           </span>
@@ -195,7 +195,7 @@ export default function Home2() {
                               CreatedAt
                             </span>
                           </div>
-                          <div className="text-[12px] pl-4">
+                          <div className="text-[14px] pl-4">
                             {data?.letest?.letestCrop?.createdAt.split("T")[0]}
                           </div>
                         </div>
@@ -204,7 +204,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-green-200 rounded-md">
                           <AreaChart size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">Area</h4>
+                            <h4 className="text-[14px] font-semibold">Area</h4>
                             <p className="text-[14px]">
                               {data?.letest?.letestCrop?.area} Acres
                             </p>
@@ -213,10 +213,10 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-yellow-100 rounded-md">
                           <PlantPot size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Soil Type
                             </h4>
-                            <p className="text-[12px]">
+                            <p className="text-[14px]">
                               {data?.letest?.letestCrop?.soil}
                             </p>
                           </div>
@@ -224,10 +224,10 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-sky-200 rounded-md">
                           <CalendarDaysIcon size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Planting Date
                             </h4>
-                            <p className="text-[12px]">
+                            <p className="text-[14px]">
                               {
                                 data?.letest?.letestCrop?.plantingDate.split(
                                   "T",
@@ -239,7 +239,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-violet-300 rounded-md">
                           <NotebookPen size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Total Tasks
                             </h4>
                             <p className="text-[14px]">
@@ -283,11 +283,11 @@ export default function Home2() {
                         <div>
                           <div className="flex gap-1 items-center mt-2">
                             <CalendarDaysIcon size={15} color="green" />
-                            <span className="text-[12px] text-green-800 bg-green-100 px-2 py-1 rounded-full">
+                            <span className="text-[14px] text-green-800 bg-green-100 px-2 py-1 rounded-full">
                               CreatedAt
                             </span>
                           </div>
-                          <div className="text-[12px] pl-4">
+                          <div className="text-[14px] pl-4">
                             {
                               data?.letest?.letestExpenses?.createdAt.split(
                                 "T",
@@ -306,7 +306,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-green-200 rounded-md">
                           <AreaChart size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Quantity
                             </h4>
                             <p className="text-[14px]">
@@ -318,8 +318,8 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-yellow-100 rounded-md">
                           <IndianRupee size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">Rate</h4>
-                            <p className="text-[12px]">
+                            <h4 className="text-[14px] font-semibold">Rate</h4>
+                            <p className="text-[14px]">
                               {data?.letest?.letestExpenses?.rate || 0}/ Kg
                             </p>
                           </div>
@@ -327,8 +327,8 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-sky-200 rounded-md">
                           <CalendarDaysIcon size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">Date</h4>
-                            <p className="text-[12px]">
+                            <h4 className="text-[14px] font-semibold">Date</h4>
+                            <p className="text-[14px]">
                               {data?.letest?.letestExpenses?.date.split(
                                 "T",
                               )[0] || 0}
@@ -338,7 +338,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-violet-300 rounded-md">
                           <IndianRupee size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Amount
                             </h4>
                             <p className="text-[14px]">
@@ -364,11 +364,11 @@ export default function Home2() {
                         <div>
                           <div className="flex gap-1 items-center mt-2">
                             <CalendarDaysIcon size={15} color="green" />
-                            <span className="text-[12px] text-green-800 bg-green-100 px-2 py-1 rounded-full">
+                            <span className="text-[14px] text-green-800 bg-green-100 px-2 py-1 rounded-full">
                               CreatedAt
                             </span>
                           </div>
-                          <div className="text-[12px] pl-4">
+                          <div className="text-[14px] pl-4">
                             {
                               data?.letest?.letestHarvest?.createdAt.split(
                                 "T",
@@ -381,7 +381,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-green-200 rounded-md">
                           <AreaChart size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Total Harvest
                             </h4>
                             <p className="text-[14px]">
@@ -394,10 +394,10 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-sky-200 rounded-md">
                           <CalendarDaysIcon size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Sale Date
                             </h4>
-                            <p className="text-[12px]">
+                            <p className="text-[14px]">
                               {
                                 data?.letest?.letestHarvest?.saleDate.split(
                                   "T",
@@ -409,7 +409,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-gray-300 rounded-md">
                           <DatabaseArrowUp size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Sold Quantity
                             </h4>
                             <p className="text-[14px]">
@@ -421,7 +421,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-gray-300 rounded-md">
                           <DatabaseArrowDown size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Store Quantity
                             </h4>
                             <p className="text-[14px]">
@@ -433,7 +433,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-gray-300 rounded-md">
                           <DatabaseMinus size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Damaged Quantity
                             </h4>
                             <p className="text-[14px]">
@@ -446,7 +446,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-gray-300 rounded-md">
                           <User size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">Buyer</h4>
+                            <h4 className="text-[14px] font-semibold">Buyer</h4>
                             <p className="text-[14px]">
                               {data?.letest?.letestHarvest?.buyer || ""}
                             </p>
@@ -455,7 +455,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-gray-300 rounded-md">
                           <IndianRupee size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Selling Price
                             </h4>
                             <p className="text-[14px]">
@@ -467,7 +467,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-gray-300 rounded-md">
                           <IndianRupee size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Revenue
                             </h4>
                             <p className="text-[14px]">
@@ -478,7 +478,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-gray-300 rounded-md">
                           <IndianRupee size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Total Expenses
                             </h4>
                             <p className="text-[14px]">
@@ -490,7 +490,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-gray-300 rounded-md">
                           <IndianRupee size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Transport Cost
                             </h4>
                             <p className="text-[14px]">
@@ -503,7 +503,7 @@ export default function Home2() {
                         <div className="flex gap-2 items-center px-2 py-2 bg-gray-300 rounded-md">
                           <IndianRupee size={20} />
                           <div>
-                            <h4 className="text-[12px] font-semibold">
+                            <h4 className="text-[14px] font-semibold">
                               Profit / Loss
                             </h4>
                             <p className="text-[14px]">
