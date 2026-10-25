@@ -22,14 +22,15 @@ let farmAccesses = async (req, res) => {
 
 // task of tasks completed update
 let tasksCopletedUpdate = async (req, res) => {
+  const { isTask } = req.body;
   try {
     const crop = await Farming.findOneAndUpdate(
       {
         _id: req.params.cropId,
-        "tasks._id": req.params.taskId,
+        "tasks._id": req.params.id,
       },
       {
-        $set: { "tasks.$.completed": true },
+        $set: { "tasks.$.completed": isTask },
       },
       { new: true, runValidators: true },
     );
@@ -42,7 +43,10 @@ let tasksCopletedUpdate = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: "complete successfully", success: true });
+      .json({
+        message: `${isTask ? "Complete" : "Uncheck"} successfully`,
+        success: true,
+      });
   } catch (error) {
     return res
       .status(400)

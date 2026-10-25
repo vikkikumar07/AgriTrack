@@ -76,9 +76,7 @@ export default function MyFarm() {
         toast.success(res.data.message);
         clearForm();
         setShow(false);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        getCrop();
       } else {
         toast.error(res.data.message);
       }
@@ -111,9 +109,7 @@ export default function MyFarm() {
       });
       if (res.data.success) {
         toast.success(res.data.message);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        getCrop();
       } else {
         toast.error(res.data.message);
       }
@@ -134,7 +130,7 @@ export default function MyFarm() {
           <div className="h-[20vh]  md:h-[40vh] w-full -z-20 overflow-hidden">
             <img
               src={myFarm}
-              alt="Home Image"
+              alt="Home"
               className="block object-cover h-full w-full"
             />
             <div className="absolute top-2 left-4 md:left-16 h-[200px] w-[230px] md:h-[260px] md:w-[400px] bg-white blur-xl md:blur-2xl z-0"></div>
@@ -240,7 +236,7 @@ export default function MyFarm() {
                         </div>
                         <div className="group absolute bottom-1 right-0 flex flex-col items-center justify-center">
                           <span className="pointer-events-none absolute right-0 top-full z-10 mt-1 whitespace-nowrap rounded-md bg-red-600 p-1 text-[14px] text-white hidden group-hover:block">
-                            Delete Faem
+                            Delete Farm
                           </span>
 
                           <BookmarkX

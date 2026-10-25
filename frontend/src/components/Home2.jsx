@@ -63,7 +63,7 @@ export default function Home2() {
             <div className=" h-[50vh]  md:h-[60vh] w-full -z-20 overflow-hidden border rounded-lg">
               <img
                 src={homePage}
-                alt="Home Image"
+                alt="Home"
                 className="block object-cover h-full w-full"
               />
               <div className="absolute top-2 left-4 md:left-16 h-[200px] w-[300px] md:h-[300px] md:w-[300px] bg-white blur-xl md:blur-2xl z-0"></div>
@@ -216,7 +216,7 @@ export default function Home2() {
                               Soil Type
                             </h4>
                             <p className="text-[14px]">
-                              {data?.letest?.letestCrop?.soil}
+                              {data?.letest?.letestCrop?.soil || " "}
                             </p>
                           </div>
                         </div>
@@ -227,11 +227,9 @@ export default function Home2() {
                               Planting Date
                             </h4>
                             <p className="text-[14px]">
-                              {
-                                data?.letest?.letestCrop?.plantingDate.split(
-                                  "T",
-                                )[0]
-                              }
+                              {data?.letest?.letestCrop?.plantingDate.split(
+                                "T",
+                              )[0] || "0000-00-00"}
                             </p>
                           </div>
                         </div>
@@ -330,7 +328,7 @@ export default function Home2() {
                             <p className="text-[14px]">
                               {data?.letest?.letestExpenses?.date.split(
                                 "T",
-                              )[0] || 0}
+                              )[0] || "0000-00-00"}
                             </p>
                           </div>
                         </div>
@@ -397,11 +395,9 @@ export default function Home2() {
                               Sale Date
                             </h4>
                             <p className="text-[14px]">
-                              {
-                                data?.letest?.letestHarvest?.saleDate.split(
-                                  "T",
-                                )[0]
-                              }
+                              {data?.letest?.letestHarvest?.saleDate.split(
+                                "T",
+                              )[0] || "0000-00-00"}
                             </p>
                           </div>
                         </div>

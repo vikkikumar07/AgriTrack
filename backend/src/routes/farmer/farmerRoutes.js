@@ -22,7 +22,7 @@ router.post(
 // user id
 router.get("/gets/farms/:id", authentication, farmAccesses);
 router.patch(
-  "/crops/:cropId/tasks/:taskId/complete",
+  "/crops/:cropId/tasks/:id/complete",
   authentication,
   authorize("farmer"),
   tasksCopletedUpdate,
