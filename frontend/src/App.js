@@ -3,9 +3,8 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Home from "./Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { store } from "./app/store";
-import { Provider } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ForgatePassword from "./pages/ForgatePassword";
 import ProfileEdit from "./pages/ProfileEdit";
@@ -16,6 +15,10 @@ import HarvestAndSales from "./pages/HarvestAndSales";
 import Users from "./pages/Users";
 import AllComplains from "./pages/AllComplains";
 import MyFarm from "./pages/MyFarm";
+import { setUser } from "./app/counter/counterSlice";
+import { useEffect } from "react";
+import axios from "axios";
+import api from "./app/api";
 
 let allroutes = createBrowserRouter([
   {
@@ -69,12 +72,34 @@ let allroutes = createBrowserRouter([
 ]);
 
 function App() {
+  let dispatch = useDispatch();
+  let authme = async () => {
+    try {
+      let response = await axios.post(
+        `${api}/user/authme`,
+        {},
+        {
+          withCredentials: true,
+        },
+      );
+      if (response.data.success) {
+        dispatch(setUser(response.data.user));
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      // toast.error(error.response?.data?.message);
+    }
+  };
+
+  useEffect(() => {
+    authme();
+  }, []);
+
   return (
     <>
-      <Provider store={store}>
-        <RouterProvider router={allroutes} />
-        <ToastContainer />
-      </Provider>
+      <RouterProvider router={allroutes} />
+      <ToastContainer />
     </>
   );
 }
