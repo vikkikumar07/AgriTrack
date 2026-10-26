@@ -86,57 +86,63 @@ export default function TasksPage() {
                   </span>
                 </div>
                 <div>
-                  <div className="flex gap-1 items-center mt-2">
-                    <CalendarDaysIcon size={15} color="green" />
-                    <span className="text-[14px] text-green-800 bg-green-100 px-2 py-1 rounded-full">
-                      CreatedAt
-                    </span>
-                  </div>
-                  <div className="text-[14px] pl-4">
-                    {farm?.createdAt?.split("T")[0] || 0}
+                  <div className="flex gap-4 items-center px-2 py-2 bg-sky-100 rounded-md">
+                    <CalendarDaysIcon size={30} className="text-sky-700" />
+                    <div>
+                      <h4 className="text-[14px]">Planting Date</h4>
+                      <p className="text-[14px] font-semibold">
+                        {farm?.createdAt?.split("T")[0] || "0000-00-00"}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-1 md:gap-2 my-4">
-                <div className="flex gap-2 items-center px-2 py-2 bg-green-200 rounded-md">
-                  <AreaChart size={20} />
+                <div className="flex gap-4 items-center px-2 py-2 bg-green-100 rounded-md">
+                  <AreaChart size={30} color="green" />
                   <div>
-                    <h4 className="text-[14px] font-semibold">Area</h4>
-                    <p className="text-[14px]">{farm?.area} Acres</p>
+                    <h4 className="text-[14px]">Area</h4>
+                    <p className="text-[14px] font-semibold">
+                      {farm?.area} Acres
+                    </p>
                   </div>
                 </div>
-                <div className="flex gap-2 items-center px-2 py-2 bg-yellow-100 rounded-md">
-                  <PlantPot size={20} />
+                <div className="flex gap-4 items-center px-2 py-2 bg-yellow-100 rounded-md">
+                  <PlantPot size={30} className="text-yellow-700" />
                   <div>
-                    <h4 className="text-[14px] font-semibold">Soil Type</h4>
-                    <p className="text-[14px]">{farm?.soil || ""}</p>
+                    <h4 className="text-[14px]">Soil Type</h4>
+                    <p className="text-[14px] font-semibold">
+                      {farm?.soil || ""}
+                    </p>
                   </div>
                 </div>
-                <div className="flex gap-2 items-center px-2 py-2 bg-sky-200 rounded-md">
-                  <CalendarDaysIcon size={20} />
+                <div className="flex gap-4 items-center px-2 py-2 bg-sky-100 rounded-md">
+                  <CalendarDaysIcon size={30} className="text-sky-700" />
                   <div>
-                    <h4 className="text-[14px] font-semibold">Planting Date</h4>
-                    <p className="text-[14px]">
+                    <h4 className="text-[14px]">Planting Date</h4>
+                    <p className="text-[14px] font-semibold">
                       {farm?.plantingDate?.split("T")[0] || "0000-00-00"}
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4 items-center px-2 py-2 bg-violet-300 rounded-md">
-                  <NotebookPen size={20} />
+                <div className="flex gap-4 items-center px-2 py-2 bg-violet-100 rounded-md">
+                  <NotebookPen size={30} className="text-violet-700" />
                   <div className="flex justify-between gap-2 md:gap-4">
                     <div>
-                      <h4 className="text-[14px] font-semibold">Total Tasks</h4>
-                      <p className="text-[14px] text-center">{totalTasks}</p>
+                      <h4 className="text-[14px]">Total Tasks</h4>
+                      <p className="text-[14px] font-semibold text-center">
+                        {totalTasks}
+                      </p>
                     </div>
                     <div>
-                      <h4 className="text-[14px] font-semibold">Completed</h4>
-                      <p className="text-[14px] text-center">
+                      <h4 className="text-[14px] ">Completed</h4>
+                      <p className="text-[14px] font-semibold text-center">
                         {completedTasks}
                       </p>
                     </div>
                     <div>
-                      <h4 className="text-[14px] font-semibold">Pending</h4>
-                      <p className="text-[14px] text-center">
+                      <h4 className="text-[14px]">Pending</h4>
+                      <p className="text-[14px] font-semibold text-center">
                         {notCompletedTasks}
                       </p>
                     </div>
