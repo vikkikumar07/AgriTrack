@@ -57,7 +57,7 @@ export default function Home2() {
   }, []);
   return (
     <>
-      <div className="relative w-screen bg-[var(--body)] ">
+      <div className="relative w-screen bg-sky-50 ">
         <main className="mb-10">
           <div className="relative h-[300px] w-full">
             <div className=" h-[50vh]  md:h-[60vh] w-full -z-20 overflow-hidden border rounded-lg">
