@@ -4,6 +4,7 @@ const {
   getExpenses,
   deleteExpenses,
   totelExpensesAmount,
+  getAllExpenses,
 } = require("../../controllers/farmer/expenses.controller");
 const authentication = require("../../middlewares/authentication");
 const authorize = require("../../middlewares/authorize");
@@ -17,6 +18,7 @@ router.post(
   createExpenses,
 );
 router.get("/:cropId/get", authentication, getExpenses);
+router.get("/getAll", authentication, getAllExpenses);
 // expenses id not cropId
 router.delete("/:id/delete", authentication, deleteExpenses);
 

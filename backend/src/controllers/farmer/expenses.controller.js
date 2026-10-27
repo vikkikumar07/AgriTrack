@@ -105,9 +105,36 @@ let totelExpensesAmount = async (req, res) => {
     return res.status(500).json({ message: "server error", success: false });
   }
 };
+
+let getAllExpenses = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    let allExpenses = await Expenses.find({ userId })
+      .sort({
+        createAt: -1,
+      })
+      .populate("cropId");
+
+    if (!allExpenses[0]) {
+      return res
+        .status(404)
+        .json({ message: "Expenses not found", success: false });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Found successfully", success: true, allExpenses });
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(500)
+      .json({ message: "Failed to found expenses", success: false });
+  }
+};
 module.exports = {
   createExpenses,
   getExpenses,
   deleteExpenses,
   totelExpensesAmount,
+  getAllExpenses,
 };
