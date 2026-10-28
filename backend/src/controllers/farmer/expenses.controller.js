@@ -44,7 +44,32 @@ let getExpenses = async (req, res) => {
   try {
     const cropId = req.params.cropId;
     let expensesDetials = await Expenses.find({ cropId }).sort({
-      createAt: -1,
+      createdAt: -1,
+    });
+
+    if (!expensesDetials[0]) {
+      return res
+        .status(404)
+        .json({ message: "Expenses not found", success: false });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Found successfully", success: true, expensesDetials });
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(500)
+      .json({ message: "Failed to found expenses", success: false });
+  }
+};
+
+// get expenses by category id
+let getExpensesCategory = async (req, res) => {
+  try {
+    const { category } = req.body;
+    let expensesDetials = await Expenses.find({ category }).sort({
+      createdAt: -1,
     });
 
     if (!expensesDetials[0]) {
@@ -111,7 +136,7 @@ let getAllExpenses = async (req, res) => {
     const userId = req.user.userId;
     let allExpenses = await Expenses.find({ userId })
       .sort({
-        createAt: -1,
+        createdAt: -1,
       })
       .populate("cropId");
 
@@ -137,4 +162,5 @@ module.exports = {
   deleteExpenses,
   totelExpensesAmount,
   getAllExpenses,
+  getExpensesCategory,
 };

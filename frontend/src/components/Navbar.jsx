@@ -14,7 +14,6 @@ import {
   LucideNetwork,
   Menu,
   Notebook,
-  NotebookPen,
   Send,
   Settings,
   User2,
@@ -22,7 +21,7 @@ import {
   WorkflowIcon,
   X,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -35,6 +34,7 @@ export default function Navbar() {
   let [aiChat, setAiChat] = useState(false);
   let admin = user?.role === "admin";
 
+  let navigate = useNavigate();
   let logoutAccount = async () => {
     try {
       let response = await axios.post(
@@ -46,6 +46,7 @@ export default function Navbar() {
       );
       if (response.data.success) {
         toast.success(response.data.message);
+        navigate("/");
         window.location.reload();
       } else {
         toast.error(response.data.message);

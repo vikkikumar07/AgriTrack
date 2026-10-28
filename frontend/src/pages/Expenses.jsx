@@ -4,6 +4,7 @@ import {
   AreaChart,
   BadgeQuestionMark,
   BaggageClaim,
+  BookmarkX,
   CalendarDays,
   CalendarDaysIcon,
   Database,
@@ -11,6 +12,7 @@ import {
   Leaf,
   Loader2,
   NotebookPen,
+  NotebookText,
   PlusSquareIcon,
   Search,
   Wheat,
@@ -19,11 +21,20 @@ import {
 import axios from "axios";
 import api from "../app/api";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
 export default function Expenses() {
-  let [show, setShow] = useState(true);
+  let { id } = useParams();
+  let [show, setShow] = useState(false);
   let [expenses, setExpenses] = useState([]);
+  let [farm, setFarm] = useState([]);
   let [loading, setLoading] = useState(false);
+
+  let [crop, setCrop] = useState("");
+  let [category, setCategory] = useState("");
+  let [cropCross, setCropCross] = useState(false);
+  let [categoryCross, setCategoryCross] = useState(false);
+
   let [data, setData] = useState({
     crop: "",
     category: "",
@@ -34,6 +45,9 @@ export default function Expenses() {
     amount: "",
     description: "",
   });
+
+  let totalExpenses = expenses.length || 0;
+  let totalFarm = farm.length || 0;
 
   let getAllExpenses = async () => {
     try {
@@ -46,6 +60,17 @@ export default function Expenses() {
       } else {
         toast.error(res?.data?.message);
       }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
+  let getCrop = async () => {
+    try {
+      let res = await axios.get(`${api}/farmer/gets/farms/${id}`, {
+        withCredentials: true,
+      });
+      setFarm(res.data.allTasks);
     } catch (error) {
       toast.error(error.response?.data?.message);
     }
@@ -66,11 +91,110 @@ export default function Expenses() {
   let setFormData = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  let submitForm = () => {};
-  let clearForm = () => {};
+  let submitForm = async (e) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      let res = await axios.post(
+        `${api}/farmer/expenses/${data.crop}/create`,
+        data,
+        {
+          withCredentials: true,
+        },
+      );
+
+      if (res.data.success) {
+        toast.success(res?.data?.message);
+        setShow(false);
+        getAllExpenses();
+        clearForm();
+      } else {
+        toast.error(res?.data?.message);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  let clearForm = (e) => {
+    e.preventDefault();
+    setData({
+      crop: "",
+      category: "",
+      date: "",
+      quantity: "",
+      unit: "",
+      rate: "",
+      amount: "",
+      description: "",
+    });
+  };
+
+  let findCropName = async (e) => {
+    e.preventDefault();
+
+    try {
+      let res = await axios.get(`${api}/farmer/expenses/${crop}/get`, {
+        withCredentials: true,
+      });
+
+      if (res.data.success) {
+        setExpenses(res.data.expensesDetials);
+        setCropCross(true);
+      } else {
+        toast.error(res?.data?.message);
+        setCrop("");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+      setCrop("");
+    }
+  };
+
+  let findCategoryName = async (e) => {
+    e.preventDefault();
+
+    try {
+      let res = await axios.post(
+        `${api}/farmer/expenses/category/get`,
+        { category },
+        {
+          withCredentials: true,
+        },
+      );
+
+      if (res.data.success) {
+        setExpenses(res.data.expensesDetials);
+        setCategoryCross(true);
+      } else {
+        toast.error(res?.data?.message);
+        setCategory("");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+      setCategory("");
+    }
+  };
+
+  let cropCrossBtn = (e) => {
+    e.preventDefault();
+    setCropCross(false);
+    setCrop("");
+    getAllExpenses();
+  };
+
+  let categoryCrossBtn = (e) => {
+    e.preventDefault();
+    setCategoryCross(false);
+    setCategory("");
+    getAllExpenses();
+  };
 
   useEffect(() => {
     getAllExpenses();
+    getCrop();
   }, []);
   return (
     <>
@@ -79,66 +203,77 @@ export default function Expenses() {
           <Navbar />
         </div>
         <div className="mt-20 mb-10">
-          <div className="px-4 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-2">
+          <div className="px-4 grid grid-cols-2 gap-1 md:gap-2">
             <div className="flex flex-col items-center gap-1 py-2 bg-green-200 rounded-md">
-              <p className="font-bold text-[18px]">0</p>
+              <p className="font-bold text-[18px]">{totalExpenses}</p>
               <h5 className="font-bold text-[var(--primary)]">
                 Total Expenses
               </h5>
             </div>
             <div className="flex flex-col items-center gap-1 py-2 bg-blue-200 rounded-md">
-              <p className="font-bold text-[18px]">0</p>
+              <p className="font-bold text-[18px]">{totalFarm}</p>
               <h5 className="font-bold ">Total Crop</h5>
-            </div>
-            <div className="flex flex-col items-center gap-1 py-2 bg-yellow-200 rounded-md">
-              <p className="font-bold text-[18px]"> 0</p>
-              <h5 className="font-bold ">Total Product</h5>
-            </div>
-            <div className="flex flex-col items-center gap-1 py-2 bg-purple-200 rounded-md">
-              <p className="font-bold text-[18px]">
-                <span>_</span>
-              </p>
-              <h5 className="font-bold ">Welcome</h5>
             </div>
           </div>
         </div>
         <div>
           <div className="flex gap-4 border shadow-md sticky top-15 p-4 rounded-md justify-between mx-10">
             <div className="flex-1">
-              <form className="flex gap-1">
+              <form onSubmit={findCropName} className="flex gap-1">
                 <div className="relative">
                   <Wheat
                     size={20}
                     color="green"
                     className="absolute left-3 text-[16px] top-1/2 -translate-y-1/2 text-[var(--mute)]"
                   />
-                  <select className="inputBox" name="crop">
+                  <select
+                    className="inputBox"
+                    name="crop"
+                    value={crop}
+                    onChange={(e) => setCrop(e.target.value)}
+                  >
                     <option value={"Other"}>Fillter crop name</option>
-                    {expenses.map((v, i) => {
+                    {farm.map((v, i) => {
                       return (
                         <>
-                          <option key={i} value={v?.cropId?._id || ""}>
-                            {v?.cropId?.crop || ""}
+                          <option key={i} value={v?._id || ""}>
+                            {v?.crop || ""}
                           </option>
                         </>
                       );
                     })}
                   </select>
                 </div>
-                <button>
-                  <Search color="green" />{" "}
-                </button>
+                {cropCross ? (
+                  <>
+                    <button onClick={cropCrossBtn}>
+                      <X color="red" />
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button type="submit">
+                      <Search color="green" />
+                    </button>
+                  </>
+                )}
               </form>
             </div>
             <div className="flex-1">
-              <form className="flex gap-1">
+              <form className="flex gap-1" onSubmit={findCategoryName}>
                 <div className="relative">
                   <Database
+                    color="green"
                     size={20}
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--mute)]"
                   />
-                  <select className="inputBox" name="category">
-                    <option value={"Other"}>Fillter category name</option>
+                  <select
+                    className="inputBox"
+                    name="category"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    <option>Fillter category name</option>
                     {categories.map((v, i) => {
                       return (
                         <>
@@ -150,9 +285,19 @@ export default function Expenses() {
                     })}
                   </select>
                 </div>
-                <button>
-                  <Search color="green" />
-                </button>
+                {categoryCross ? (
+                  <>
+                    <button onClick={categoryCrossBtn}>
+                      <X color="red" />
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button type="submit">
+                      <Search color="green" />
+                    </button>
+                  </>
+                )}
               </form>
             </div>
             <div>
@@ -166,11 +311,11 @@ export default function Expenses() {
             </div>
           </div>
           <div className="m-8">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {expenses.map((v, i) => {
                 return (
                   <div key={i}>
-                    <ExpensesCard v={v} />
+                    <ExpensesCard v={v} getAllExpenses={getAllExpenses} />
                   </div>
                 );
               })}
@@ -180,11 +325,11 @@ export default function Expenses() {
         <div className="relative w-full"></div>
         {show ? (
           <>
-            <div className="absolute top-20 w-[80%] left-[10%]  z-10">
+            <div className="absolute top-20 w-[90%] md:w-[80%] left-[5%] md:left-[10%]  z-10">
               <div
-                className={`absolute top-10 w-[80%] left-1/2 -translate-x-1/2 z-10 ${show ? "block" : "hidden"}`}
+                className={`absolute top-10 w-[100%] md:w-[80%] left-0 md:left-1/2 md:-translate-x-1/2 z-10 ${show ? "block" : "hidden"}`}
               >
-                <div className="relative h-[580px] md:h-[400px] w-full bg-[var(--color-1)] mx-auto shadow-sm shadow-black rounded-md">
+                <div className="relative h-auto pb-10 md:h-[400px] w-full bg-white mx-auto shadow-sm shadow-black rounded-md">
                   <div className="relative h-1">
                     <X
                       size={20}
@@ -213,14 +358,11 @@ export default function Expenses() {
                                 onChange={setFormData}
                               >
                                 <option value={"Other"}>Select Crop</option>
-                                {expenses.map((v, i) => {
+                                {farm.map((v, i) => {
                                   return (
                                     <>
-                                      <option
-                                        key={i}
-                                        value={v?.cropId?._id || ""}
-                                      >
-                                        {v?.cropId?.crop || ""}
+                                      <option key={i} value={v?._id || ""}>
+                                        {v?.crop || ""}
                                       </option>
                                     </>
                                   );
@@ -297,6 +439,8 @@ export default function Expenses() {
                                     <option value={"g"}>g</option>
                                     <option value={"Kg"}>Kg</option>
                                     <option value={"Quintal"}>Quintal</option>
+                                    <option value={"L"}>L</option>
+                                    <option value={"Other"}>Other</option>
                                   </select>
                                 </div>
                               </div>
@@ -360,7 +504,7 @@ export default function Expenses() {
                       <div className="absolute bottom-2 md:bottom-0 md:right-2 flex gap-2 my-2">
                         <button
                           onClick={clearForm}
-                          className="btn hover:bg-white"
+                          className="btn hover:bg-[var(--color-1)]"
                         >
                           Clear
                         </button>
@@ -392,7 +536,24 @@ export default function Expenses() {
   );
 }
 
-let ExpensesCard = ({ v }) => {
+let ExpensesCard = ({ v, getAllExpenses }) => {
+  let deleteExpenses = async (id) => {
+    try {
+      let res = await axios.delete(`${api}/farmer/expenses/${id}/delete`, {
+        withCredentials: true,
+      });
+
+      if (res.data.success) {
+        toast.success(res.data.message);
+        getAllExpenses();
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
   return (
     <>
       {v !== null ? (
@@ -404,7 +565,7 @@ let ExpensesCard = ({ v }) => {
                   <Database size={25} className="text-violet-700" />
                 </div>
                 <h2 className="text-left font-semibold text-[20px]">
-                  {v?.category} Expenses
+                  {v?.category}
                 </h2>
               </div>
               <div>
@@ -461,6 +622,28 @@ let ExpensesCard = ({ v }) => {
                   <h4 className="text-[14px]">Amount</h4>
                   <p className="text-[14px] font-semibold">{v?.amount || 0}</p>
                 </div>
+              </div>
+            </div>
+            <div className="flex gap-4 h-auto items-center px-2 py-2 bg-violet-100 rounded-md">
+              <NotebookText size={30} className="text-violet-700" />
+              <div>
+                <h4 className="text-[14px]">Decription</h4>
+                <p className="text-[14px] font-semibold">
+                  {v?.description || "No description"}
+                </p>
+              </div>
+            </div>
+            <div className="relative mt-10">
+              <div className="group absolute bottom-0 right-0 flex flex-col items-center justify-center">
+                <span className="pointer-events-none absolute right-0 top-full z-10 mt-1 whitespace-nowrap rounded-md bg-red-600 p-1 text-[14px] text-white hidden group-hover:block">
+                  Delete Expenses
+                </span>
+
+                <BookmarkX
+                  color="red"
+                  onClick={() => deleteExpenses(v._id)}
+                  className="mx-auto cursor-pointer"
+                />
               </div>
             </div>
           </div>
