@@ -99,7 +99,9 @@ let deleteHarvest = async (req, res) => {
 let getHarvest = async (req, res) => {
   try {
     const cropId = req.params.cropId;
-    let harvestDetials = await Harvest.find({ cropId }).sort({ createAt: -1 });
+    let harvestDetials = await Harvest.find({ cropId })
+      .sort({ createdAt: -1 })
+      .populate("cropId");
 
     if (!harvestDetials[0]) {
       return res
@@ -118,4 +120,27 @@ let getHarvest = async (req, res) => {
   }
 };
 
-module.exports = { createHarvest, deleteHarvest, getHarvest };
+let getAllHarvest = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    let harvestDetials = await Harvest.find({ userId })
+      .sort({ createdAt: -1 })
+      .populate("cropId");
+
+    if (!harvestDetials[0]) {
+      return res
+        .status(404)
+        .json({ message: "Harvest not found", success: false });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Found successfully", success: true, harvestDetials });
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(500)
+      .json({ message: "Failed to found harvest", success: false });
+  }
+};
+module.exports = { createHarvest, deleteHarvest, getHarvest, getAllHarvest };
