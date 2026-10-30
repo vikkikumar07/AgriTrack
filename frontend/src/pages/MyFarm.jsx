@@ -14,7 +14,9 @@ import {
   LucideChartNoAxesColumnIncreasing,
   NotebookText,
   PlusSquareIcon,
+  Search,
   SquareChevronRightIcon,
+  Wheat,
   X,
 } from "lucide-react";
 import axios from "axios";
@@ -26,6 +28,8 @@ export default function MyFarm() {
   let { id } = useParams();
   let [show, setShow] = useState(false);
   let [loading, setLoading] = useState(false);
+  let [crop, setCrop] = useState("");
+  let [cropCross, setCropCross] = useState(false);
   let [farmData, setFarmData] = useState({
     crop: "",
     soil: "",
@@ -50,16 +54,16 @@ export default function MyFarm() {
   };
 
   let totalFarm = farm.length || 0;
-  let totalPendingtask = farm.reduce((total, v) => {
+  let totalPendingtask = farm?.reduce((total, v) => {
     return total + (v?.tasks?.filter((t) => t.completed === false).length || 0);
   }, 0);
-  let totalTasks = farm.reduce((sum, v) => sum + (v?.tasks?.length || 0), 0);
-  let completedTasks = farm.reduce(
+  let totalTasks = farm?.reduce((sum, v) => sum + (v?.tasks?.length || 0), 0);
+  let completedTasks = farm?.reduce(
     (sum, v) =>
       sum + (v?.tasks?.filter((t) => t.completed === true).length || 0),
     0,
   );
-  let totalArea = farm.reduce((sum, v) => sum + (Number(v.area) || 0), 0);
+  let totalArea = farm?.reduce((sum, v) => sum + (Number(v.area) || 0), 0);
 
   let overallprogress =
     totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
@@ -91,7 +95,7 @@ export default function MyFarm() {
       let res = await axios.get(`${api}/farmer/gets/farms/${id}`, {
         withCredentials: true,
       });
-      setFarm(res.data.allTasks);
+      setFarm(res?.data?.allTasks);
     } catch (error) {
       toast.error(error.response?.data?.message);
     }
@@ -100,6 +104,32 @@ export default function MyFarm() {
   const navigate = useNavigate();
   let goToTaskPage = (id) => {
     navigate(`/tasks/${id}`);
+  };
+
+  let findCropName = async (e) => {
+    e.preventDefault();
+
+    try {
+      let res = await axios.get(`${api}/farmer/gets/farmSignle/${crop}`, {
+        withCredentials: true,
+      });
+
+      if (res.data.success) {
+        setFarm([res.data.farmSignle]);
+        setCropCross(true);
+      } else {
+        toast.error(res?.data?.message);
+        setCrop("");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+      setCrop("");
+    }
+  };
+  let cropCrossBtn = () => {
+    setCropCross(false);
+    getCrop();
+    setCrop("");
   };
 
   let deleteFarm = async (id) => {
@@ -172,6 +202,47 @@ export default function MyFarm() {
           <div className="my-10 px-6 bg-gray-100 py-2 ">
             <div className="flex justify-between">
               <h2 className="text-[20px] font-semibold">My Crops</h2>
+              <div>
+                <form onSubmit={findCropName} className="flex gap-1">
+                  <div className="relative">
+                    <Wheat
+                      size={20}
+                      color="green"
+                      className="absolute left-3 text-[16px] top-1/2 -translate-y-1/2 text-[var(--mute)]"
+                    />
+                    <select
+                      className="inputBox"
+                      name="crop"
+                      value={crop}
+                      onChange={(e) => setCrop(e.target.value)}
+                    >
+                      <option value={"Other"}>Fillter by crop name</option>
+                      {farm.map((v, i) => {
+                        return (
+                          <>
+                            <option key={i} value={v?._id || ""}>
+                              {v?.crop || ""}
+                            </option>
+                          </>
+                        );
+                      })}
+                    </select>
+                  </div>
+                  {cropCross ? (
+                    <>
+                      <button onClick={cropCrossBtn}>
+                        <X color="red" />
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button type="submit">
+                        <Search color="green" />
+                      </button>
+                    </>
+                  )}
+                </form>
+              </div>
               <div
                 onClick={() => setShow(!show)}
                 className="flex gap-2 items-center text-[14px] bg-[var(--primary)] hover:bg-[var(--secondary)] text-white p-2 rounded-md cursor-pointer"

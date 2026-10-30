@@ -3,6 +3,7 @@ import Navbar from "./../components/Navbar";
 import {
   AlertTriangle,
   AreaChart,
+  BookmarkX,
   CalendarDays,
   CalendarDaysIcon,
   Database,
@@ -478,7 +479,22 @@ export default function HarvestAndSales() {
   );
 }
 
-let HarvestCard = ({ v }) => {
+let HarvestCard = ({ v, getAllHarvest }) => {
+  let deleteHarvest = async (id) => {
+    try {
+      let res = await axios.delete(`${api}/farmer/harvest/${id}/delete`, {
+        withCredentials: true,
+      });
+      if (res.data.success) {
+        toast.success(res.data.message);
+        getAllHarvest();
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    }
+  };
   return (
     <>
       <div className="shadow-sm shadow-black h-auto py-2 rounded-md bg-white px-4">
@@ -619,6 +635,19 @@ let HarvestCard = ({ v }) => {
                 {v?.profitLoss || 0} <span>{v?.plMessage || ""}</span>
               </p>
             </div>
+          </div>
+        </div>
+        <div className="relative mt-10">
+          <div className="group absolute bottom-1 right-0 flex flex-col items-center justify-center">
+            <span className="pointer-events-none absolute right-0 top-full z-10 mt-1 whitespace-nowrap rounded-md bg-red-600 p-1 text-[14px] text-white hidden group-hover:block">
+              Delete Farm
+            </span>
+
+            <BookmarkX
+              color="red"
+              onClick={() => deleteHarvest(v._id)}
+              className="mx-auto cursor-pointer"
+            />
           </div>
         </div>
       </div>
