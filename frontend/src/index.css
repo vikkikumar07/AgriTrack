@@ -34,6 +34,10 @@
     @apply font-medium cursor-pointer hover:border-b-[var(--primary)] hover:border-b-2 hover:shadow-md px-3 py-1 rounded-md;
 }
 
+.active {
+    @apply border-b-[var(--primary)] border-b-2 shadow-md px-3 py-1 rounded-md;
+}
+
 /* menu list btn */
 .menu-li {
     @apply p-3 hover:bg-[var(--primary)] hover:text-white rounded-md my-4 cursor-pointer shadow-md;

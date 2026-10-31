@@ -21,7 +21,7 @@ import {
   WorkflowIcon,
   X,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -86,39 +86,39 @@ export default function Navbar() {
                     <>
                       <div>
                         <ul>
-                          <li className="menu-li">
+                          <li>
                             <Link to={"/"}>
-                              <div className="flex gap-3">
+                              <div className="flex gap-3 menu-li">
                                 <HomeIcon size={20} /> <span>Deshbord</span>
                               </div>
                             </Link>
                           </li>
 
-                          <li className="menu-li">
+                          <li>
                             <Link to={"/admin/users"}>
-                              <div className="flex gap-3">
+                              <div className="flex gap-3 menu-li">
                                 <User2 size={20} /> <span>User</span>
                               </div>
                             </Link>
                           </li>
-                          <li className="menu-li">
+                          <li>
                             <Link to={"/admin/complains"}>
-                              <div className="flex gap-3">
+                              <div className="flex gap-3 menu-li">
                                 <BuildingComplex size={20} />
                                 <span>Complain</span>
                               </div>
                             </Link>
                           </li>
-                          <li className="menu-li">
+                          <li>
                             <div
-                              className="flex gap-3"
+                              className="flex gap-3 menu-li"
                               onClick={() => setAiChat(!aiChat)}
                             >
                               <ChartAreaIcon size={20} /> <span>Ai Chat</span>
                             </div>
                           </li>
-                          <li className="menu-li">
-                            <div className="flex gap-3">
+                          <li>
+                            <div className="flex gap-3 menu-li">
                               <Settings size={20} /> <span>Setting</span>
                             </div>
                           </li>
@@ -129,53 +129,53 @@ export default function Navbar() {
                     <>
                       <div>
                         <ul>
-                          <li className="menu-li">
+                          <li>
                             <Link to={"/"}>
-                              <div className="flex gap-3">
+                              <div className="flex gap-3 menu-li">
                                 <HomeIcon size={20} /> <span>Home</span>
                               </div>
                             </Link>
                           </li>
-                          <li className="menu-li">
+                          <li>
                             <Link to={`/myfarm/${user._id}`}>
-                              <div className="flex gap-3">
+                              <div className="flex gap-3 menu-li">
                                 <LeafIcon size={20} /> <span>My Farm</span>
                               </div>
                             </Link>
                           </li>
-                          <li className="menu-li">
+                          <li>
                             <Link to={`/expenses/${user._id}`}>
-                              <div className="flex gap-3">
+                              <div className="flex gap-3 menu-li">
                                 <Notebook size={20} /> <span>Expenses</span>
                               </div>
                             </Link>
                           </li>
-                          <li className="menu-li">
+                          <li>
                             <Link to={`/harvest/${user._id}`}>
-                              <div className="flex gap-3">
+                              <div className="flex gap-3 menu-li">
                                 <BookAIcon size={20} />{" "}
                                 <span>Harvest & Sales</span>
                               </div>
                             </Link>
                           </li>
-                          <li className="menu-li">
+                          <li>
                             <Link to={`/complain/${user._id}`}>
-                              <div className="flex gap-3">
+                              <div className="flex gap-3 menu-li">
                                 <BuildingComplex size={20} />
                                 <span>Complain</span>
                               </div>
                             </Link>
                           </li>
-                          <li className="menu-li">
+                          <li>
                             <div
-                              className="flex gap-3"
+                              className="flex gap-3 menu-li"
                               onClick={() => setAiChat(!aiChat)}
                             >
                               <ChartAreaIcon size={20} /> <span>Ai Chat</span>
                             </div>
                           </li>
-                          <li className="menu-li">
-                            <div className="flex gap-3">
+                          <li>
+                            <div className="flex gap-3 menu-li">
                               <Settings size={20} /> <span>Setting</span>
                             </div>
                           </li>
@@ -188,30 +188,25 @@ export default function Navbar() {
                 <>
                   <div>
                     <ul>
-                      <li className="menu-li">
+                      <li>
                         <Link to={"/"}>
-                          <div className="flex gap-3">
+                          <div className="flex gap-3 menu-li">
                             <HomeIcon size={20} /> <span>Home</span>
                           </div>
                         </Link>
                       </li>
-                      <li className="menu-li">
-                        <div className="flex gap-3">
+                      <li>
+                        <div className="flex gap-3 menu-li">
                           <Info size={20} /> <span>About</span>
                         </div>
                       </li>
-                      <li className="menu-li">
-                        <div className="flex gap-3">
+                      <li>
+                        <div className="flex gap-3 menu-li">
                           <LucideNetwork size={20} /> <span>Features</span>
                         </div>
                       </li>
-                      <li className="menu-li">
-                        <div className="flex gap-3">
-                          <WorkflowIcon size={20} /> <span>How it works</span>
-                        </div>
-                      </li>
-                      <li className="menu-li">
-                        <div className="flex gap-3">
+                      <li>
+                        <div className="flex gap-3 menu-li">
                           <Settings size={20} /> <span>Setting</span>
                         </div>
                       </li>
@@ -232,19 +227,34 @@ export default function Navbar() {
                 <div className="hidden md:block">
                   <ul className="flex  gap-6 font-medium list-none">
                     <li>
-                      <Link to={"/"} className="nav-btn">
+                      <NavLink
+                        to={"/"}
+                        className={({ isActive }) =>
+                          isActive ? "nav-btn active" : "nav-btn"
+                        }
+                      >
                         Deshbord
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link to={`/admin/users`} className="nav-btn">
+                      <NavLink
+                        to={`/admin/users`}
+                        className={({ isActive }) =>
+                          isActive ? "nav-btn active" : "nav-btn"
+                        }
+                      >
                         User
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link to={`/admin/complains`} className="nav-btn">
+                      <NavLink
+                        to={`/admin/complains`}
+                        className={({ isActive }) =>
+                          isActive ? "nav-btn active" : "nav-btn"
+                        }
+                      >
                         Complain
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
                       <Link
@@ -262,29 +272,54 @@ export default function Navbar() {
                 <div className="hidden md:block">
                   <ul className="flex  gap-6 font-medium list-none">
                     <li>
-                      <Link to={"/"} className="nav-btn">
+                      <NavLink
+                        to={"/"}
+                        className={({ isActive }) =>
+                          isActive ? "nav-btn active" : "nav-btn"
+                        }
+                      >
                         Home
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link to={`/myfarm/${user._id}`} className="nav-btn">
+                      <NavLink
+                        to={`/myfarm/${user._id}`}
+                        className={({ isActive }) =>
+                          isActive ? "nav-btn active" : "nav-btn"
+                        }
+                      >
                         My Farm
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link to={`/expenses/${user._id}`} className="nav-btn">
+                      <NavLink
+                        to={`/expenses/${user._id}`}
+                        className={({ isActive }) =>
+                          isActive ? "nav-btn active" : "nav-btn"
+                        }
+                      >
                         Expenses
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link to={`/harvest/${user._id}`} className="nav-btn">
+                      <NavLink
+                        to={`/harvest/${user._id}`}
+                        className={({ isActive }) =>
+                          isActive ? "nav-btn active" : "nav-btn"
+                        }
+                      >
                         Harvest & Sales
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link to={`/complain/${user._id}`} className="nav-btn">
+                      <NavLink
+                        to={`/complain/${user._id}`}
+                        className={({ isActive }) =>
+                          isActive ? "nav-btn active" : "nav-btn"
+                        }
+                      >
                         Complain
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
                       <Link
@@ -303,12 +338,18 @@ export default function Navbar() {
           <>
             <div className="hidden md:block">
               <ul className="flex  gap-6 font-medium list-none">
-                <li className="nav-btn">
-                  <Link to={"/"}>Home</Link>
+                <li>
+                  <NavLink
+                    to={"/"}
+                    className={({ isActive }) =>
+                      isActive ? "nav-btn active" : "nav-btn"
+                    }
+                  >
+                    Home
+                  </NavLink>
                 </li>
                 <li className="nav-btn">About</li>
                 <li className="nav-btn">Features</li>
-                <li className="nav-btn">How it works</li>
               </ul>
             </div>
           </>
