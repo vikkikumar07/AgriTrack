@@ -18,7 +18,6 @@ import {
   Settings,
   User2,
   UserRoundPen,
-  WorkflowIcon,
   X,
 } from "lucide-react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
