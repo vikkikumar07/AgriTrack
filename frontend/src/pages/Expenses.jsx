@@ -22,6 +22,7 @@ import axios from "axios";
 import api from "../app/api";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import agriPhoto from "../image/agriPhoto.png";
 
 export default function Expenses() {
   let { id } = useParams();
@@ -46,7 +47,7 @@ export default function Expenses() {
     description: "",
   });
 
-  let totalExpenses = expenses.length || 0;
+  let totalExpenses = expenses?.reduce((sum, v) => sum + v.amount || 0, 0);
   let totalFarm = farm.length || 0;
 
   let getAllExpenses = async () => {
@@ -202,7 +203,26 @@ export default function Expenses() {
         <div className="fixed top-0 w-screen z-40">
           <Navbar />
         </div>
-        <div className="mt-20 mb-10">
+        <header className="mt-14 relative">
+          <div className="h-[20vh] md:h-[30vh] w-full -z-20 overflow-hidden">
+            <img
+              src={agriPhoto}
+              alt="agri"
+              className="block object-cover h-full w-full"
+            />
+            <div className="absolute top-2 left-4 md:left-16 h-[180px] w-[230px] md:w-[400px] bg-white blur-xl md:blur-2xl z-0"></div>
+          </div>
+          <div className="absolute top-14 left-5 md:left-20">
+            <div className="flex flex-col gap-4">
+              <h2 className="font-bold text-[30px]">Expenses Tracking</h2>
+              <p className="w-[300px] md:w-[400px]">
+                Record and manage farm expenses like seeds, fertilizers, and
+                irrigation.{" "}
+              </p>
+            </div>
+          </div>
+        </header>
+        <div className="my-5">
           <div className="px-4 grid grid-cols-2 gap-1 md:gap-2">
             <div className="flex flex-col items-center gap-1 py-2 bg-green-200 rounded-md">
               <p className="font-bold text-[18px]">{totalExpenses}</p>
