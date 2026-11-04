@@ -41,12 +41,10 @@ let tasksCopletedUpdate = async (req, res) => {
         .json({ message: "Task not found", success: false });
     }
 
-    return res
-      .status(200)
-      .json({
-        message: `${isTask ? "Complete" : "Uncheck"} successfully`,
-        success: true,
-      });
+    return res.status(200).json({
+      message: `${isTask ? "Complete" : "Uncheck"} successfully`,
+      success: true,
+    });
   } catch (error) {
     return res
       .status(400)
@@ -105,9 +103,14 @@ let homePageData = async (req, res) => {
       0,
     );
 
+    // harvest & seles
+    let harvest = await Harvest.find({ userId });
+    let totalHarvest = harvest.length || 0;
+
     let farmsDetails = {
       totalFarm,
       totalTasks,
+      totalHarvest,
       totalPendingtask,
       completedTasks,
     };

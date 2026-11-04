@@ -157,18 +157,21 @@ export default function Home2() {
               </div>
               <div className="flex gap-4 items-center bg-white shadow-xl rounded-md px-4 py-2">
                 <div className=" bg-sky-100 p-2 rounded-md">
-                  <CloudSun size={30} />
+                  <DatabaseMinus size={30} />
                 </div>
                 <div>
                   <h4 className="font-semibold text-[14px] text-[var(--mute)]">
-                    Today's Weather
+                    Harvest & Sales
                   </h4>
                   <p className="text-[20px] font-bold">
-                    28<sup>o</sup> C
+                    {data?.farmsDetails?.totalHarvest || 0}
                   </p>
-                  <p className="flex gap-1 items-center text-[var(--primary)] text-[14px]">
-                    Partly cloudy
-                  </p>
+                  <Link
+                    to={`/harvest/${user._id}`}
+                    className="flex gap-1 items-center text-[var(--primary)] text-[14px]"
+                  >
+                    Harvest & Sales <ArrowRight size={15} />
+                  </Link>
                 </div>
               </div>
             </div>
