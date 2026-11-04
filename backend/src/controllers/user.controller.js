@@ -237,6 +237,61 @@ let authMe = async (req, res) => {
   }
 };
 
+// forget password
+let forgetPassword = async (req, res) => {
+  try {
+    const { cPassword, newPassword, confPassword, email } = req.body;
+
+    if (!cPassword || !newPassword || !confPassword || !email) {
+      return res
+        .status(409)
+        .json({ message: "Required all filed", success: false });
+    }
+
+    if (newPassword !== confPassword) {
+      return res
+        .status(409)
+        .json({ message: "Not confirm your Password", success: false });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Your email is wrong", success: false });
+    }
+
+    if (user.isBlocked) {
+      return res
+        .status(404)
+        .json({ message: "your account is blocked", success: false });
+    }
+
+    const isPassword = await bcrypt.compare(cPassword, user.password);
+    if (!isPassword) {
+      return res
+        .status(401)
+        .json({ message: "Your password is wrong", success: false });
+    }
+
+    let hashPassword = await bcrypt.hash(newPassword, 10);
+
+    let updateUser = await User.findOneAndUpdate(
+      { email },
+      { $set: { password: hashPassword } },
+      { new: true, runValidators: true },
+    );
+    return res.status(200).json({
+      message: "Update password successfully",
+      success: true,
+      user: updateUser,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(501).json({ message: "Server Error", success: false });
+  }
+};
+
 module.exports = {
   signup,
   login,
@@ -244,4 +299,5 @@ module.exports = {
   updateProfile,
   deleteProfile,
   authMe,
+  forgetPassword,
 };
