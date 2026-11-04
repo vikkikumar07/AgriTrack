@@ -139,7 +139,9 @@ export default function () {
                   <div>
                     <form onSubmit={handlSubmit}>
                       <div>
-                        <label>Full name</label>
+                        <label>
+                          Full name <sup className="text-red-700">*</sup>
+                        </label>
                         <div className="relative">
                           <User
                             size={15}
@@ -157,7 +159,9 @@ export default function () {
                         </div>
                       </div>
                       <div>
-                        <label>username</label>
+                        <label>
+                          username <sup className="text-red-700">*</sup>
+                        </label>
                         <div className="relative">
                           <User
                             size={15}
@@ -175,7 +179,9 @@ export default function () {
                         </div>
                       </div>
                       <div>
-                        <label>Email address</label>
+                        <label>
+                          Email address <sup className="text-red-700">*</sup>
+                        </label>
                         <div className="relative">
                           <LucideMessagesSquare
                             size={15}
@@ -193,7 +199,9 @@ export default function () {
                         </div>
                       </div>
                       <div>
-                        <label>Password</label>
+                        <label>
+                          Password <sup className="text-red-700">*</sup>
+                        </label>
                         <div className="relative">
                           <LockKeyhole
                             size={15}
@@ -228,7 +236,9 @@ export default function () {
                         </div>
                       </div>
                       <div>
-                        <label>Confirm password</label>
+                        <label>
+                          Confirm password <sup className="text-red-700">*</sup>
+                        </label>
                         <div className="relative">
                           <LockKeyhole
                             size={15}
@@ -263,7 +273,9 @@ export default function () {
                         </div>
                       </div>
                       <div>
-                        <label>I am a</label>
+                        <label>
+                          I am a <sup className="text-red-700">*</sup>
+                        </label>
                         <div className="relative">
                           <User
                             size={15}
@@ -278,7 +290,7 @@ export default function () {
                           >
                             <option value="">Selete your role</option>
                             <option value="farmer">Farmer</option>
-                            <option value="expert">Expert</option>
+
                             <option value="admin">Admin</option>
                           </select>
                         </div>
@@ -334,15 +346,6 @@ export default function () {
                       </div>
                     </form>
                     <div>
-                      <p className="text-center text-[var(--mute)]">or</p>
-                      <button className="btn flex justify-center items-center gap-1 w-full mt-2">
-                        <img
-                          src="https://www.google.com/favicon.ico"
-                          alt="Google"
-                          className="w-[20px]"
-                        />
-                        <span>Continue with Google</span>
-                      </button>
                       <p className="text-[12px] text-center my-4">
                         Already have an account?{" "}
                         <Link to={"/login"} className="text-[var(--primary)]">

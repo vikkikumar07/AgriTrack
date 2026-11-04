@@ -116,7 +116,7 @@ export default function Login() {
                 </div>
               </div>
             </div>
-            <div className="md:absolute md:right-10 -z-10">
+            <div className="md:absolute md:right-10 top-10 -z-10">
               <div className="bg-white block h-[520px] md:h-[480px] w-[90%] mx-auto mt-[100px] md:mt-6 md:w-[400px] shadow-xl rounded-sm px-6 py-3">
                 <div className="text-center mt-[50px]">
                   <h2 className="font-bold text-[20px]">Welcome Back</h2>
@@ -128,7 +128,9 @@ export default function Login() {
                   <div>
                     <form onSubmit={handlSubmit}>
                       <div>
-                        <label>Email address</label>
+                        <label>
+                          Email address <sup className="text-red-700">*</sup>
+                        </label>
                         <div className="relative">
                           <LucideMessagesSquare
                             size={15}
@@ -145,7 +147,9 @@ export default function Login() {
                         </div>
                       </div>
                       <div>
-                        <label>Password</label>
+                        <label>
+                          Password <sup className="text-red-700">*</sup>
+                        </label>
                         <div className="relative">
                           <LockKeyhole
                             size={15}
@@ -203,15 +207,6 @@ export default function Login() {
                       </Link>
                     </div>
                     <div className="block my-4 pt-4">
-                      <p className="text-center text-[var(--mute)]">or</p>
-                      <button className="btn flex justify-center items-center gap-1 w-full mt-2">
-                        <img
-                          src="https://www.google.com/favicon.ico"
-                          alt="Google"
-                          className="w-[20px]"
-                        />
-                        <span>Continue with Google</span>
-                      </button>
                       <p className="text-[12px] text-center my-4">
                         Don't have an account?{" "}
                         <Link to={"/signup"} className="text-[var(--primary)]">
