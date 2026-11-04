@@ -5,6 +5,7 @@ const {
   updateProfile,
   deleteProfile,
   authMe,
+  forgetPassword,
 } = require("../controllers/user.controller");
 
 const upload = require("../middlewares/upload");
@@ -21,5 +22,7 @@ router.patch("/update/:id", authentication, upload, updateProfile);
 // admin and user
 router.delete("/delete/profile/:id", authentication, deleteProfile);
 router.post("/authme", authentication, authMe);
+
+router.patch("/forget/password", forgetPassword);
 
 module.exports = router;
