@@ -1,3 +1,4 @@
+const Complain = require("../../models/complain.schema");
 const User = require("../../models/user.schema");
 
 let findAllUser = async (req, res) => {
@@ -99,4 +100,41 @@ let roleManage = async (req, res) => {
     return res.status(500).json({ message: "server error", success: false });
   }
 };
-module.exports = { findAllUser, searchUser, blockedUnblocked, roleManage };
+
+// deshbord data
+let deshbordData = async (req, res) => {
+  try {
+    let users = await User.find();
+    let totalUsers = users.length || 0;
+    let totalBlockUsers = users.filter((t) => t.isBlocked === true).length || 0;
+    let totalUnBlockUsers =
+      users.filter((t) => t.isBlocked === false).length || 0;
+
+    let complains = await Complain.find();
+    let totalComplains = complains.length || 0;
+
+    let recentUsers = await User.find().sort({ createdAt: -1 }).limit(10);
+
+    let DeshbordDatas = {
+      totalUsers,
+      totalBlockUsers,
+      totalUnBlockUsers,
+      totalComplains,
+      recentUsers,
+    };
+
+    return res
+      .status(200)
+      .json({ message: "Data successfully", success: true, DeshbordDatas });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
+module.exports = {
+  findAllUser,
+  searchUser,
+  blockedUnblocked,
+  roleManage,
+  deshbordData,
+};

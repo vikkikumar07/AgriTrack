@@ -194,12 +194,6 @@ let deleteProfile = async (req, res) => {
 
     await User.findByIdAndDelete(id);
 
-    res.cookie("token", {
-      httpOnly: true,
-      secure: false,
-      maxAge: 0,
-    });
-
     return res.status(200).json({
       message: "Account Delete successfully",
       success: true,

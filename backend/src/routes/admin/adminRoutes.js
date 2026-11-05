@@ -6,6 +6,7 @@ const {
   searchUser,
   blockedUnblocked,
   roleManage,
+  deshbordData,
 } = require("../../controllers/admin/userManage.controller");
 const {
   taskUpdate,
@@ -44,5 +45,12 @@ router.patch(
   authentication,
   authorize("admin"),
   updateHarvest,
+);
+
+router.get(
+  "/find/deshbord/data",
+  authentication,
+  authorize("admin"),
+  deshbordData,
 );
 module.exports = router;
