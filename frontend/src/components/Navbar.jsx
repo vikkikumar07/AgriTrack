@@ -11,6 +11,8 @@ import {
   Info,
   LeafIcon,
   Loader2,
+  LockKeyhole,
+  LucideMessagesSquare,
   LucideNetwork,
   Menu,
   Notebook,
@@ -29,9 +31,44 @@ import api from "../app/api";
 export default function Navbar() {
   let user = useSelector((state) => state.user.user);
   let [show, setShow] = useState(false);
+  let [deleteShow, setDeleteShow] = useState(false);
   let [menu, setMenu] = useState(false);
   let [aiChat, setAiChat] = useState(false);
   let admin = user?.role === "admin";
+
+  let [loading, setLoading] = useState(false);
+  let [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+
+  let setData = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  let handlSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      let response = await axios.delete(
+        `${api}/user/delete/account/${user._id}`,
+        { params: userData, withCredentials: true },
+      );
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        navigate("/");
+        window.location.reload();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   let navigate = useNavigate();
   let logoutAccount = async () => {
@@ -423,18 +460,88 @@ export default function Navbar() {
                           Profile
                         </button>
                       </Link>
-                      <button className="text-[12px] text-red-600 my-4">
-                        <Link to={"/delete/account"}>Delete Account</Link>
+                      <button
+                        onClick={() => setDeleteShow(!deleteShow)}
+                        className="text-[12px] text-red-600 my-4"
+                      >
+                        Delete Account
                       </button>
                     </div>
-                    <div>
-                      <ul>
-                        <li className="p-3 hover:bg-[var(--primary)] hover:text-white rounded-md my-4 cursor-pointer shadow-md">
-                          <div className="flex gap-3">
-                            <Settings size={20} /> <span>Setting</span>
+                  </div>
+                </div>
+                <div
+                  className={`w-[50%] bg-white absolute left-[25%] top-20 rounded-md shadow-md px-4 py-2 ${deleteShow ? "block" : "hidden"}`}
+                >
+                  <div className="relative h-6">
+                    <X
+                      size={20}
+                      className="cursor-pointer absolute right-1 top-0 text-red-600"
+                      onClick={() => setDeleteShow(!deleteShow)}
+                    />
+                  </div>
+                  <div>
+                    <h2 className="text-[20px] text-center my-2">
+                      Delete Account
+                    </h2>
+                    <div className="my-4">
+                      <form onSubmit={handlSubmit}>
+                        <div>
+                          <label>
+                            Email address{" "}
+                            <sup className="text-red-700">*</sup>{" "}
+                          </label>
+                          <div className="relative">
+                            <LucideMessagesSquare
+                              size={15}
+                              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--mute)]"
+                            />
+                            <input
+                              className="inputBox"
+                              type="email"
+                              name="email"
+                              value={userData.email}
+                              onChange={setData}
+                              placeholder="Enter your email address"
+                            />
                           </div>
-                        </li>
-                      </ul>
+                        </div>
+                        <div>
+                          <label>
+                            Current Password
+                            <sup className="text-red-700">*</sup>{" "}
+                          </label>
+                          <div className="relative">
+                            <LockKeyhole
+                              size={15}
+                              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--mute)]"
+                            />
+                            <input
+                              className="inputBox"
+                              type="password"
+                              name="password"
+                              value={userData.password}
+                              onChange={setData}
+                              placeholder="Enter your current password"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="w-full mt-4">
+                          <button
+                            type="submit"
+                            className="btn w-full bg-[var(--primary)] hover:bg-[var(--secondary)] text-white my-1 px-0 flex gap-1 justify-center"
+                          >
+                            {loading ? (
+                              <>
+                                <Loader2 size={15} className="animate-spin" />
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                            Delete Account
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>

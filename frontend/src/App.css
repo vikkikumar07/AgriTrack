@@ -7,6 +7,9 @@
 body {
     overflow-x: clip;
     width: 100%;
+    color: var(--primary-color);
+    background-color:var(--mode) ;
+    font-family: "serif",Georgia,Arial, Helvetica, sans-serif;
 }
 h2{
     font-size: 14px;

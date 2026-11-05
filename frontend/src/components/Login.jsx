@@ -10,7 +10,6 @@ import {
   LucideMessagesSquare,
   NotebookText,
   PlantPot,
-  User,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -67,7 +66,7 @@ export default function Login() {
         <div className="w-full h-[100vh] overflow-hidden">
           <img
             src={logsign}
-            alt="image"
+            alt="login"
             className="object-center w-full h-full object-cover"
           />
         </div>
