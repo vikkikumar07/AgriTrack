@@ -23,13 +23,34 @@ let getAllComplain = async (req, res) => {
 // reply massage
 let replyAdmin = async (req, res) => {
   try {
-    const { adminReply, status } = req.body;
+    const { adminReply } = req.body;
     const id = req.params.postId;
 
     await Complain.findByIdAndUpdate(
       id,
       {
-        $set: { adminReply, status },
+        $set: { adminReply },
+      },
+      { new: true, runValidators: true },
+    );
+
+    return res
+      .status(200)
+      .json({ message: "Update successfully", success: true });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
+let statusChange = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const id = req.params.postId;
+
+    await Complain.findByIdAndUpdate(
+      id,
+      {
+        $set: { status },
       },
       { new: true, runValidators: true },
     );
@@ -44,4 +65,4 @@ let replyAdmin = async (req, res) => {
 };
 // delete complain all create main controller
 
-module.exports = { getAllComplain, replyAdmin };
+module.exports = { getAllComplain, replyAdmin, statusChange };

@@ -115,12 +115,15 @@ let deshbordData = async (req, res) => {
 
     let recentUsers = await User.find().sort({ createdAt: -1 }).limit(10);
 
+    let recentComplain = await Complain.find().sort({ createdAt: -1 }).limit(4);
+
     let DeshbordDatas = {
       totalUsers,
       totalBlockUsers,
       totalUnBlockUsers,
       totalComplains,
       recentUsers,
+      recentComplain,
     };
 
     return res
