@@ -200,7 +200,7 @@ export default function Complains() {
 }
 
 let ComplainsCard = ({ v, getComplains }) => {
-  let deleteExpenses = async (id) => {
+  let deleteComplain = async (id) => {
     try {
       let res = await axios.delete(`${api}/complain/delete/${id}`, {
         withCredentials: true,
@@ -222,7 +222,13 @@ let ComplainsCard = ({ v, getComplains }) => {
         <div className="flex justify-between">
           <h3 className="font-semibold text-[16px]">{v?.subject}</h3>
           <div
-            className={`${v?.status === "Pending" ? "bg-sky-100" : <> ${v?.status === "In Progress" ? "bg-yellow-100" : "bg-green-100"} </>} p-1 px-2 rounded-full flex gap-1 items-center`}
+            className={`${
+              v?.status === "Pending"
+                ? "bg-sky-100"
+                : v?.status === "In Progress"
+                  ? "bg-yellow-100"
+                  : "bg-green-100"
+            } p-1 px-2 rounded-full flex gap-1 items-center`}
           >
             <div>
               {v?.status === "Pending" ? (
@@ -268,7 +274,7 @@ let ComplainsCard = ({ v, getComplains }) => {
             <BookmarkX
               color="red"
               size={20}
-              onClick={() => deleteExpenses(v._id)}
+              onClick={() => deleteComplain(v._id)}
               className="mx-auto cursor-pointer"
             />
           </div>
