@@ -6,6 +6,7 @@ const {
   deleteProfile,
   authMe,
   forgetPassword,
+  deleteAccount,
 } = require("../controllers/user.controller");
 
 const upload = require("../middlewares/upload");
@@ -13,14 +14,21 @@ const upload = require("../middlewares/upload");
 // common routes
 const express = require("express");
 const authentication = require("../middlewares/authentication");
+const authorize = require("../middlewares/authorize");
 let router = express.Router();
 
 router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", authentication, logout);
 router.patch("/update/:id", authentication, upload, updateProfile);
-// admin and user
-router.delete("/delete/profile/:id", authentication, deleteProfile);
+// admin
+router.delete(
+  "/delete/profile/:id",
+  authentication,
+  authorize("admin"),
+  deleteProfile,
+);
+router.delete("/delete/account/:id", authentication, deleteAccount);
 router.post("/authme", authentication, authMe);
 
 router.patch("/forget/password", forgetPassword);

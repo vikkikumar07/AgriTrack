@@ -212,6 +212,67 @@ let deleteProfile = async (req, res) => {
   }
 };
 
+// user by Account delete
+let deleteAccount = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { email, password } = req.query;
+
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ message: "Required all field", success: false });
+    }
+
+    let user = await User.findById(id);
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "User not found", success: false });
+    }
+
+    if (user.email !== email) {
+      return res
+        .status(400)
+        .json({ message: "Email is wrong", success: false });
+    }
+
+    let isPassword = await bcrypt.compare(password, user.password);
+
+    if (!isPassword) {
+      return res
+        .status(400)
+        .json({ message: "Wrong password", success: false });
+    }
+
+    await Promise.all([
+      Farming.deleteMany({ userId: id }),
+      Expenses.deleteMany({ userId: id }),
+      Harvest.deleteMany({ userId: id }),
+      Complain.deleteMany({ userId: id }),
+      Chat.deleteMany({ userId: id }),
+    ]);
+
+    await User.findByIdAndDelete(id);
+
+    res.cookie("token", {
+      httpOnly: true,
+      secure: false,
+      maxAge: 0,
+    });
+
+    return res.status(200).json({
+      message: "Account Delete successfully",
+      success: true,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(500)
+      .json({ message: "Server Error", success: false, error: error.message });
+  }
+};
+
 let authMe = async (req, res) => {
   try {
     const { userId } = req.user;
@@ -300,4 +361,5 @@ module.exports = {
   deleteProfile,
   authMe,
   forgetPassword,
+  deleteAccount,
 };
