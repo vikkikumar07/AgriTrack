@@ -7,12 +7,14 @@ const {
   blockedUnblocked,
   deshbordData,
   usersData,
+  searchBUser,
 } = require("../../controllers/admin/userManage.controller");
 
 let router = express.Router();
 
 router.get("/findAll/user", authentication, authorize("admin"), findAllUser);
-router.get("/find/user", authentication, authorize("admin"), searchUser);
+router.post("/find/user", authentication, authorize("admin"), searchUser);
+router.post("/find/buser", authentication, authorize("admin"), searchBUser);
 router.post(
   "/isBlocked/user/:id",
   authentication,

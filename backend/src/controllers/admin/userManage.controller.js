@@ -47,6 +47,32 @@ let searchUser = async (req, res) => {
   }
 };
 
+let searchBUser = async (req, res) => {
+  try {
+    const { busers } = req.body;
+    if (!busers) {
+      return res
+        .status(400)
+        .json({ message: "Please select your option", success: false });
+    }
+
+    let user = await User.find({ isBlocked: busers === "Block" });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Not found user", success: false });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Found successfully", success: true, user });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
+
 // blocked unblocked user
 let blockedUnblocked = async (req, res) => {
   try {
@@ -157,4 +183,5 @@ module.exports = {
   blockedUnblocked,
   deshbordData,
   usersData,
+  searchBUser,
 };

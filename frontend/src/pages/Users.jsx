@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import agriPhoto from "../image/agriPhoto.png";
-import { MoreVertical, UsersIcon } from "lucide-react";
+import { MoreVertical, Search, UsersIcon, X } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import api from "../app/api";
@@ -9,6 +9,11 @@ import api from "../app/api";
 export default function Users() {
   let [users, setUsers] = useState([]);
   let [userData, setUserData] = useState({});
+  let [input, setInput] = useState("");
+  let [nameCross, setNameCross] = useState(false);
+
+  let [busers, setBUsers] = useState("");
+  let [busersCross, setBUsersCross] = useState(false);
 
   let getUsersData = async () => {
     try {
@@ -36,6 +41,67 @@ export default function Users() {
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
+  };
+
+  let findByusername = async (e) => {
+    e.preventDefault();
+
+    try {
+      let res = await axios.post(
+        `${api}/admin/find/user`,
+        { username: input, email: input },
+        {
+          withCredentials: true,
+        },
+      );
+
+      if (res.data.success) {
+        setUsers(res.data.user);
+        setNameCross(true);
+      } else {
+        toast.error(res?.data?.message);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
+  let nameCrossBtn = (e) => {
+    e.preventDefault();
+    setNameCross(false);
+    setInput("");
+    getUsersData();
+    getUsersPageData();
+  };
+
+  let findBUUsersName = async (e) => {
+    e.preventDefault();
+
+    try {
+      let res = await axios.post(
+        `${api}/admin/find/buser`,
+        { busers },
+        {
+          withCredentials: true,
+        },
+      );
+
+      if (res.data.success) {
+        setUsers(res.data.user);
+        setBUsersCross(true);
+      } else {
+        toast.error(res?.data?.message);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+  let busersCrossBtn = (e) => {
+    e.preventDefault();
+    setBUsersCross(false);
+    setBUsers("");
+    getUsersData();
+    getUsersPageData();
   };
 
   useEffect(() => {
@@ -129,6 +195,73 @@ export default function Users() {
               </div>
             </div>
             <div className="mx-4 md:mx-10 my-4 shadow-md bg-white rounded-sm">
+              <div className="grid grid-cols-2 gap-2 mx-10 my-4">
+                <div>
+                  <form onSubmit={findByusername} className="flex gap-1">
+                    <div className="relative">
+                      <UsersIcon
+                        size={20}
+                        color="green"
+                        className="absolute left-3 text-[16px] top-1/2 -translate-y-1/2 text-[var(--mute)]"
+                      />
+                      <input
+                        className="inputBox"
+                        name="input"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder="username & email"
+                      />
+                    </div>
+                    {nameCross ? (
+                      <>
+                        <button onClick={nameCrossBtn}>
+                          <X color="red" />
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button type="submit">
+                          <Search color="green" />
+                        </button>
+                      </>
+                    )}
+                  </form>
+                </div>
+                <div>
+                  <form onSubmit={findBUUsersName} className="flex gap-1">
+                    <div className="relative">
+                      <UsersIcon
+                        size={20}
+                        color="green"
+                        className="absolute left-3 text-[16px] top-1/2 -translate-y-1/2 text-[var(--mute)]"
+                      />
+                      <select
+                        className="inputBox"
+                        name="busers"
+                        value={busers}
+                        onChange={(e) => setBUsers(e.target.value)}
+                      >
+                        <option value="">Fillter by user</option>
+                        <option value="Active">Active</option>
+                        <option value="Block">Block</option>
+                      </select>
+                    </div>
+                    {busersCross ? (
+                      <>
+                        <button onClick={busersCrossBtn}>
+                          <X color="red" />
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button type="submit">
+                          <Search color="green" />
+                        </button>
+                      </>
+                    )}
+                  </form>
+                </div>
+              </div>
               <div className="flex gap-2 items-center mx-2 py-2">
                 <UsersIcon size={20} color="green" />
                 <h2 className="text-[20px]">Users</h2>
