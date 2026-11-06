@@ -152,7 +152,13 @@ export default function Users() {
                             Email
                           </th>
                           <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                            Location
+                          </th>
+                          <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                             Role
+                          </th>
+                          <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                            CreatedAt
                           </th>
                           <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                             Status
@@ -170,6 +176,7 @@ export default function Users() {
                                 user={user}
                                 i={i + 1}
                                 getUsersData={getUsersData}
+                                getUsersPageData={getUsersPageData}
                                 key={i}
                               />
                             </>
@@ -188,7 +195,7 @@ export default function Users() {
   );
 }
 
-let UserCard = ({ user, i, getUsersData }) => {
+let UserCard = ({ user, i, getUsersData, getUsersPageData }) => {
   let [showId, setShowId] = useState(null);
   let deleteAccount = async (id) => {
     try {
@@ -199,6 +206,7 @@ let UserCard = ({ user, i, getUsersData }) => {
       if (res.data.success) {
         toast.success(res.data?.message);
         getUsersData();
+        getUsersPageData();
       } else {
         toast.error(res.data?.message);
       }
@@ -219,6 +227,7 @@ let UserCard = ({ user, i, getUsersData }) => {
       if (res.data.success) {
         toast.success(res.data?.message);
         getUsersData();
+        getUsersPageData();
         setShowId(showId === user._id ? null : user._id);
       } else {
         toast.error(res.data?.message);
@@ -244,7 +253,13 @@ let UserCard = ({ user, i, getUsersData }) => {
           {user?.email || ""}
         </td>
         <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
+          {user?.location || ""}
+        </td>
+        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
           {user?.role || ""}
+        </td>
+        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
+          {user?.createdAt?.split("T")[0] || ""}
         </td>
         <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
           <span

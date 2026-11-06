@@ -164,7 +164,13 @@ export default function Deshbord() {
                           Email
                         </th>
                         <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                          Location
+                        </th>
+                        <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                           Role
+                        </th>
+                        <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                          CreatedAt
                         </th>
                         <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
                           Status
@@ -274,7 +280,13 @@ let UserCard = ({ user, i, getDeshbordData }) => {
           {user?.email || ""}
         </td>
         <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
+          {user?.location || ""}
+        </td>
+        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
           {user?.role || ""}
+        </td>
+        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
+          {user?.createdAt?.split("T")[0] || ""}
         </td>
         <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">
           <span
