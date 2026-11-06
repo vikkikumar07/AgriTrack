@@ -510,6 +510,10 @@ let ComplainCard = ({ v, getDeshbordData }) => {
           <p className="text-[12px]">{v?.createdAt?.split("T")[0]}</p>
         </div>
         <div className="my-4">
+          <label className="font-semibold text-gray-700">username</label>
+          <p>{v?.userId?.username}</p>
+        </div>
+        <div className="my-4">
           <label className="font-semibold text-gray-700">Message</label>
           <p>{v?.message}</p>
         </div>

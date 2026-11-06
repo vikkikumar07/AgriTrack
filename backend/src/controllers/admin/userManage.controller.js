@@ -121,7 +121,10 @@ let deshbordData = async (req, res) => {
 
     let recentUsers = await User.find().sort({ createdAt: -1 }).limit(10);
 
-    let recentComplain = await Complain.find().sort({ createdAt: -1 }).limit(4);
+    let recentComplain = await Complain.find()
+      .sort({ createdAt: -1 })
+      .limit(4)
+      .populate("userId");
 
     let farms = await Farming.find();
     let totalFarms = farms.length || 0;
