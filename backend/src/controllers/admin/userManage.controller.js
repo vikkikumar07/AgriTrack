@@ -3,7 +3,7 @@ const User = require("../../models/user.schema");
 
 let findAllUser = async (req, res) => {
   try {
-    let users = await User.find().sort({ createAt: -1 });
+    let users = await User.find().sort({ createdAt: -1 });
 
     if (!users) {
       return res
@@ -76,31 +76,6 @@ let blockedUnblocked = async (req, res) => {
   }
 };
 
-// role manage
-let roleManage = async (req, res) => {
-  try {
-    const { role } = req.body;
-    const id = req.params.id;
-    let user = await User.findById(id);
-
-    if (!user) {
-      return res
-        .status(404)
-        .json({ message: "Not found user", success: false });
-    }
-
-    user.role = role;
-    await user.save();
-
-    return res
-      .status(200)
-      .json({ message: "Change successfully", success: true });
-  } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({ message: "server error", success: false });
-  }
-};
-
 // deshbord data
 let deshbordData = async (req, res) => {
   try {
@@ -138,6 +113,5 @@ module.exports = {
   findAllUser,
   searchUser,
   blockedUnblocked,
-  roleManage,
   deshbordData,
 };
