@@ -1,4 +1,7 @@
 const Complain = require("../../models/complain.schema");
+const Expenses = require("../../models/farmer/expenses.schema");
+const Farming = require("../../models/farmer/farming.schema");
+const Harvest = require("../../models/farmer/harvest.schema");
 const User = require("../../models/user.schema");
 
 let findAllUser = async (req, res) => {
@@ -87,10 +90,19 @@ let deshbordData = async (req, res) => {
 
     let complains = await Complain.find();
     let totalComplains = complains.length || 0;
+    let totalPendingComplains =
+      complains.filter((t) => t.status === "Pending").length || 0;
 
     let recentUsers = await User.find().sort({ createdAt: -1 }).limit(10);
 
     let recentComplain = await Complain.find().sort({ createdAt: -1 }).limit(4);
+
+    let farms = await Farming.find();
+    let totalFarms = farms.length || 0;
+    let expenses = await Expenses.find();
+    let totalExpenses = expenses.length || 0;
+    let harvest = await Harvest.find();
+    let totalHarvest = harvest.length || 0;
 
     let DeshbordDatas = {
       totalUsers,
@@ -99,6 +111,10 @@ let deshbordData = async (req, res) => {
       totalComplains,
       recentUsers,
       recentComplain,
+      totalFarms,
+      totalExpenses,
+      totalHarvest,
+      totalPendingComplains,
     };
 
     return res

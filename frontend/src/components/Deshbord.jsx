@@ -7,7 +7,9 @@ import {
   CalendarDays,
   CheckCircle2,
   CircleDashed,
+  Database,
   Edit3,
+  Leaf,
   MoreVertical,
   NotebookText,
   Send,
@@ -127,6 +129,64 @@ export default function Deshbord() {
                   </h4>
                   <p className="text-[20px] font-bold">
                     {deshbordData?.totalComplains || 0}
+                  </p>
+                  <Link
+                    to={`/admin/complains`}
+                    className="flex gap-1 items-center text-[var(--primary)] text-[14px]"
+                  >
+                    View Comaplins <ArrowRight size={15} />
+                  </Link>
+                </div>
+              </div>
+              <div className="flex gap-4 items-center bg-white shadow-xl rounded-md px-4 py-2">
+                <div className=" bg-green-100 p-2 rounded-md">
+                  <Leaf size={30} color="green" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-[14px] text-[var(--mute)]">
+                    Total Farms
+                  </h4>
+                  <p className="text-[20px] font-bold">
+                    {deshbordData?.totalFarms || 0}
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-center bg-white shadow-xl rounded-md px-4 py-2">
+                <div className=" bg-sky-100 p-2 rounded-md">
+                  <NotebookText size={30} className="text-sky-700" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-[14px] text-[var(--mute)]">
+                    Total Expenses
+                  </h4>
+                  <p className="text-[20px] font-bold">
+                    {deshbordData?.totalExpenses || 0}
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-center bg-white shadow-xl rounded-md px-4 py-2">
+                <div className=" bg-sky-100 p-2 rounded-md">
+                  <Database size={30} className="text-sky-700" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-[14px] text-[var(--mute)]">
+                    Total Harvest & Sales
+                  </h4>
+                  <p className="text-[20px] font-bold">
+                    {deshbordData?.totalHarvest || 0}
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-center bg-white shadow-xl rounded-md px-4 py-2">
+                <div className=" bg-red-100 p-2 rounded-md">
+                  <NotebookText size={30} className="text-red-700" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-[14px] text-[var(--mute)]">
+                    Total Pending Complains
+                  </h4>
+                  <p className="text-[20px] font-bold">
+                    {deshbordData?.totalPendingComplains || 0}
                   </p>
                   <Link
                     to={`/admin/complains`}
