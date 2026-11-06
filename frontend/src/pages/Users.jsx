@@ -130,8 +130,8 @@ export default function Users() {
                 <div className="flex flex-col gap-4">
                   <h2 className="font-bold text-[30px]">Users Tracking</h2>
                   <p className="w-[300px] md:w-[400px]">
-                    Manage users, assign roles, and control access to your farm
-                    management system.
+                    Manage users and control access to block & active management
+                    system.
                   </p>
                 </div>
               </div>
