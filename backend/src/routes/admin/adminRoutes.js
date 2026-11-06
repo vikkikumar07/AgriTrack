@@ -6,6 +6,7 @@ const {
   searchUser,
   blockedUnblocked,
   deshbordData,
+  usersData,
 } = require("../../controllers/admin/userManage.controller");
 
 let router = express.Router();
@@ -25,4 +26,6 @@ router.get(
   authorize("admin"),
   deshbordData,
 );
+
+router.get("/find/user/data", authentication, authorize("admin"), usersData);
 module.exports = router;

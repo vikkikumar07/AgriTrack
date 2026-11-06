@@ -109,9 +109,36 @@ let deshbordData = async (req, res) => {
     return res.status(500).json({ message: "server error", success: false });
   }
 };
+
+let usersData = async (req, res) => {
+  try {
+    let users = await User.find();
+    let totalUsers = users.length || 0;
+    let totalBlockUsers = users.filter((t) => t.isBlocked === true).length || 0;
+    let totalUnBlockUsers =
+      users.filter((t) => t.isBlocked === false).length || 0;
+
+    let totalFarmers = users.filter((t) => t.role === "farmer").length || 0;
+
+    let usersDatas = {
+      totalUsers,
+      totalBlockUsers,
+      totalUnBlockUsers,
+      totalFarmers,
+    };
+
+    return res
+      .status(200)
+      .json({ message: "Data successfully", success: true, usersDatas });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
 module.exports = {
   findAllUser,
   searchUser,
   blockedUnblocked,
   deshbordData,
+  usersData,
 };
