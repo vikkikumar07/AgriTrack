@@ -9,6 +9,8 @@ const {
   getAllComplain,
   replyAdmin,
   statusChange,
+  searchByStatus,
+  complainsPageData,
 } = require("../controllers/admin/complainManage.controller");
 const authorize = require("../middlewares/authorize");
 
@@ -22,6 +24,21 @@ router.delete("/delete/:postId", authentication, deleteComplain);
 
 // admin
 router.get("/findAll", authentication, authorize("admin"), getAllComplain);
+// complains admin page data
+router.get(
+  "/find/complain/data",
+  authentication,
+  authorize("admin"),
+  complainsPageData,
+);
+// search by status
+router.post(
+  "/search/status",
+  authentication,
+  authorize("admin"),
+  searchByStatus,
+);
+
 router.patch(
   "/update/reply/:postId",
   authentication,
