@@ -192,7 +192,7 @@ export default function Home2() {
                               <Leaf size={30} color="green" />
                             </div>
                             <h2 className="text-left font-semibold text-[20px]">
-                              {data?.letest?.letestCrop.crop} Farming
+                              {data?.letest?.letestCrop?.crop} Farming
                             </h2>
                           </div>
                           <span className="flex gap-1 text-[14px] items-center">
@@ -269,11 +269,11 @@ export default function Home2() {
                           <div className="bg-gray-200 h-2 my-2 w-[80%] md:w-[95%] rounded-full">
                             <div
                               className="bg-green-600 h-2 rounded-full"
-                              style={{ width: `${progress}%` }}
+                              style={{ width: `${progress || 0}%` }}
                             ></div>
                           </div>
                           <div className="font-semibold">
-                            {progress}
+                            {progress || 0}
                             <span>%</span>
                           </div>
                         </div>
@@ -293,7 +293,7 @@ export default function Home2() {
                             <Database size={30} className="text-violet-700" />
                           </div>
                           <h2 className="text-left font-semibold text-[20px]">
-                            {data?.letest?.letestExpenses.category} Expenses
+                            {data?.letest?.letestExpenses?.category} Expenses
                           </h2>
                         </div>
                         <div>
@@ -381,7 +381,8 @@ export default function Home2() {
                           </div>
                           <div>
                             <h2 className="text-left font-semibold text-[25px]">
-                              {data?.letest?.letestHarvest.cropId.crop} Harvest
+                              {data?.letest?.letestHarvest?.cropId?.crop || ""}{" "}
+                              Harvest
                             </h2>
                             <p className="text-[14px]">
                               Harvest & Sales Details

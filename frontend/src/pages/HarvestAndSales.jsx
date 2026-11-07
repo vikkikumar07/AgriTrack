@@ -162,11 +162,11 @@ export default function HarvestAndSales() {
         <div className="mt-20 mb-10">
           <div className="px-4 grid grid-cols-2 gap-1 md:gap-2">
             <div className="flex flex-col items-center gap-1 py-2 bg-green-200 rounded-md">
-              <p className="font-bold text-[18px]">{totalCrop}</p>
+              <p className="font-bold text-[18px]">{totalCrop || 0}</p>
               <h5 className="font-bold text-[var(--primary)]">Total Crop</h5>
             </div>
             <div className="flex flex-col items-center gap-1 py-2 bg-blue-200 rounded-md">
-              <p className="font-bold text-[18px]">{totalHarvest}</p>
+              <p className="font-bold text-[18px]">{totalHarvest || 0}</p>
               <h5 className="font-bold ">Total Harvest & Sales</h5>
             </div>
           </div>
@@ -505,7 +505,7 @@ let HarvestCard = ({ v, getAllHarvest }) => {
             </div>
             <div>
               <h2 className="text-left font-semibold text-[20px]">
-                {v?.cropId.crop} Harvest
+                {v?.cropId?.crop} Harvest
               </h2>
               <p className="text-[14px]">Harvest & Sales Details</p>
             </div>
