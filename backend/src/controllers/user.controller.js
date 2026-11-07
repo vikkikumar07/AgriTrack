@@ -106,7 +106,8 @@ let login = async (req, res) => {
       .status(200)
       .cookie("token", token, {
         httpOnly: true,
-        secure: false,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         maxAge: 24 * 60 * 60 * 1000,
       })
       .json({ message: "login successfully", success: true, user: user });
@@ -164,10 +165,10 @@ let updateProfile = async (req, res) => {
 
 let logout = (req, res) => {
   try {
-    res.cookie("token", {
+    res.clearCookie("token", {
       httpOnly: true,
-      secure: false,
-      maxAge: 0,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
 
     return res
@@ -193,6 +194,12 @@ let deleteProfile = async (req, res) => {
     ]);
 
     await User.findByIdAndDelete(id);
+
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    });
 
     return res.status(200).json({
       message: "Account Delete successfully",
@@ -249,10 +256,10 @@ let deleteAccount = async (req, res) => {
 
     await User.findByIdAndDelete(id);
 
-    res.cookie("token", {
+    res.clearCookie("token", {
       httpOnly: true,
-      secure: false,
-      maxAge: 0,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
 
     return res.status(200).json({

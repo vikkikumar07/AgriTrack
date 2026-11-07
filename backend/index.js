@@ -21,10 +21,17 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: `http://localhost:3000`,
+    origin: ["http://localhost:3000", process.env.FRONTEND_URL].filter(Boolean),
     credentials: true,
   }),
 );
+
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "AgriTrack Backend is Running",
+  });
+});
 
 // call routes
 app.use("/web/agritrack/user", userRoutes);
@@ -35,13 +42,19 @@ app.use("/web/agritrack/farmer/expenses", expensesRoutes);
 app.use("/web/agritrack/farmer/harvest", harvestRoutes);
 app.use("/web/agritrack/aichat", aichatRoutes);
 
-let PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 5000;
+
+const startServer = async () => {
   try {
-    console.log(`Server running on port ${PORT}`);
-    // connet DataBase
-    dbConection();
+    await dbConection();
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
   } catch (error) {
-    console.log(error);
+    console.error("Server startup failed:", error.message);
+    process.exit(1);
   }
-});
+};
+
+startServer();
