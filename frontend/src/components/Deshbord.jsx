@@ -203,7 +203,7 @@ export default function Deshbord() {
           <div className="mx-4 md:mx-10 shadow-md bg-white rounded-sm">
             <div className="flex gap-2 items-center mx-2 py-2">
               <Users size={20} color="green" />
-              <h2 className="text-[20px]">Recent Users</h2>
+              <h2 className="text-[20px] font-semibold">Recent Users</h2>
             </div>
             <div className="m-2 grid grid-flow-row gap-4">
               <div className="w-full overflow-x-auto">
@@ -260,7 +260,7 @@ export default function Deshbord() {
             </div>
           </div>
           <div className="mx-8 my-10">
-            <h2 className="text-[20px]">Recent Complains</h2>
+            <h2 className="text-[20px] font-semibold">Recent Complains</h2>
             <div className="my-2 grid grid-cols-1 gap-2 md:grid-cols-4">
               {comaplain?.map((v, i) => {
                 return (

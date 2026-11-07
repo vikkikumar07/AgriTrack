@@ -13,7 +13,6 @@ import {
   Loader2,
   LockKeyhole,
   LucideMessagesSquare,
-  LucideNetwork,
   Menu,
   Notebook,
   Send,
@@ -232,19 +231,11 @@ export default function Navbar() {
                         </Link>
                       </li>
                       <li>
-                        <div className="flex gap-3 menu-li">
-                          <Info size={20} /> <span>About</span>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="flex gap-3 menu-li">
-                          <LucideNetwork size={20} /> <span>Features</span>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="flex gap-3 menu-li">
-                          <Settings size={20} /> <span>Setting</span>
-                        </div>
+                        <Link to={"/about"}>
+                          <div className="flex gap-3 menu-li">
+                            <Info size={20} /> <span>About</span>
+                          </div>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -384,8 +375,16 @@ export default function Navbar() {
                     Home
                   </NavLink>
                 </li>
-                <li className="nav-btn">About</li>
-                <li className="nav-btn">Features</li>
+                <li>
+                  <NavLink
+                    to={"/about"}
+                    className={({ isActive }) =>
+                      isActive ? "nav-btn active" : "nav-btn"
+                    }
+                  >
+                    About
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </>

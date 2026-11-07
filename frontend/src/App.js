@@ -19,11 +19,16 @@ import { setUser } from "./app/counter/counterSlice";
 import { useEffect } from "react";
 import axios from "axios";
 import api from "./app/api";
+import AboutPage from "./pages/AboutPage";
 
 let allroutes = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/about",
+    element: <AboutPage />,
   },
   {
     path: "/login",
