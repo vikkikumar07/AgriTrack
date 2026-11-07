@@ -43,9 +43,11 @@ let createExpenses = async (req, res) => {
 let getExpenses = async (req, res) => {
   try {
     const cropId = req.params.cropId;
-    let expensesDetials = await Expenses.find({ cropId }).sort({
-      createdAt: -1,
-    });
+    let expensesDetials = await Expenses.find({ cropId })
+      .sort({
+        createdAt: -1,
+      })
+      .populate("cropId");
 
     if (!expensesDetials[0]) {
       return res
@@ -68,9 +70,11 @@ let getExpenses = async (req, res) => {
 let getExpensesCategory = async (req, res) => {
   try {
     const { category } = req.body;
-    let expensesDetials = await Expenses.find({ category }).sort({
-      createdAt: -1,
-    });
+    let expensesDetials = await Expenses.find({ category })
+      .sort({
+        createdAt: -1,
+      })
+      .populate("cropId");
 
     if (!expensesDetials[0]) {
       return res
