@@ -111,26 +111,6 @@ let deleteExpenses = async (req, res) => {
   }
 };
 
-// totel calculate expenses Amount
-let totelExpensesAmount = async (req, res) => {
-  try {
-    const cropId = req.params.cropId;
-    let expensesDetials = await Expenses.find({ cropId });
-
-    let totelAmount = 0;
-    expensesDetials.map((v) => {
-      totelAmount += v.amount;
-    });
-
-    return res
-      .status(200)
-      .json({ message: "Found successfully", success: true, totelAmount });
-  } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({ message: "server error", success: false });
-  }
-};
-
 let getAllExpenses = async (req, res) => {
   try {
     const userId = req.user.userId;
@@ -160,7 +140,6 @@ module.exports = {
   createExpenses,
   getExpenses,
   deleteExpenses,
-  totelExpensesAmount,
   getAllExpenses,
   getExpensesCategory,
 };

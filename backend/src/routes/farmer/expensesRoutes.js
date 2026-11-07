@@ -3,7 +3,6 @@ const {
   createExpenses,
   getExpenses,
   deleteExpenses,
-  totelExpensesAmount,
   getAllExpenses,
   getExpensesCategory,
 } = require("../../controllers/farmer/expenses.controller");
@@ -23,7 +22,5 @@ router.post("/category/get", authentication, getExpensesCategory);
 router.get("/getAll", authentication, getAllExpenses);
 // expenses id not cropId
 router.delete("/:id/delete", authentication, deleteExpenses);
-
-router.get("/:cropId/getAmount", authentication, totelExpensesAmount);
 
 module.exports = router;
