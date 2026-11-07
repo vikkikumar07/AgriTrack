@@ -44,7 +44,7 @@ export default function FooterComponent() {
           <div className="absolute bottom-0 h-[60px] bg-[#077324] w-full">
             <div className="mx-5 my-2">
               <div className="text-center">
-                <p className="text-[12px] text-white">2026 AgriTrack.</p>
+                <p className="text-[12px] text-white">© 2026 AgriTrack.</p>
                 <p className="text-[12px] text-white">
                   Empowering farmers with technology for a sustainable future.
                 </p>

@@ -146,10 +146,10 @@ export default function Home1() {
             </div>
           </div>
         </div>
-        <div className="h-[60vh] w-full my-10">
+        <div className="h-[50vh] w-full my-10">
           <div className="my-2">
             <h2 className="text-[30px] font-bold text-center text-black">
-              How AgriTrack Works
+              How <span className="text-[var(--primary)]">AgriTrack</span> Works
             </h2>
             <p className="text-center text-[14px] text-[var(--mute)]">
               Simple steps to smarter farming
