@@ -5,7 +5,6 @@ import {
   AreaChart,
   ArrowRight,
   CalendarDaysIcon,
-  CloudSun,
   Database,
   DatabaseArrowDown,
   DatabaseArrowUp,
