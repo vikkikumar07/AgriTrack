@@ -32,7 +32,7 @@ let tasksCopletedUpdate = async (req, res) => {
       {
         $set: { "tasks.$.completed": isTask },
       },
-      { new: true, runValidators: true },
+      { returnDocument: "after", runValidators: true },
     );
 
     if (!crop) {
