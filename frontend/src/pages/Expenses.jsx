@@ -596,7 +596,7 @@ let ExpensesCard = ({ v, getAllExpenses }) => {
                   <div>
                     <span className="text-[14px]">Created At</span>
                     <div className="text-[14px] font-semibold ">
-                      {v?.createdAt.split("T")[0] || "0000-00-00"}
+                      {v?.createdAt?.split("T")[0] || "0000-00-00"}
                     </div>
                   </div>
                 </div>
@@ -632,7 +632,7 @@ let ExpensesCard = ({ v, getAllExpenses }) => {
                 <div>
                   <h4 className="text-[14px]">Date</h4>
                   <p className="text-[14px] font-semibold">
-                    {v?.date.split("T")[0] || "0000-00-00"}
+                    {v?.date?.split("T")[0] || "0000-00-00"}
                   </p>
                 </div>
               </div>

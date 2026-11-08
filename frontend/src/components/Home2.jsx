@@ -181,7 +181,7 @@ export default function Home2() {
                 Letest Records
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-                {data?.letest?.letestCrop !== null ? (
+                {data?.letest?.letestCrop != null ? (
                   <>
                     <div className="col-span-1 shadow-sm shadow-black h-[300px] py-2 rounded-sm bg-white px-4">
                       <div className="flex justify-between">
@@ -207,11 +207,9 @@ export default function Home2() {
                             <div>
                               <span className="text-[14px]">Created At</span>
                               <div className="text-[14px] font-semibold ">
-                                {
-                                  data?.letest?.letestCrop?.createdAt.split(
-                                    "T",
-                                  )[0]
-                                }
+                                {data?.letest?.letestCrop?.createdAt?.split(
+                                  "T",
+                                )[0] || "0000-00-00"}
                               </div>
                             </div>
                           </div>
@@ -244,7 +242,7 @@ export default function Home2() {
                           <div>
                             <h4 className="text-[14px]">Planting Date</h4>
                             <p className="text-[14px] font-semibold">
-                              {data?.letest?.letestCrop?.plantingDate.split(
+                              {data?.letest?.letestCrop?.plantingDate?.split(
                                 "T",
                               )[0] || "0000-00-00"}
                             </p>
@@ -283,7 +281,7 @@ export default function Home2() {
                   <></>
                 )}
 
-                {data?.letest?.letestExpenses !== null ? (
+                {data?.letest?.letestExpenses != null ? (
                   <>
                     <div className="col-span-1 shadow-sm shadow-black h-[300px] py-2 rounded-sm bg-white px-4">
                       <div className="flex justify-between">
@@ -292,7 +290,8 @@ export default function Home2() {
                             <Database size={30} className="text-violet-700" />
                           </div>
                           <h2 className="text-left font-semibold text-[20px]">
-                            {data?.letest?.letestExpenses?.category} Expenses
+                            {data?.letest?.letestExpenses?.category || ""}{" "}
+                            Expenses
                           </h2>
                         </div>
                         <div>
@@ -303,11 +302,9 @@ export default function Home2() {
                             <div>
                               <span className="text-[14px]">Created At</span>
                               <div className="text-[14px] font-semibold ">
-                                {
-                                  data?.letest?.letestExpenses?.createdAt.split(
-                                    "T",
-                                  )[0]
-                                }
+                                {data?.letest?.letestExpenses?.createdAt?.split(
+                                  "T",
+                                )[0] || "0000-00-00"}
                               </div>
                             </div>
                           </div>
@@ -347,7 +344,7 @@ export default function Home2() {
                           <div>
                             <h4 className="text-[14px]">Date</h4>
                             <p className="text-[14px] font-semibold">
-                              {data?.letest?.letestExpenses?.date.split(
+                              {data?.letest?.letestExpenses?.date?.split(
                                 "T",
                               )[0] || "0000-00-00"}
                             </p>
@@ -370,7 +367,7 @@ export default function Home2() {
                 )}
               </div>
               <div>
-                {data?.letest?.letestHarvest !== null ? (
+                {data?.letest?.letestHarvest != null ? (
                   <>
                     <div className="shadow-sm shadow-black h-auto py-2 rounded-sm bg-white px-4">
                       <div className="flex gap-4 flex-col md:flex-row md:justify-between">
@@ -396,11 +393,9 @@ export default function Home2() {
                             <div>
                               <span className="text-[14px]">Created At</span>
                               <div className="text-[14px] font-semibold ">
-                                {
-                                  data?.letest?.letestHarvest?.createdAt.split(
-                                    "T",
-                                  )[0]
-                                }
+                                {data?.letest?.letestHarvest?.createdAt?.split(
+                                  "T",
+                                )[0] || "0000-00-00"}
                               </div>
                             </div>
                           </div>
@@ -411,11 +406,9 @@ export default function Home2() {
                             <div>
                               <span className="text-[14px]">Sale Date</span>
                               <div className="text-[14px] font-semibold ">
-                                {
-                                  data?.letest?.letestHarvest?.saleDate.split(
-                                    "T",
-                                  )[0]
-                                }
+                                {data?.letest?.letestHarvest?.saleDate?.split(
+                                  "T",
+                                )[0] || "0000-00-00"}
                               </div>
                             </div>
                           </div>

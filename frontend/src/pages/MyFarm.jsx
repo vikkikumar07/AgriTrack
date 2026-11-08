@@ -254,7 +254,7 @@ export default function MyFarm() {
             <div className="my-4">
               {farm?.map((v, i) => {
                 const totalCompleted =
-                  v.tasks?.filter((t) => t.completed === true).length || 0;
+                  v?.tasks?.filter((t) => t.completed === true).length || 0;
                 const totalTasks = v.tasks.length;
                 const progress =
                   totalTasks > 0

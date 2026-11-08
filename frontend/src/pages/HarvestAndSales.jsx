@@ -518,7 +518,7 @@ let HarvestCard = ({ v, getAllHarvest }) => {
               <div>
                 <span className="text-[14px]">Created At</span>
                 <div className="text-[14px] font-semibold ">
-                  {v?.createdAt.split("T")[0]}
+                  {v?.createdAt?.split("T")[0] || "0000-00-00"}
                 </div>
               </div>
             </div>
@@ -529,7 +529,7 @@ let HarvestCard = ({ v, getAllHarvest }) => {
               <div>
                 <span className="text-[14px]">Sale Date</span>
                 <div className="text-[14px] font-semibold ">
-                  {v?.saleDate.split("T")[0]}
+                  {v?.saleDate?.split("T")[0] || "0000-00-00"}
                 </div>
               </div>
             </div>

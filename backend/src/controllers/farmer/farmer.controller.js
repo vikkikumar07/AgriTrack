@@ -55,7 +55,15 @@ let tasksCopletedUpdate = async (req, res) => {
 let deleteFarm = async (req, res) => {
   try {
     const id = req.params.cropId;
-    await Farming.findByIdAndDelete({ _id: id });
+    await Expenses.deleteMany({ cropId: id });
+    await Harvest.deleteMany({ cropId: id });
+    let deleteFarm = await Farming.findByIdAndDelete(id);
+
+    if (!deleteFarm) {
+      return res
+        .status(404)
+        .json({ message: "Farm not found", success: false });
+    }
     return res
       .status(200)
       .json({ message: "Crop Delete successfully", success: true });
