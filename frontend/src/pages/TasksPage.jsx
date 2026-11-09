@@ -62,7 +62,7 @@ export default function TasksPage() {
           <div className="relative">
             <div
               onClick={goToPrevPage}
-              className="absolute left-10 top-2 cursor-pointer"
+              className="absolute left-3 md:left-10 top-2 cursor-pointer"
             >
               <SquareChevronLeftIcon
                 size={20}
@@ -73,7 +73,7 @@ export default function TasksPage() {
               <span className="text-[var(--primary)]">Wheat</span> Farming
             </h1>
           </div>
-          <div className="m-4 p-4">
+          <div className="m-4">
             <div className="shadow-sm shadow-black h-[300px] py-2 rounded-sm px-4">
               <div className="flex justify-between">
                 <div>
@@ -125,7 +125,7 @@ export default function TasksPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4 items-center px-2 py-2 bg-violet-100 rounded-md">
+                <div className="flex gap-4 items-center px-2 py-2 bg-violet-100 rounded-md overflow-x-auto">
                   <NotebookPen size={30} className="text-violet-700" />
                   <div className="flex justify-between gap-2 md:gap-4">
                     <div>
@@ -149,7 +149,7 @@ export default function TasksPage() {
                   </div>
                 </div>
               </div>
-              <div>
+              <div className="my-2">
                 <h3 className="font-semibold text-[14px]">Tasks progress</h3>
                 <div className="flex gap-2">
                   <div className="bg-gray-200 h-2 my-2 w-[80%] md:w-[95%] rounded-full">
