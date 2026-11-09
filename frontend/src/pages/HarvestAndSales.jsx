@@ -172,7 +172,7 @@ export default function HarvestAndSales() {
           </div>
         </div>
         <div>
-          <div className="flex gap-4 border shadow-md sticky top-15 p-4 rounded-md justify-between mx-10">
+          <div className="flex gap-4 border shadow-md sticky top-15 p-4 rounded-md justify-between mx-4 md:mx-10">
             <div className="flex-1">
               <form onSubmit={findCropName} className="flex gap-1">
                 <div className="relative">
@@ -225,7 +225,7 @@ export default function HarvestAndSales() {
               </div>
             </div>
           </div>
-          <div className="m-8">
+          <div className="w-[95%] md:max-w-7xl mx-auto pt-6 my-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {harvest?.map((v, i) => {
                 return (

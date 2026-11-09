@@ -157,7 +157,7 @@ export default function MyFarm() {
           <Navbar />
         </div>
         <header>
-          <div className="h-[20vh]  md:h-[40vh] w-full -z-20 overflow-hidden">
+          <div className="h-[30vh]  md:h-[40vh] w-full -z-20 overflow-hidden">
             <img
               src={myFarm}
               alt="Home"
@@ -199,7 +199,7 @@ export default function MyFarm() {
               <h5 className="font-bold ">Overall Progress</h5>
             </div>
           </div>
-          <div className="my-10 px-6 bg-gray-100 py-2 ">
+          <div className="my-10 px-4 bg-gray-100 py-2 ">
             <div className="flex justify-between">
               <h2 className="text-[20px] font-semibold">My Crops</h2>
               <div>
@@ -248,7 +248,7 @@ export default function MyFarm() {
                 className="flex gap-2 items-center text-[14px] bg-[var(--primary)] hover:bg-[var(--secondary)] text-white p-2 rounded-md cursor-pointer"
               >
                 <PlusSquareIcon size={20} />
-                <p>Add Crop</p>
+                <p className="hidden md:block">Add Crop</p>
               </div>
             </div>
             <div className="my-4">

@@ -146,7 +146,7 @@ export default function Home1() {
             </div>
           </div>
         </div>
-        <div className="h-[50vh] w-full my-10">
+        <div className="h-[70vh] w-full my-10">
           <div className="my-2">
             <h2 className="text-[30px] font-bold text-center text-black">
               How <span className="text-[var(--primary)]">AgriTrack</span> Works

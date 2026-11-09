@@ -204,7 +204,7 @@ export default function Expenses() {
           <Navbar />
         </div>
         <header className="mt-14 relative">
-          <div className="h-[20vh] md:h-[30vh] w-full -z-20 overflow-hidden">
+          <div className="h-[30vh] md:h-[30vh] w-full -z-20 overflow-hidden">
             <img
               src={agriPhoto}
               alt="agri"
@@ -237,7 +237,7 @@ export default function Expenses() {
           </div>
         </div>
         <div>
-          <div className="flex gap-4 border shadow-md sticky top-15 p-4 rounded-md justify-between mx-10">
+          <div className="flex gap-4 border shadow-md sticky top-15 p-4 rounded-md justify-between mx-4 md:mx-10">
             <div className="flex-1">
               <form onSubmit={findCropName} className="flex gap-1">
                 <div className="relative">
@@ -326,11 +326,11 @@ export default function Expenses() {
                 className="flex gap-2 items-center text-[14px] bg-[var(--primary)] hover:bg-[var(--secondary)] text-white p-2 rounded-md cursor-pointer"
               >
                 <PlusSquareIcon size={20} />
-                <p>Add Expenses</p>
+                <p className="hidden md:block">Add Expenses</p>
               </div>
             </div>
           </div>
-          <div className="m-8">
+          <div className="w-[95%] md:max-w-7xl mx-auto pt-6 my-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {expenses.map((v, i) => {
                 return (

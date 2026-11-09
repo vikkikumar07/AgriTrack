@@ -69,7 +69,7 @@ export default function Home2() {
               />
               <div className="absolute top-2 left-4 md:left-16 h-[200px] w-[300px] md:h-[300px] md:w-[300px] bg-white blur-xl md:blur-2xl z-0"></div>
             </div>
-            <div className="absolute top-10 md:top-20 left-16 md:left-40 text-left ">
+            <div className="absolute top-10 md:top-20 left-8 md:left-40 text-left ">
               <h2 className="font-bold text-[20px]">Good Morning,</h2>
               <h2 className="flex gap-1 font-bold text-[30px] items-center">
                 {user?.fullName}!
@@ -88,7 +88,7 @@ export default function Home2() {
               </div>
             </div>
           </div>
-          <div className="relative">
+          <div className="relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-2 z-10 my-6 md:my-10 w-[90%] mx-auto">
               <div className="flex gap-4 items-center bg-white shadow-xl rounded-md px-4 py-2">
                 <div className=" bg-green-100 p-2 rounded-md">

@@ -152,11 +152,6 @@ export default function Navbar() {
                               <ChartAreaIcon size={20} /> <span>Ai Chat</span>
                             </div>
                           </li>
-                          <li>
-                            <div className="flex gap-3 menu-li">
-                              <Settings size={20} /> <span>Setting</span>
-                            </div>
-                          </li>
                         </ul>
                       </div>
                     </>
@@ -207,11 +202,6 @@ export default function Navbar() {
                               onClick={() => setAiChat(!aiChat)}
                             >
                               <ChartAreaIcon size={20} /> <span>Ai Chat</span>
-                            </div>
-                          </li>
-                          <li>
-                            <div className="flex gap-3 menu-li">
-                              <Settings size={20} /> <span>Setting</span>
                             </div>
                           </li>
                         </ul>
@@ -469,7 +459,7 @@ export default function Navbar() {
                   </div>
                 </div>
                 <div
-                  className={`w-[50%] bg-white absolute left-[25%] top-20 rounded-md shadow-md px-4 py-2 ${deleteShow ? "block" : "hidden"}`}
+                  className={`w-[80%] md:*:w-[50%] bg-white absolute left-[10%] md:left-[25%] top-20 rounded-md shadow-md px-4 py-2 ${deleteShow ? "block" : "hidden"}`}
                 >
                   <div className="relative h-6">
                     <X
@@ -544,7 +534,7 @@ export default function Navbar() {
                     </div>
                   </div>
                 </div>
-                <div className="absolute top-16 right-0 -z-10 shadow-md">
+                <div className="absolute top-14 right-0 -z-10 shadow-md">
                   {aiChat ? (
                     <>
                       <div>
@@ -663,7 +653,7 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
 
   return (
     <>
-      <div className="block h-[780px] md:h-[550px] w-[410px] bg-white -z-10 mx-auto p-6 rounded-lg">
+      <div className="block h-[780px] md:h-[550px] w-[400px] bg-white -z-10 mx-auto p-4 rounded-lg">
         <div className="relative">
           <div className="relative h-1">
             <X

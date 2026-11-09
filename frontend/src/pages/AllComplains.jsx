@@ -90,7 +90,7 @@ export default function AllComplains() {
         <div>
           <header className="mt-14 relative">
             <div>
-              <div className="h-[20vh] md:h-[30vh] w-full -z-20 overflow-hidden">
+              <div className="h-[30vh] w-full -z-20 overflow-hidden">
                 <img
                   src={agriPhoto}
                   alt="agri"

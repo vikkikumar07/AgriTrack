@@ -20,7 +20,7 @@ export default function AboutPage() {
         <Navbar />
       </div>
       <header className="mt-16">
-        <div className="h-[20vh]  md:h-[40vh] w-full -z-20 overflow-hidden">
+        <div className="h-[30vh]  md:h-[40vh] w-full -z-20 overflow-hidden">
           <img
             src={aboutImage}
             alt="about"
@@ -36,14 +36,14 @@ export default function AboutPage() {
             With <span className="text-[var(--primary)]">Smart Technology</span>
           </h2>
 
-          <p className="text-[14px] w-[60%]">
+          <p className="text-[14px] w-[70%]">
             AgriTrack is a modern platform designed to help farmers manage their
             farm easliy, plan better and grow more.
           </p>
         </div>
       </header>
       <main className="bg-gray-50 p-2">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mx-4 my-6 md:m-10">
           <div className="bg-white flex gap-2 shadow-md p-4 rounded-md shadow-[var(--color-1)]">
             <div className="flex items-center justify-cente">
               <div className="bg-green-200  rounded-full p-2">
@@ -54,7 +54,7 @@ export default function AboutPage() {
               <h3 className="font-semibold text-[var(--primary)] text-[20px]">
                 Our Mission
               </h3>
-              <p className="text-[14px] w-[80%]">
+              <p className="text-[14px] w-[90%]">
                 To support farmers with smart tools and AI-powered solutions for
                 higher productivity and better income
               </p>
@@ -104,7 +104,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-        <div className="my-8 mx-6 flex flex-wrap items-center gap-4 p-4 border border-green-300 rounded-md">
+        <div className="my-8 mx-4 flex flex-wrap items-center gap-4 p-4 border border-green-300 rounded-md">
           <div className="bg-green-200 p-4 rounded-md">
             <Trees color="green" size={30} />
           </div>
@@ -112,7 +112,7 @@ export default function AboutPage() {
             <h3 className="text-[var(--primary)] text-[20px] font-semibold">
               Our Story
             </h3>
-            <p className="text-[14px] w-[80%]">
+            <p className="text-[14px] w-[90%]">
               AgriTrack was born from a simple idea --to make farming smarter
               and easier. We belive in the hard work of farmers and are
               committed to providing the best platform to support their journey
