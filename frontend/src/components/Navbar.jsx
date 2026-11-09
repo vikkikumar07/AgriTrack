@@ -455,6 +455,11 @@ export default function Navbar() {
                       >
                         Delete Account
                       </button>
+                      <Link to={"/forgate/password"}>
+                        <div className="text-[12px] text-red-600 my-4">
+                          Forgate Password{" "}
+                        </div>
+                      </Link>
                     </div>
                   </div>
                 </div>

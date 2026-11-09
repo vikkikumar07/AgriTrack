@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import Navbar from "./../components/Navbar";
 import {
   Edit3,
-  Eye,
-  EyeOffIcon,
   Image,
   LocationEdit,
-  LockKeyhole,
   LucideMessagesSquare,
   User,
 } from "lucide-react";
@@ -20,12 +17,10 @@ import { setUser } from "../app/counter/counterSlice";
 
 export default function ProfileEdit() {
   let user = useSelector((state) => state.user.user);
-  let [showPass, setShowPass] = useState(false);
   let [userData, setUserData] = useState({
     fullName: user?.fullName,
     username: user?.username,
     email: user?.email,
-    password: "",
     location: user?.location,
     logo: user?.logo,
   });
@@ -77,7 +72,6 @@ export default function ProfileEdit() {
       fullName: user?.fullName,
       username: user?.username,
       email: user?.email,
-      password: "",
       location: user?.location,
       logo: user?.logo,
     });
@@ -171,40 +165,6 @@ export default function ProfileEdit() {
                           onChange={setData}
                           placeholder="Enter your email address"
                         />
-                      </div>
-                    </div>
-                    <div>
-                      <label>Password</label>
-                      <div className="relative">
-                        <LockKeyhole
-                          size={15}
-                          className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--mute)]"
-                        />
-                        <input
-                          className="inputBox"
-                          type={`${showPass ? "text" : "password"}`}
-                          name="password"
-                          value={userData.password}
-                          onChange={setData}
-                          placeholder="Create a new password"
-                        />
-                        {showPass ? (
-                          <>
-                            <Eye
-                              size={15}
-                              onClick={() => setShowPass(!showPass)}
-                              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--mute)]"
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <EyeOffIcon
-                              size={15}
-                              onClick={() => setShowPass(!showPass)}
-                              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--mute)]"
-                            />
-                          </>
-                        )}
                       </div>
                     </div>
                   </div>
