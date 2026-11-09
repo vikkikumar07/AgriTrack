@@ -653,7 +653,7 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
 
   return (
     <>
-      <div className="block h-[800px] md:h-[550px] w-[380px] md:w-[410px] bg-white -z-10 mx-auto p-4 rounded-lg">
+      <div className="block h-[800px] md:h-[550px] w-[370px] md:w-[410px] bg-white -z-10 mx-auto p-2 md:p-4 rounded-lg">
         <div className="relative">
           <div className="relative h-1">
             <X
