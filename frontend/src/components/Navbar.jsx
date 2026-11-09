@@ -459,7 +459,7 @@ export default function Navbar() {
                   </div>
                 </div>
                 <div
-                  className={`w-[90%] md:*:w-[50%] bg-white absolute left-[10%] md:left-[25%] top-20 rounded-md shadow-md px-4 py-2 ${deleteShow ? "block" : "hidden"}`}
+                  className={`w-[90%] md:w-[50%] bg-white absolute left-[5%] md:left-[25%] top-20 rounded-md shadow-md px-4 py-2 ${deleteShow ? "block" : "hidden"}`}
                 >
                   <div className="relative h-6">
                     <X

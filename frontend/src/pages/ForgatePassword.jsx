@@ -64,7 +64,7 @@ export default function ForgatePassword() {
         </div>
         <div className="flex justify-center mt-20">
           <div>
-            <div className="bg-white shadow-black block h-[520px] md:h-[480px] w-[90%] mx-auto mt-[100px] md:mt-6 md:w-[400px] shadow-md rounded-sm px-6 py-3">
+            <div className="bg-white shadow-black block h-[520px] md:h-[480px] w-[90%] mx-auto mt-[60px] md:mt-6 md:w-[400px] shadow-md rounded-sm px-6 py-3">
               <div className="text-center mt-[50px]">
                 <h2 className="font-bold text-[20px]">Forget Password</h2>
 
