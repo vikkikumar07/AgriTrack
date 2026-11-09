@@ -325,7 +325,7 @@ export default function MyFarm() {
           </div>
         </main>
         <div
-          className={`absolute top-20 w-[80%] left-1/2 -translate-x-1/2 z-10 ${show ? "block" : "hidden"}`}
+          className={`absolute top-20 w-[90%] left-1/2 -translate-x-1/2 z-10 ${show ? "block" : "hidden"}`}
         >
           <div className="relative h-[580px] md:h-[380px] w-full bg-white mx-auto shadow-sm shadow-black rounded-md">
             <div className="relative h-1">

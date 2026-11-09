@@ -459,7 +459,7 @@ export default function Navbar() {
                   </div>
                 </div>
                 <div
-                  className={`w-[80%] md:*:w-[50%] bg-white absolute left-[10%] md:left-[25%] top-20 rounded-md shadow-md px-4 py-2 ${deleteShow ? "block" : "hidden"}`}
+                  className={`w-[90%] md:*:w-[50%] bg-white absolute left-[10%] md:left-[25%] top-20 rounded-md shadow-md px-4 py-2 ${deleteShow ? "block" : "hidden"}`}
                 >
                   <div className="relative h-6">
                     <X
@@ -653,7 +653,7 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
 
   return (
     <>
-      <div className="block h-[780px] md:h-[550px] w-[400px] bg-white -z-10 mx-auto p-4 rounded-lg">
+      <div className="block h-[800px] md:h-[550px] w-[380px] md:w-[410px] bg-white -z-10 mx-auto p-4 rounded-lg">
         <div className="relative">
           <div className="relative h-1">
             <X
@@ -665,7 +665,7 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
           <div className="flex justify-center">
             <img src={logo} alt="logo" width={110} />
           </div>
-          <div className="relative flex justify-center items-center my-2 gap-2">
+          <div className="relative flex justify-center items-center my-1 md:my-2 gap-2">
             <AstroidIcon fill="blue" color="blue" size={30} />
             <h3 className="text-[30px] font-semibold text-[var(--primary)]">
               Ai Assistant
@@ -683,7 +683,7 @@ let AiChatCard = ({ aiChat, setAiChat }) => {
             </div>
           </div>
         </div>
-        <div className="relative h-[75%] md:h-[80%] border-2 border-[var(--primary)] rounded-md p-4 bg-[var(--color-1)]">
+        <div className="relative h-[70%] md:h-[80%] border-2 border-[var(--primary)] rounded-md p-4 bg-[var(--color-1)]">
           <div className="relative h-[90%] w-full overflow-y-auto overflow-x-hidden hide-scrollbar">
             <div className="grid grid-cols-1 gap-2 pb-2">
               {message?.map((v, i) => {
