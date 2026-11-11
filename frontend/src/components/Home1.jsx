@@ -82,7 +82,7 @@ export default function Home1() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-4 my-6">
-            <div className="border shadow-lg h-[210px]">
+            <div className="border shadow-lg h-auto py-2">
               <h3 className="text-center font-semibold my-2">
                 Ai Crop Planner Workflow
               </h3>
@@ -103,7 +103,7 @@ export default function Home1() {
                 </ul>
               </div>
             </div>
-            <div className="border shadow-lg h-[210px]">
+            <div className="border shadow-lg h-auto py-2">
               <h3 className="text-center font-semibold my-2">
                 Task & Schedule Management
               </h3>
@@ -123,7 +123,7 @@ export default function Home1() {
                 </ul>
               </div>
             </div>
-            <div className="border shadow-lg h-[210px]">
+            <div className="border shadow-lg h-auto py-2">
               <h3 className="text-center font-semibold my-2">
                 Harvest & Expenses Tracking
               </h3>
